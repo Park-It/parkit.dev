@@ -1,0 +1,1 @@
+/vagrant/sites/parkit.dev/app/views/users/show.blade.php
