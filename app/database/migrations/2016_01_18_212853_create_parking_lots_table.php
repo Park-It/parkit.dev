@@ -18,6 +18,7 @@ class CreateParkingLotsTable extends Migration {
 			$table->string('name', 255);
 			$table->string('address', 255);
 			$table->decimal('price', 8, 2);
+			$table->integer('max_spots');
 			$table->timestamps();
 		});
 	}
