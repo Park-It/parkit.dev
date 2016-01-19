@@ -11,6 +11,16 @@ class UsersTableSeeder extends Seeder {
 
 		$car = Car::firstOrFail();
 
+		$user = new User();
+		$user->first_name = 'Jerome';
+		$user->last_name = 'Ricks';
+		$user->username = 'jeromericks';
+		$user->email = $_ENV['USER_EMAIL'];
+		$user->password = $_ENV['USER_PASS'];
+		$user->car_id = $car->id;
+		$user->save();
+		
+
 		foreach(range(1, 10) as $index)
 		{
 			$user = new User();
