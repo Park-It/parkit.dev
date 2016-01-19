@@ -31,7 +31,7 @@ class HomeController extends BaseController {
 		$password = Input::get('password');
 
 		if (Auth::attempt(array('email' => $email, 'password' => $password))) {
-    		return Redirect::intended('posts');
+    		return Redirect::action('HomeController@showIndex');
 		} else {
     		// login failed, go back to the login screen
     		Session::flash('errorMessage', 'Login Failed');
@@ -42,7 +42,7 @@ class HomeController extends BaseController {
 	public function getLogout()
 	{
 		Auth::logout();
-		return Redirect::action('index');
+		return Redirect::action('HomeController@showIndex');
 	}
 
 }
