@@ -32,6 +32,7 @@
     	{{-- Script tags for jQuery and Bootstrap --}}
     	<script src="/js/jquery.js"></script>
     	<script src="/js/bootstrap.min.js"></script>
+        <script src="/js/register.js"></script>
 
 		@yield('bottom-script')
 	</body>

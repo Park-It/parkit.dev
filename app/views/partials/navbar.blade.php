@@ -71,37 +71,37 @@
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                     <h4 class="modal-title">Register</h4>
                 </div>
-                <div class="modal-body">
-                    <form>
+                <form id="register-form" method="POST">
+                    <div class="modal-body">
                         <div class="form-group">
                             <label for="username">Username</label>
-                            <input type="text" class="form-control" placeholder="Please enter a username" name="username">
+                            <input id="register-username" type="text" class="form-control" placeholder="Please enter a username" name="username">
                         </div>
                         <div class="form-group">
                             <label for="email">Email</label>
-                            <input type="text" class="form-control" placeholder="Please enter your email" name="email">
+                            <input id="register-email" type="text" class="form-control" placeholder="Please enter your email" name="email">
                         </div>
                         <div class="form-group">
                             <label for="password">Password</label>
-                            <input type="password" class="form-control" placeholder="Please enter your password" name="password">
+                            <input id="register-password" type="password" class="form-control" placeholder="Please enter your password" name="password">
                         </div>
                         <div class="form-group">
                             <label for="confirm_password">Confirm Password</label>
-                            <input type="password" class="form-control" placeholder="Please confirm your password" name="confirm_password">
+                            <input id="register-cpassword" type="password" class="form-control" placeholder="Please confirm your password" name="confirm_password">
                         </div>
                         <div class="form-group">
                             <label for="first_name">First Name</label>
-                            <input type="text" class="form-control" placeholder="Please enter your first name" name="first_name">
+                            <input id="register-fname" type="text" class="form-control" placeholder="Please enter your first name" name="first_name">
                         </div>
                         <div class="form-group">
                             <label for="last_name">Last Name</label>
-                            <input type="text" class="form-control" placeholder="Please enter your last name" name="last_name">
+                            <input id="register-lname" type="text" class="form-control" placeholder="Please enter your last name" name="last_name">
                         </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default">Register</button>
-                </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-default">Register</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
