@@ -2,6 +2,12 @@
 
 class UsersController extends \BaseController {
 
+	public function __construct()
+	{
+		parent::__construct();
+
+		$this->beforeFilter('auth', array('except' => array('index', 'show', 'store')));
+	}
 	/**
 	 * Display a listing of users
 	 *
@@ -31,16 +37,16 @@ class UsersController extends \BaseController {
 	 */
 	public function store()
 	{
+    	// dd('Hello');
 		// create the validator
-    	$validator = Validator::make(Input::all(), Post::$rules);
-
+    	$validator = Validator::make(Input::all(), User::$rules);
     	// attempt validation
     	if ($validator->fails()) {
-        	// validation failed, redirect to the post create page with validation errors and old inputs
+        	// validation failed, redirect to the index page with validation errors and old inputs
         	return Redirect::back()->withInput()->withErrors($validator);
     	} else {
     		$car = Car::firstOrFail();
-        	// validation succeeded, create and save the post
+        	// validation succeeded, create and save the user
 			$user = new User();
 			
 			$user->first_name = Input::get('first_name');
@@ -53,13 +59,12 @@ class UsersController extends \BaseController {
 
 			if($result) {
 				Session::flash('successMessage', $user->first_name . ' Thank you for signing up at Park It');
-
-				return Redirect::action('posts.index');
+				Auth::attempt(array('email' => $user->email, 'password' => Input::get('password')));
+				return Redirect::action('HomeController@showIndex');
 
 			} else {
 				Session::flash('errorMessage', 'Please properly input all the required fields');
 				Log::warning('Post failed to save: ', Input::all());
-
 				return Redirect::back()->withInput();
 			}
     	}
