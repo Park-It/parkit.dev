@@ -54,10 +54,10 @@
                             {{ Form::label('password', 'Password')}}
                             {{ Form::password('password', ['class' => 'form-control', 'placeholder' => 'Please enter your password', 'id' => 'password'] )}}
                         </div>
-                    {{ Form::close() }}
                 </div>
                 <div class="modal-footer">
-                    <a href="{{{ action('HomeController@getLogin') }}}" type="button" class="btn btn-default">Login</a>
+                    <button type="submit" class="btn btn-default">Login</button>
+                    {{ Form::close() }}
                 </div>
             </div>
         </div>
