@@ -16,7 +16,7 @@ class UsersTableSeeder extends Seeder {
 			$user = new User();
 			$user->first_name = $faker->firstName;
 			$user->last_name = $faker->lastName;
-			$user->username = $faker->word;
+			$user->username = $faker->userName;
 			$user->email = $faker->email;
 			$user->password = $faker->md5;
 			$user->car_id = $car->id;
@@ -25,7 +25,7 @@ class UsersTableSeeder extends Seeder {
 			$user2 = new User();
 			$user2->first_name = $faker->firstName;
 			$user2->last_name = $faker->lastName;
-			$user2->username = $faker->word;
+			$user2->username = $faker->userName;
 			$user2->email = $faker->email;
 			$user2->password = $faker->md5;
 			$user2->car_id = $car->id;
@@ -34,7 +34,7 @@ class UsersTableSeeder extends Seeder {
 			$user3 = new User();
 			$user3->first_name = $faker->firstName;
 			$user3->last_name = $faker->lastName;
-			$user3->username = $faker->word;
+			$user3->username = $faker->userName;
 			$user3->email = $faker->email;
 			$user3->password = $faker->md5;
 			$user3->car_id = $car->id;
@@ -43,7 +43,7 @@ class UsersTableSeeder extends Seeder {
 			$user4 = new User();
 			$user4->first_name = $faker->firstName;
 			$user4->last_name = $faker->lastName;
-			$user4->username = $faker->word;
+			$user4->username = $faker->userName;
 			$user4->email = $faker->email;
 			$user4->password = $faker->md5;
 			$user4->car_id = $car->id;
