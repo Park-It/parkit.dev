@@ -18,18 +18,18 @@
                 <li class="hidden">
                     <a href="#page-top"></a>
                 </li>
-
-                <li class="page-scroll active">
+            @if(Auth::check())
+                <li>
+                    <a href="{{{ action('HomeController@getLogout') }}}">Logout</a>
+                </li>
+            @else
+                <li>
                     <!-- Small login modal -->
                     <a href="#" data-toggle="modal" data-target="#loginModal">Login</a>
                 </li>
-                <li class="page-scroll">
+                <li>
                     <!-- Small register modal -->
                     <a href="#" data-toggle="modal" data-target="#registerModal">Register</a>
-                </li>
-            @if(Auth::check())
-                <li class="page-scroll">
-                    <a href="#contact">Logout</a>
                 </li>
             @endif
             </ul>
@@ -45,19 +45,19 @@
                     <h4 class="modal-title">Login</h4>
                 </div>
                 <div class="modal-body">
-                    <form>
+                    {{ Form::open(['action' => 'HomeController@postLogin']) }}
                         <div class="form-group">
-                            <label for="email">Email</label>
-                            <input type="text" class="form-control" placeholder="Please enter your email">
+                            {{ Form::label('email', 'Email')}}
+                            {{ Form::text('email', null, ['class' => 'form-control', 'placeholder' => 'Please enter your email', 'id' => 'email'] )}}
                         </div>
                         <div class="form-group">
-                            <label for="password">Password</label>
-                            <input type="password" class="form-control" placeholder="Please enter your password">
+                            {{ Form::label('password', 'Password')}}
+                            {{ Form::password('password', ['class' => 'form-control', 'placeholder' => 'Please enter your password', 'id' => 'password'] )}}
                         </div>
-                    </form>
+                    {{ Form::close() }}
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default">Login</button>
+                    <a href="{{{ action('HomeController@getLogin') }}}" type="button" class="btn btn-default">Login</a>
                 </div>
             </div>
         </div>
