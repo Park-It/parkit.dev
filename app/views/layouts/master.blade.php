@@ -7,9 +7,11 @@
     	<!-- Add CSRF Token as a meta tag in your head -->
     	<meta name="csrf-token" content="{{{ csrf_token() }}}">
     	@yield('title')
+        <link rel="shortcut icon" href="/img/parking.png">
     	{{-- Link tag for Bootstrap --}}
     	<link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
     	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+        <link rel="stylesheet" type="text/css" href="/css/main.css">
     	@yield('top-script')
 	</head>
 	<body>
