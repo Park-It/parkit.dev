@@ -121,3 +121,11 @@
     transform: rotate(0);
     -ms-transform: rotate(0);
 }
+
+.modal-backdrop {
+    z-index: 1020;
+}
+
+.modal-body {
+    text-transform: capitalize;
+}
