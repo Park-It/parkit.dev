@@ -19,6 +19,9 @@
                     <a href="#page-top"></a>
                 </li>
             @if(Auth::check())
+               {{--  <li>
+                    <a href="">{{{ $user->first_name . '\'s Profile' }}}</a>
+                </li> --}}
                 <li>
                     <a href="{{{ action('HomeController@getLogout') }}}">Logout</a>
                 </li>
@@ -56,7 +59,7 @@
                         </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-default">Login</button>
+                    <button type="submit" class="btn btn-primary">Login</button>
                     {{ Form::close() }}
                 </div>
             </div>
@@ -71,7 +74,8 @@
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                     <h4 class="modal-title">Register</h4>
                 </div>
-                <form id="register-form" method="POST">
+                {{ Form::open(['action' => 'UsersController@store', 'id' => 'register-form']) }}
+                {{-- <form id="register-form" method="POST"> --}}
                     <div class="modal-body">
                         <div class="form-group">
                             <label for="username">Username</label>
@@ -99,9 +103,10 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-default">Register</button>
+                        <button type="submit" class="btn btn-primary">Register</button>
                     </div>
-                </form>
+                {{ Form::close() }}
+                {{-- </form> --}}
             </div>
         </div>
     </div>
