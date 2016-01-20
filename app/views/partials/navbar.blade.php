@@ -9,7 +9,7 @@
                 <span class="icon-bar middle-bar"></span>
                 <span class="icon-bar bottom-bar"></span>
             </button>
-            <a class="navbar-brand" href="#page-top">Park It</a>
+            <a class="navbar-brand" href="{{{ action('HomeController@showIndex') }}}">Park It</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -22,7 +22,7 @@
                 <li>
                     <a id="drop" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{{ Auth::user()->first_name . '\'s Profile' }}}<span class="caret"></span></a>
                     <ul id="menu" class="dropdown-menu" aria-labelledby="drop"> 
-                        <li><a href="#"><i class="fa fa-car"></i>&nbsp;My Vehicles</a></li> 
+                        <li><a href="{{{ action('CarsController@index')}}}"><i class="fa fa-car"></i>&nbsp;My Vehicles</a></li> 
                         <li><a href="#"><i class="fa fa-product-hunt"></i>&nbsp;My Preferred Parking Lots</a></li> 
                         <li><a href="#"><i class="fa fa-star"></i>&nbsp;My Ratings</a></li> 
                         <li role="separator" class="divider"></li> 
@@ -70,11 +70,11 @@
                 <div class="modal-body">
                     {{ Form::open(['action' => 'HomeController@postLogin']) }}
                         <div class="form-group">
-                            {{ Form::label('email', 'Email')}}
+                            {{ Form::label('email', 'Email') }}
                             {{ Form::text('email', null, ['class' => 'form-control', 'placeholder' => 'Please enter your email', 'id' => 'email'] )}}
                         </div>
                         <div class="form-group">
-                            {{ Form::label('password', 'Password')}}
+                            {{ Form::label('password', 'Password') }}
                             {{ Form::password('password', ['class' => 'form-control', 'placeholder' => 'Please enter your password', 'id' => 'password'] )}}
                         </div>
                 </div>
