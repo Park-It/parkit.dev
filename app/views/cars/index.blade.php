@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('title')
-	<title>{{{ Auth::user()->first_name . '\'s Cars'}}}</title>
+	<title>{{{ $name.'\'s Cars'}}}</title>
 @stop
 
 @section('content')
@@ -21,10 +21,10 @@
 			</thead>
 			<tbody>
 				<tr>
-					<td>{{{ Auth::user()->car_id }}}</td>
-					<td></td>
-					<td></td>
-					<td></td>
+					<td>{{ $make }}</td>
+					<td>{{ $model }}</td>
+					<td>{{ $license_number }}</td>
+					<td>{{ $color }}</td>
 				</tr>
 			</tbody>
 		</table>

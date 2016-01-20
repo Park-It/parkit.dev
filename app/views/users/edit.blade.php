@@ -75,7 +75,6 @@
         </div>
         </div>
     </div>
-
         <button type="submit" class="btn btn-primary"><i class="fa fa-check"></i>&nbsp;Submit</button>
         <a href="{{{ action('UsersController@show', $user->id) }}}" class="btn btn-success"><i class="fa fa-undo"></i>&nbsp;Cancel</a>
     {{ Form::close() }}
