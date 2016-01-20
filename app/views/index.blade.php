@@ -27,7 +27,7 @@
 	            			<input type="text" placeholder="Enter your destination" class="form-control">
 	            		</div>
 	            	</div>
-	            	<button type="submit" class="btn btn-primary">Submit</button>
+	            	<button type="submit" class="btn btn-primary submit">Submit</button>
             	</form>
             </div>
         </div>
