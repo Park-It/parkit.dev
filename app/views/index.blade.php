@@ -14,7 +14,7 @@
         <div class="container">
             <div class="col-lg-12">
             	<form>
-            		<button class="btn btn-primary">Find Me</button>
+            		<button class="btn btn-success">Find Me</button>
             		<div class="row control-group">
 	            		<div class="form-group col-xs-12 floating-label-form-group controls">
 	            			<label for="address">Address</label>
@@ -27,6 +27,7 @@
 	            			<input type="text" placeholder="Enter your destination" class="form-control">
 	            		</div>
 	            	</div>
+	            	<button type="submit" class="btn btn-primary">Submit</button>
             	</form>
             </div>
         </div>

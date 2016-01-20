@@ -137,3 +137,8 @@
 .alert {
     margin-top: 75px;
 }
+
+.delete {
+    text-transform: uppercase;
+    letter-spacing: 0.75px;
+}
