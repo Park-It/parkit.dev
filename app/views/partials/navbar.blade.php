@@ -9,7 +9,7 @@
                 <span class="icon-bar middle-bar"></span>
                 <span class="icon-bar bottom-bar"></span>
             </button>
-            <a class="navbar-brand" href="#page-top">Park It</a>
+            <a class="navbar-brand" href="{{{ action('HomeController@showIndex') }}}">Park It</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
