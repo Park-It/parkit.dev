@@ -67,7 +67,7 @@ header form {
 }
 
 form .row:first-child .floating-label-form-group {
-    border-top: 1px solid #4c4c4c;
+    border-top: 1px solid #4C4C4C;
 }
 
 .form-group {
@@ -82,7 +82,6 @@ input {
 #map-canvas {
     width: 95%;
     height: 481px;
-    margin: 0 auto;
 }
 
 input::-webkit-input-placeholder {
@@ -136,3 +135,4 @@ text-shadow:
 .submit {
     margin-bottom: 500px;
 }
+

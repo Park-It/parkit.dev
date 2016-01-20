@@ -7,7 +7,7 @@
 @section('content')
     <div class="container">
         <div class="rows">
-    {{ Form::model($user, array('action' => array('UsersController@update', $user->id), 'method' => 'PUT')) }}
+    {{ Form::model($user, array('action' => array('UsersController@update', Auth::user()->id), 'method' => 'PUT')) }}
         <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
             <h4 class="panel-title"><a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">Change User Name</a></h4>
             <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
@@ -28,11 +28,11 @@
                 <div class="panel-body">
                     <div class="form-group">
                     <label for="current_firstname">Current First Name</label>
-                        <input type="text" name="current_firstname" class="form-control" value="{{{ Auth::user()->first_name }}}">
+                        <input type="text" name="current_first_name" class="form-control" value="{{{ Auth::user()->first_name }}}">
                     </div>
                     <div class="form-group">
                         <label for="current_lastname">Current Last Name</label>
-                        <input type="text" name="current_lastname" class="form-control" value="{{{ Auth::user()->last_name }}}">
+                        <input type="text" name="current_last_name" class="form-control" value="{{{ Auth::user()->last_name }}}">
                     </div>
                     <div class="form-group">
                     <label for="new_first_name">New First Name</label>
@@ -76,6 +76,6 @@
         </div>
     </div>
         <button type="submit" class="btn btn-primary"><i class="fa fa-check"></i>&nbsp;Submit</button>
-        <a href="{{{ action('UsersController@show', $user->id) }}}" class="btn btn-success"><i class="fa fa-undo"></i>&nbsp;Cancel</a>
+        <a href="{{{ action('HomeController@showIndex') }}}" class="btn btn-success"><i class="fa fa-undo"></i>&nbsp;Cancel</a>
     {{ Form::close() }}
 @stop
