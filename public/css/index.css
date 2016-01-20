@@ -93,20 +93,3 @@ input {
     width: cover;
     height: 481px;
 }
-
-.delete {
-    background:none!important;
-    border:none; 
-    padding:0!important;
-    font: inherit;
-    cursor: pointer; 
-    font-weight: normal; 
-    display: block;
-    padding: 3px 20px;
-    clear: both;
-    font-weight: 400;
-    line-height: 1.42857143;
-    color: #333;
-    white-space: nowrap;
-    margin-left: 20px;
-}
