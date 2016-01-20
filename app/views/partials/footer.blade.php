@@ -20,7 +20,7 @@
                     <ul class="list-inline quicklinks">
                         <li class="page-scroll active">
                             <!-- Small privacy & Terms modal -->
-                            <a href="#" data-toggle="modal" data-target="#privacyTermsModal">Private Policy/Terms of use</a>
+                            <a href="#" data-toggle="modal" data-target="#privacyTermsModal">Private Policy / Terms of Use</a>
                         </li>
                         <li class="page-scroll active">
                     <!-- Privacy & Terms Modal -->
@@ -29,7 +29,7 @@
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                    <h4 class="modal-title">Privacy Policy/Terms of use</h4>
+                                    <h4 class="modal-title">Privacy Policy / Terms of Use</h4>
                                 </div>
                                 <div class="modal-body">
                                     <h2>

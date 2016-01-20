@@ -6,6 +6,9 @@ return array(
     'DB_USER' => '',
     'DB_PASS' => '',
 
+    'USER_FIRST' => '',
+  	'USER_LAST' => '',
+  	'USER_USERNAME' => '',
     'USER_EMAIL' => '',
     'USER_PASS' => ''
 );

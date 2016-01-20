@@ -28,7 +28,7 @@
                         <li role="separator" class="divider"></li> 
                         <li><a href="{{{ action('UsersController@edit', Auth::user()->id) }}}"><i class="fa fa-pencil-square-o"></i>&nbsp;Edit Profile</a></li>
                         {{ Form::open(['action' => ['UsersController@destroy', Auth::user()->id], 'method' => 'DELETE']) }}
-                        <li><button class="delete" data-id="{{ Auth::user()->id }}" data-name="{{ ucfirst(Auth::user()->title) }}"><i class="fa fa-times"></i>&nbsp;Delete Profile</button></li>
+                        <li><button class="delete" data-id="{{ Auth::user()->id }}" data-name="{{ ucfirst(Auth::user()->title) }}"><i class="fa fa-times"></i>&nbsp;&nbsp;Delete Profile</button></li>
                         {{ Form::close() }} 
                     </ul>
                 </li>
