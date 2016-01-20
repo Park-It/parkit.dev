@@ -21,10 +21,10 @@
 			</thead>
 			<tbody>
 				<tr>
-					<td>{{{ Auth::user()->car_id }}}</td>
-					<td></td>
-					<td></td>
-					<td></td>
+					<td>{{ $make }}</td>
+					<td>{{ $model }}</td>
+					<td>{{ $license_number }}</td>
+					<td>{{ $color }}</td>
 				</tr>
 			</tbody>
 		</table>
