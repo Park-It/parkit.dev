@@ -20,5 +20,4 @@ class Car extends \Eloquent {
 	{
 		return $this->belongsToMany('ParkingLot');
 	}
-
 }

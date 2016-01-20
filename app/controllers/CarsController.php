@@ -9,9 +9,10 @@ class CarsController extends \BaseController {
 	 */
 	public function index()
 	{
-		$cars = Car::all();
+		$id = Auth::user()->car_id;
+		$cars = Car::find($id);
 
-		return View::make('cars.index', compact('cars'));
+		return View::make('cars.index', $cars);
 	}
 
 	/**
