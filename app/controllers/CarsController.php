@@ -36,11 +36,25 @@ class CarsController extends \BaseController {
 		if ($validator->fails())
 		{
 			return Redirect::back()->withErrors($validator)->withInput();
+		} else {
+			$car = new Car();
+			
+			$car->make = Input::get('first_name');
+			$car->model = Input::get('last_name');
+			$car->license_number = Input::get('username');
+			$car->color = Input::get('email');
+			$result = $car->save();
 		}
 
-		Car::create($data);
+		if($result) {
+				Session::flash('successMessage', $user->first_name . ' Thank you for saving your car');
+				return Redirect::action('car.index');
 
-		return Redirect::route('cars.index');
+			} else {
+				Session::flash('errorMessage', 'Please properly input all the required fields');
+				Log::warning('Car failed to save: ', Input::all());
+				return Redirect::back()->withInput();
+			}
 	}
 
 	/**
