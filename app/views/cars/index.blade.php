@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('title')
-	<title>{{{ Auth::user()->first_name . '\'s Cars'}}}</title>
+	<title>{{{ $name.'\'s Cars'}}}</title>
 @stop
 
 @section('content')

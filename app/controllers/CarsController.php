@@ -9,8 +9,15 @@ class CarsController extends \BaseController {
 	 */
 	public function index()
 	{
-		$id = Auth::user()->car_id;
-		$cars = Car::find($id);
+		if(Auth::check())
+		{
+			$id = Auth::user()->car_id;
+			$cars = Car::find($id);
+			$cars["name"] = Auth::user()->first_name;
+		} else
+		{
+			$cars = ["make" => "login", "model" => "or", "license_number" => "sign", "color" => "up", "name" => "error"];
+		}
 
 		return View::make('cars.index', $cars);
 	}
