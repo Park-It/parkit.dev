@@ -19,16 +19,36 @@
                     <a href="#page-top"></a>
                 </li>
             @if(Auth::check())
-               {{--  <li>
-                    <a href="">{{{ $user->first_name . '\'s Profile' }}}</a>
-                </li> --}}
+                <li>
+                    <a id="drop" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{{ Auth::user()->first_name . '\'s Profile' }}}<span class="caret"></span></a>
+                    <ul id="menu" class="dropdown-menu" aria-labelledby="drop"> 
+                        <li><a href="#"><i class="fa fa-car"></i>&nbsp;My Vehicles</a></li> 
+                        <li><a href="#"><i class="fa fa-product-hunt"></i>&nbsp;My Preferred Parking Lots</a></li> 
+                        <li><a href="#"><i class="fa fa-star"></i>&nbsp;My Ratings</a></li> 
+                        <li role="separator" class="divider"></li> 
+                        <li><a href="{{{ action('UsersController@edit', Auth::user()->id) }}}"><i class="fa fa-pencil-square-o"></i>&nbsp;Edit Profile</a></li>
+                        {{ Form::open(['action' => ['UsersController@destroy', Auth::user()->id], 'method' => 'DELETE']) }}
+                        <li><button class="delete" data-id="{{ Auth::user()->id }}" data-name="{{ ucfirst(Auth::user()->title) }}"><i class="fa fa-times"></i>&nbsp;Delete Profile</button></li>
+                        {{ Form::close() }} 
+                    </ul>
+                </li>
+                <li class="active">
+                    <a id="drop" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-cog"></i><span class="caret"></span></a>
+                    <ul id="menu" class="dropdown-menu" aria-labelledby="drop"> 
+                        <li><a href="#">Layout</a></li> 
+                        <li><a href="#">Another action</a></li> 
+                        <li><a href="#">Something else here</a></li> 
+                        <li role="separator" class="divider"></li> 
+                        <li><a href="#">Separated link</a></li> 
+                    </ul>
+                </li>
                 <li>
                     <a href="{{{ action('HomeController@getLogout') }}}">Logout</a>
                 </li>
             @else
                 <li>
                     <!-- Small login modal -->
-                    <a href="#" data-toggle="modal" data-target="#loginModal">Login</a>
+                    <a href="#" data-toggle="modal" data-target="#loginModal"><i class="fa fa-sign-in"></i>&nbsp;Login</a>
                 </li>
                 <li>
                     <!-- Small register modal -->
