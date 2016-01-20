@@ -111,11 +111,24 @@ class UsersController extends \BaseController {
 		if ($validator->fails())
 		{
 			return Redirect::back()->withErrors($validator)->withInput();
+		} else {
+			$user->first_name = Input::get('new_first_name');
+			$user->last_name = Input::get('new_last_name');
+			$user->username = Input::get('new_username');
+			$user->email = Input::get('new_email');
+			$user->password = Input::get('new_password');
+			$result = $user->save();
 		}
 
-		$user->update($data);
+		if($result) {
+			Session::flash('successMessage', $user->first_name . ' Thank you for signing up at Park It');
+			return Redirect::action('HomeController@showIndex');
 
-		return Redirect::route('users.index');
+		} else {
+			Session::flash('errorMessage', 'Please properly input all the required fields');
+			Log::warning('Post failed to save: ', Input::all());
+			return Redirect::back()->withInput();
+		}
 	}
 
 	/**
