@@ -20,3 +20,5 @@ Route::get('logout', 'HomeController@getLogout');
 Route::resource('users', 'UsersController');
 
 Route::resource('cars', 'CarsController');
+
+Route::resource('ratings', 'RatingsController');
