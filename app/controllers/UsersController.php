@@ -37,7 +37,6 @@ class UsersController extends \BaseController {
 	 */
 	public function store()
 	{
-    	// dd('Hello');
 		// create the validator
     	$validator = Validator::make(Input::all(), User::$rules);
     	// attempt validation
