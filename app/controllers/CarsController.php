@@ -11,15 +11,12 @@ class CarsController extends \BaseController {
 	{
 		if(Auth::check())
 		{
-			$id = Auth::user()->car_id;
-			$cars = Car::find($id);
-			$cars["name"] = Auth::user()->first_name;
-		} else
-		{
-			$cars = ["make" => "login", "model" => "or", "license_number" => "sign", "color" => "up", "name" => "error"];
-		}
+			$cars = Auth::user()->cars()->paginate(10);
+			// $cars = Car::where('user_id', '=', $id);
+			$first_name = Auth::user()->first_name;
+		} 
 
-		return View::make('cars.index', $cars);
+		return View::make('cars.index', compact('cars', 'first_name'));
 	}
 
 	/**

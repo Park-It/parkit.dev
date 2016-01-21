@@ -20,4 +20,9 @@ class Car extends \Eloquent {
 	{
 		return $this->belongsToMany('ParkingLot');
 	}
+
+	public function user()
+	{
+		return $this->belongsTo('User');
+	}
 }

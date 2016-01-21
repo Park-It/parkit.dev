@@ -28,7 +28,7 @@ class RatingsTableSeeder extends Seeder {
 			$rating2->comment = $faker->realText;
 			$rating2->recommended = $faker->boolean;
 			$rating2->parking_lot_id = $parking_lot->id;
-			$rating->user_id = $user->id;
+			$rating2->user_id = $user->id;
 			$rating2->save();
 
 			$rating3 = new Rating();
@@ -36,7 +36,7 @@ class RatingsTableSeeder extends Seeder {
 			$rating3->comment = $faker->realText;
 			$rating3->recommended = $faker->boolean;
 			$rating3->parking_lot_id = $parking_lot->id;
-			$rating->user_id = $user->id;
+			$rating3->user_id = $user->id;
 			$rating3->save();
 
 			$rating4 = new Rating();
@@ -44,7 +44,7 @@ class RatingsTableSeeder extends Seeder {
 			$rating4->comment = $faker->realText;
 			$rating4->recommended = $faker->boolean;
 			$rating4->parking_lot_id = $parking_lot->id;
-			$rating->user_id = $user->id;
+			$rating4->user_id = $user->id;
 			$rating4->save();
 		}
 	}

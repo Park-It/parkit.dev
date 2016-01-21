@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('title')
-	<title>{{{ $name . '\'s Cars'}}}</title>
+	<title>{{{ $first_name . '\'s Cars'}}}</title>
 @stop
 
 @section('content')
@@ -9,7 +9,7 @@
 		<div class="rows">
 			<a href="{{{ action('CarsController@create') }}}"><i class="fa fa-plus"></i>&nbsp;Add a Car</a>
 		</div>
-		<h2>Your Vehicles</h2>
+		<h2>{{{ $first_name . '\'s Vehicles' }}}</h2>
 		<table class="table table-striped">
 			<thead>
 				<tr>
@@ -20,13 +20,18 @@
 				</tr>
 			</thead>
 			<tbody>
+				@foreach($cars as $car)
 				<tr>
-					<td>{{ $make }}</td>
-					<td>{{ $model }}</td>
-					<td>{{ $license_number }}</td>
-					<td>{{ $color }}</td>
+					<td>{{ $car->make }}</td>
+					<td>{{ $car->model }}</td>
+					<td>{{ $car->license_number }}</td>
+					<td>{{ $car->color }}</td>
 				</tr>
+				@endforeach
 			</tbody>
 		</table>
+		<center>
+			<span>{{ $cars->links() }}</span>
+		</center>
 	</div>
 @stop
