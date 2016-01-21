@@ -11,17 +11,14 @@ class RatingsController extends \BaseController {
 	{
 		if(Auth::check())
 		{
-			$ratings = Auth::user()->ratings()->paginate(10);
 			$first_name = Auth::user()->first_name;
 			$parking_lots = DB::table('ratings')
     		->join('parking_lots', 'parking_lots.id', '=', 'parking_lot_id')
     		->paginate(10);
-    		// dd($parking_lots);
-			// $parking_lots = Rating::where('parking_lot_id', '=', $id);
 		} 
 		
 
-		return View::make('ratings.index', compact('ratings', 'first_name', 'parking_lots'));
+		return View::make('ratings.index', compact('first_name', 'parking_lots'));
 	}
 
 	/**
