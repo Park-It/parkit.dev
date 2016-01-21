@@ -15,7 +15,7 @@ class RatingsController extends \BaseController {
 			$first_name = Auth::user()->first_name;
 			$parking_lots = DB::table('ratings')
     		->join('parking_lots', 'parking_lots.id', '=', 'parking_lot_id')
-    		->get();
+    		->paginate(10);
     		// dd($parking_lots);
 			// $parking_lots = Rating::where('parking_lot_id', '=', $id);
 		} 

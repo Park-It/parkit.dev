@@ -12,7 +12,7 @@
 		<table class="table table-striped">
 			<thead>
 				<tr>
-					<th>Parking Lot:</th>
+					<th>Parking&nbsp;Lot:</th>
 					<th>Stars:</th>
 					<th>Comment:</th>
 					<th>Recommended:</th>
@@ -29,6 +29,9 @@
 				@endforeach
 			</tbody>
 		</table>
+		<center>
+			<span>{{ $parking_lots->links() }}</span>
+		</center>
 	</div>
 </div>
 @stop
