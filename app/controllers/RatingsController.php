@@ -17,7 +17,6 @@ class RatingsController extends \BaseController {
     		->paginate(10);
 		} 
 		
-
 		return View::make('ratings.index', compact('first_name', 'parking_lots'));
 	}
 
