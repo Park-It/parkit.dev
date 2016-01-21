@@ -7,6 +7,7 @@
 @section('content')
 <div class="container">
 	<div class="rows">
+		<h2>{{{ Auth::user()->first_name . '\'s Ratings' }}}</h2>
 		<table class="table table-striped">
 			<thead>
 				<tr>

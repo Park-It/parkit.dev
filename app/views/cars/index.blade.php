@@ -9,7 +9,7 @@
 		<div class="rows">
 			<a href="{{{ action('CarsController@create') }}}"><i class="fa fa-plus"></i>&nbsp;Add a Car</a>
 		</div>
-		<h2>Your Vehicles</h2>
+		<h2>{{{ $name . '\'s Vehicles' }}}</h2>
 		<table class="table table-striped">
 			<thead>
 				<tr>

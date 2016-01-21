@@ -20,8 +20,6 @@ class CreateUsersTable extends Migration {
 			$table->string('username', 255)->unique();
 			$table->string('email', 255)->unique();
 			$table->string('password', 255);
-			$table->integer('car_id')->unsigned();
-			$table->foreign('car_id')->references('id')->on('cars');
 			$table->timestamps();
 		});
 	}

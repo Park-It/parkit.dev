@@ -9,7 +9,6 @@ class UsersTableSeeder extends Seeder {
 	{
 		$faker = Faker::create();
 
-		$car = Car::firstOrFail();
 
 		$user = new User();
 		$user->first_name = $_ENV['USER_FIRST'];
@@ -17,7 +16,6 @@ class UsersTableSeeder extends Seeder {
 		$user->username = $_ENV['USER_USERNAME'];
 		$user->email = $_ENV['USER_EMAIL'];
 		$user->password = $_ENV['USER_PASS'];
-		$user->car_id = $car->id;
 		$user->save();
 		
 
@@ -29,7 +27,6 @@ class UsersTableSeeder extends Seeder {
 			$user->username = $faker->userName;
 			$user->email = $faker->email;
 			$user->password = $faker->md5;
-			$user->car_id = $car->id;
 			$user->save();
 
 			$user2 = new User();
@@ -38,7 +35,6 @@ class UsersTableSeeder extends Seeder {
 			$user2->username = $faker->userName;
 			$user2->email = $faker->email;
 			$user2->password = $faker->md5;
-			$user2->car_id = $car->id;
 			$user2->save();
 
 			$user3 = new User();
@@ -47,7 +43,6 @@ class UsersTableSeeder extends Seeder {
 			$user3->username = $faker->userName;
 			$user3->email = $faker->email;
 			$user3->password = $faker->md5;
-			$user3->car_id = $car->id;
 			$user3->save();
 
 			$user4 = new User();
@@ -56,7 +51,6 @@ class UsersTableSeeder extends Seeder {
 			$user4->username = $faker->userName;
 			$user4->email = $faker->email;
 			$user4->password = $faker->md5;
-			$user4->car_id = $car->id;
 			$user4->save();
 		}
 	}
