@@ -17,6 +17,7 @@
 					<th>Model</th>
 					<th>License Number</th>
 					<th>Color</th>
+					<th></th>
 				</tr>
 			</thead>
 			<tbody>
@@ -26,6 +27,7 @@
 					<td>{{ $car->model }}</td>
 					<td>{{ $car->license_number }}</td>
 					<td>{{ $car->color }}</td>
+					<td><a href="{{{ action('CarsController@show', $car->id) }}}" class="btn btn-primary">View This Car</a></td>
 				</tr>
 				@endforeach
 			</tbody>

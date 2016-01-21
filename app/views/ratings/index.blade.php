@@ -24,6 +24,11 @@
 					<td>{{ $rating->recommended }}</td>
 				</tr>
 				@endforeach
+				@foreach($parking_lots as $parking_lot)
+				<tr>
+					<td>{{ $parking_lot->name }}</td>
+				</tr>
+				@endforeach
 			</tbody>
 		</table>
 	</div>

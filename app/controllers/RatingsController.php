@@ -9,9 +9,19 @@ class RatingsController extends \BaseController {
 	 */
 	public function index()
 	{
-		$ratings = Rating::all();
+		if(Auth::check())
+		{
+			$ratings = Auth::user()->ratings()->paginate(10);
+			$first_name = Auth::user()->first_name;
+			$parking_lots = DB::table('ratings')
+    		->join('parking_lots', 'parking_lots.id', '=', 'parking_lot_id')
+    		->where('parking_lots.id', 'parking_lot_id')
+    		->get();
+			// $parking_lots = Rating::where('parking_lot_id', '=', $id);
+		} 
+		
 
-		return View::make('ratings.index', compact('ratings'));
+		return View::make('ratings.index', compact('ratings', 'first_name', 'parking_lots'));
 	}
 
 	/**
