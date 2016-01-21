@@ -21,8 +21,8 @@ class Car extends \Eloquent {
 		return $this->belongsToMany('ParkingLot');
 	}
 
-	public function users()
+	public function user()
 	{
-		return $this->hasMany('User');
+		return $this->belongsTo('User');
 	}
 }
