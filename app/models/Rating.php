@@ -18,9 +18,9 @@ class Rating extends \Eloquent {
 		return $this->hasMany('ParkingLot');
 	}
 
-	public function users()
+	public function user()
 	{
-		return $this->hasMany('User');
+		return $this->belongsTo('User');
 	}
 
 }

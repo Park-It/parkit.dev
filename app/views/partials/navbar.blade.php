@@ -24,7 +24,7 @@
                     <ul id="menu" class="dropdown-menu" aria-labelledby="drop"> 
                         <li><a href="{{{ action('CarsController@index')}}}"><i class="fa fa-car"></i>&nbsp;My Vehicles</a></li> 
                         <li><a href="#"><i class="fa fa-product-hunt"></i>&nbsp;My Preferred Parking Lots</a></li> 
-                        <li><a href="{{{ action('RatingsController@index')}}}"><i class="fa fa-star"></i>&nbsp;My Ratings</a></li> 
+                        <li><a href="{{{ action('RatingsController@index') }}}"><i class="fa fa-star"></i>&nbsp;My Ratings</a></li> 
                         <li role="separator" class="divider"></li> 
                         <li><a href="{{{ action('UsersController@edit', Auth::user()->id) }}}"><i class="fa fa-pencil-square-o"></i>&nbsp;Edit Profile</a></li>
                         {{ Form::open(['action' => ['UsersController@destroy', Auth::user()->id], 'method' => 'DELETE']) }}
