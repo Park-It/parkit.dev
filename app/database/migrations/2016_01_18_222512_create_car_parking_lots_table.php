@@ -30,6 +30,11 @@ class CreateCarParkingLotsTable extends Migration {
 	 */
 	public function down()
 	{
+		Schema::table('car_parking_lots', function($table) {
+			$table->dropForeign('car_parking_lots_car_id_foreign');
+			$table->dropForeign('car_parking_lots_parking_lot_id_foreign');
+		});
+
 		Schema::drop('car_parking_lots');
 	}
 

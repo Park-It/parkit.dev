@@ -33,6 +33,10 @@ class CreateCarsTable extends Migration {
 	 */
 	public function down()
 	{
+		Schema::table('cars', function($table) {
+			$table->dropForeign('cars_user_id_foreign');
+		});
+
 		Schema::drop('cars');
 	}
 
