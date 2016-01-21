@@ -30,5 +30,8 @@
 				@endforeach
 			</tbody>
 		</table>
+		<center>
+			<span>{{ $cars->links() }}</span>
+		</center>
 	</div>
 @stop
