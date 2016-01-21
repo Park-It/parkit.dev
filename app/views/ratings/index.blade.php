@@ -4,6 +4,7 @@
 	<title>{{{ $first_name . '\'s Ratings'}}}</title>
 @stop
 
+
 @section('content')
 <div class="container">
 	<div class="rows">
@@ -11,22 +12,19 @@
 		<table class="table table-striped">
 			<thead>
 				<tr>
-					<th>Stars</th>
-					<th>Comment</th>
-					<th>Recommended</th>
+					<th>Parking Lot:</th>
+					<th>Stars:</th>
+					<th>Comment:</th>
+					<th>Recommended:</th>
 				</tr>
 			</thead>
 			<tbody>
-				@foreach($ratings as $rating)
-				<tr>
-					<td>{{ $rating->stars }}</td>
-					<td>{{ $rating->comment }}</td>
-					<td>{{ $rating->recommended }}</td>
-				</tr>
-				@endforeach
 				@foreach($parking_lots as $parking_lot)
 				<tr>
 					<td>{{ $parking_lot->name }}</td>
+					<td>{{ $parking_lot->stars }}</td>
+					<td>{{ $parking_lot->comment }}</td>
+					<td>{{ $parking_lot->recommended }}</td>
 				</tr>
 				@endforeach
 			</tbody>
