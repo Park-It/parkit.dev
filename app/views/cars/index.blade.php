@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('title')
-	<title>{{{ $name.'\'s Cars'}}}</title>
+	<title>{{{ $name . '\'s Cars'}}}</title>
 @stop
 
 @section('content')

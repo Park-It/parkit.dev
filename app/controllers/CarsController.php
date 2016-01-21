@@ -47,15 +47,15 @@ class CarsController extends \BaseController {
 		} else {
 			$car = new Car();
 			
-			$car->make = Input::get('first_name');
-			$car->model = Input::get('last_name');
-			$car->license_number = Input::get('username');
-			$car->color = Input::get('email');
+			$car->make = Input::get('make');
+			$car->model = Input::get('model');
+			$car->license_number = Input::get('license_number');
+			$car->color = Input::get('color');
 			$result = $car->save();
 		}
 
 		if($result) {
-				Session::flash('successMessage', $user->first_name . ' Thank you for saving your car');
+				Session::flash('successMessage', 'Thank you for saving your car');
 				return Redirect::action('car.index');
 
 			} else {

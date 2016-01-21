@@ -1,6 +1,6 @@
 # Park-It
 
-	Park-It is a website designed to assist finding a parking location near you destination quickly and easily. 
+	Park-It is a website designed to assist finding a parking location near your destination quickly and easily. 
 
 ### Built with the Laravel PHP Framework.
 

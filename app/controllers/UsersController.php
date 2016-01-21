@@ -91,7 +91,11 @@ class UsersController extends \BaseController {
 	 */
 	public function edit($id)
 	{
-		$user = User::find($id);
+		if(Auth::check())
+		{
+			$user = User::find($id);
+			$user["name"] = Auth::user()->first_name;
+		}
 
 		return View::make('users.edit', compact('user'));
 	}

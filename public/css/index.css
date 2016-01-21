@@ -84,7 +84,7 @@ input {
     height: 481px;
 }
 
-input::-webkit-input-placeholder {
+.col-lg-12 input::-webkit-input-placeholder {
 color: white !important;
 text-shadow:
     3px 3px 0 #000,
@@ -96,7 +96,7 @@ text-shadow:
     1px  1px 0 #000;
 }
  
-input:-moz-placeholder { /* Firefox 18- */
+.col-lg-12 input:-moz-placeholder { /* Firefox 18- */
 color: white !important;
 text-shadow:
     3px 3px 0 #000,
@@ -108,7 +108,7 @@ text-shadow:
     1px  1px 0 #000;
 }
  
-input::-moz-placeholder {  /* Firefox 19+ */
+.col-lg-12 input::-moz-placeholder {  /* Firefox 19+ */
 color: white !important;
 text-shadow:
     3px 3px 0 #000,
@@ -120,7 +120,7 @@ text-shadow:
     1px  1px 0 #000;
 }
  
-input:-ms-input-placeholder {  
+.col-lg-12 input:-ms-input-placeholder {  
 color: white !important;
 text-shadow:
     3px 3px 0 #000,
