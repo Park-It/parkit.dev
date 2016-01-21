@@ -32,7 +32,9 @@
             </div>
         </div>
     </header>
-	<div id="map-canvas"></div>
+        <center>
+	   <div id="map-canvas"></div>
+       </center>
 @stop
 
 @section('bottom-script')
