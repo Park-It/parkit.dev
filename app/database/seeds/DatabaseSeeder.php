@@ -15,8 +15,8 @@ class DatabaseSeeder extends Seeder {
 		DB::table('cars')->delete();
 		DB::table('ratings')->delete();
 		DB::table('parking_lots')->delete();
-		DB::table('users')->delete();
 		DB::table('preferred_parking_lot_users')->delete();
+		DB::table('users')->delete();
 		DB::table('preferred_parking_lots')->delete();
 		
 

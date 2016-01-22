@@ -57,19 +57,19 @@
                     {{ Form::model($car, array('action' => array('CarsController@update', $car->id), 'method' => 'PUT')) }}
                         <div class="form-group">
                             {{ Form::label('make', 'Make') }}
-                            {{ Form::text('make', $car->make, ['class' => 'form-control', 'placeholder' => 'Please enter your make', 'id' => 'make', 'name' => 'make'] )}}
+                            {{ Form::text('make', $car->make, ['class' => 'form-control', 'placeholder' => 'Please enter your make', 'id' => 'make', 'name' => 'new_make'] )}}
                         </div>
                         <div class="form-group">
                             {{ Form::label('model', 'Model') }}
-                            {{ Form::text('model', $car->model, ['class' => 'form-control', 'placeholder' => 'Please enter your model', 'id' => 'model', 'name' => 'model'] )}}
+                            {{ Form::text('model', $car->model, ['class' => 'form-control', 'placeholder' => 'Please enter your model', 'id' => 'model', 'name' => 'new_model'] )}}
                         </div>
                         <div class="form-group">
                             {{ Form::label('license_number', 'License Number') }}
-                            {{ Form::text('license_number', $car->license_number, ['class' => 'form-control', 'placeholder' => 'Please enter your license number', 'id' => 'license_number', 'name' => 'license_number'] )}}
+                            {{ Form::text('license_number', $car->license_number, ['class' => 'form-control', 'placeholder' => 'Please enter your license number', 'id' => 'license_number', 'name' => 'new_license_number'] )}}
                         </div>
                         <div class="form-group">
                             {{ Form::label('color', 'Color') }}
-                            {{ Form::text('color', $car->color, ['class' => 'form-control', 'placeholder' => 'Please enter your color', 'id' => 'color', 'name' => 'color'] )}}
+                            {{ Form::text('color', $car->color, ['class' => 'form-control', 'placeholder' => 'Please enter your color', 'id' => 'color', 'name' => 'new_color'] )}}
                         </div>
                 </div>
                 <div class="modal-footer">
