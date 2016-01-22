@@ -58,12 +58,13 @@ class CarsController extends \BaseController {
 			$car->model = Input::get('model');
 			$car->license_plate_number = Input::get('license_plate_number');
 			$car->color = Input::get('color');
+			$car->user_id = Auth::user()->id;
 			$result = $car->save();
 		}
 
 		if($result) {
 				Session::flash('successMessage', 'Thank you for saving your car');
-				return Redirect::action('car.index');
+				return Redirect::action('cars.index');
 
 			} else {
 				Session::flash('errorMessage', 'Please properly input all the required fields');
