@@ -29,6 +29,9 @@
 	            	</div>
 	            	<button type="submit" class="btn btn-primary submit" id="submit">Submit</button>
             	</form>
+            	<center>
+	            	<a href="" class="circle"><i class="fa fa-2x fa-arrow-down"></i></a>
+            	</center>
             </div>
         </div>
     </header>
