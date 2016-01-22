@@ -11,11 +11,13 @@ class DatabaseSeeder extends Seeder {
 	{
 		Eloquent::unguard();
 
-		DB::table('users')->delete();
-		DB::table('ratings')->delete();
 		DB::table('car_parking_lots')->delete();
 		DB::table('cars')->delete();
+		DB::table('ratings')->delete();
 		DB::table('parking_lots')->delete();
+		DB::table('preferred_parking_lot_users')->delete();
+		DB::table('users')->delete();
+		DB::table('preferred_parking_lots')->delete();
 		
 
 		$this->call('ParkingLotsTableSeeder');
@@ -23,6 +25,8 @@ class DatabaseSeeder extends Seeder {
 		$this->call('CarsTableSeeder');
 		$this->call('CarParkingLotsTableSeeder');
 		$this->call('RatingsTableSeeder');
+		$this->call('PreferredParkingLotsTableSeeder');
+		$this->call('PreferredParkingLotUsersTableSeeder');
 	}
 
 }

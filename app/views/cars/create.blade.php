@@ -7,7 +7,7 @@
 @section('content')
 	<div class="container">
 		<div class="rows">
-			<form>
+			{{ Form::open(['action' => 'CarsController@store']) }}
 				<div class="form-group">
 					<label for="make">Make</label>
 					<input type="text" class="form-control" placeholder="Please enter your car's make">
@@ -25,7 +25,7 @@
 					<input type="text" class="form-control" placeholder="Please enter your car's color">
 				</div>
 				<button class="btn btn-primary">Submit</button>
-			</form>
+			{{ Form::close() }}
 		</div>
 	</div>
 @stop

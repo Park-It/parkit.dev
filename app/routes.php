@@ -22,3 +22,7 @@ Route::resource('users', 'UsersController');
 Route::resource('cars', 'CarsController');
 
 Route::resource('ratings', 'RatingsController');
+
+Route::resource('preferred_parking_lots', 'PreferredParkingLotsController');
+
+Route::resource('parking_lots', 'ParkingLotsController');

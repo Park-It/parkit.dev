@@ -12,7 +12,6 @@ class CarsController extends \BaseController {
 		if(Auth::check())
 		{
 			$cars = Auth::user()->cars()->paginate(10);
-			// $cars = Car::where('user_id', '=', $id);
 			$first_name = Auth::user()->first_name;
 		} 
 
@@ -103,11 +102,23 @@ class CarsController extends \BaseController {
 		if ($validator->fails())
 		{
 			return Redirect::back()->withErrors($validator)->withInput();
+		} else {
+			$car->make = Input::get('new_make');
+			$car->model = Input::get('new_model');
+			$car->license_number = Input::get('new_license_number');
+			$car->color = Input::get('new_color');
+			$result = $car->save();
 		}
 
-		$car->update($data);
+		if($result) {
+			Session::flash('successMessage', 'Your vehicle was successfully updated');
+			return Redirect::route('cars.index');
 
-		return Redirect::route('cars.index');
+		} else {
+			Session::flash('errorMessage', 'Please properly input all the required fields');
+			Log::warning('Vehicle failed to save: ', Input::all());
+			return Redirect::back()->withInput();
+		}
 	}
 
 	/**
