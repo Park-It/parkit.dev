@@ -11,9 +11,9 @@ class PreferredParkingLotsController extends \BaseController {
 	{
 		if(Auth::check())
 		{
-			$preferred_parking_lots = DB::table('preferred_parking_lots')
-    		->join('preferred_parking_lot_users', 'preferred_parking_lot_users.preferred_parking_lot_id', '=', 'id')
-    		->join('users', 'users.id', '=', 'preferred_parking_lot_users.user_id')
+			$userId = Auth::user()->id;
+			$preferred_parking_lots = DB::table('preferred_parking_lot_users')->where('user_id', $userId)
+    		->join('parking_lots', 'preferred_parking_lot_users.preferred_parking_lot_id', '=', 'id')
     		->paginate(10);
 			$first_name = Auth::user()->first_name;
 		} 

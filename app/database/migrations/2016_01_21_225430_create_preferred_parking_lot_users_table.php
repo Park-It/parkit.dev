@@ -15,7 +15,7 @@ class CreatePreferredParkingLotUsersTable extends Migration {
 		Schema::create('preferred_parking_lot_users', function(Blueprint $table)
 		{
 			$table->integer('preferred_parking_lot_id')->unsigned();
-			$table->foreign('preferred_parking_lot_id')->references('id')->on('preferred_parking_lots');
+			$table->foreign('preferred_parking_lot_id')->references('id')->on('parking_lots');
 			$table->integer('user_id')->unsigned();
 			$table->foreign('user_id')->references('id')->on('users');
 			$table->timestamps();
