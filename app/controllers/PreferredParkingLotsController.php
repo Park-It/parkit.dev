@@ -9,9 +9,19 @@ class PreferredParkingLotsController extends \BaseController {
 	 */
 	public function index()
 	{
-		$preferredparkinglots = Preferredparkinglot::all();
+		if(Auth::check())
+		{
+			// $preferred_parking_lots = Auth::user()->preferred_parking_lots()->paginate(10);
+			$preferred_parking_lots = DB::table('preferred_parking_lots')
+    		->join('preferred_parking_lot_users', 'preferred_parking_lot_users.preferred_parking_lot_id', '=', 'id')
+    		->join('users', 'users.id', '=', 'preferred_parking_lot_users.user_id')
+    		->paginate(10);
+			// $cars = Car::where('user_id', '=', $id);
+			$first_name = Auth::user()->first_name;
+		} 
+		// $preferredparkinglots = Preferredparkinglot::all();
 
-		return View::make('preferredparkinglots.index', compact('preferredparkinglots'));
+		return View::make('preferred_parking_lots.index', compact('preferred_parking_lots', 'first_name'));
 	}
 
 	/**
@@ -21,7 +31,7 @@ class PreferredParkingLotsController extends \BaseController {
 	 */
 	public function create()
 	{
-		return View::make('preferredparkinglots.create');
+		return View::make('preferred_parking_lots.create');
 	}
 
 	/**
@@ -40,7 +50,7 @@ class PreferredParkingLotsController extends \BaseController {
 
 		Preferredparkinglot::create($data);
 
-		return Redirect::route('preferredparkinglots.index');
+		return Redirect::route('preferred_parking_lots.index');
 	}
 
 	/**
@@ -53,7 +63,7 @@ class PreferredParkingLotsController extends \BaseController {
 	{
 		$preferredparkinglot = Preferredparkinglot::findOrFail($id);
 
-		return View::make('preferredparkinglots.show', compact('preferredparkinglot'));
+		return View::make('preferred_parking_lots.show', compact('preferredparkinglot'));
 	}
 
 	/**
@@ -66,7 +76,7 @@ class PreferredParkingLotsController extends \BaseController {
 	{
 		$preferredparkinglot = Preferredparkinglot::find($id);
 
-		return View::make('preferredparkinglots.edit', compact('preferredparkinglot'));
+		return View::make('preferred_parking_lots.edit', compact('preferredparkinglot'));
 	}
 
 	/**
@@ -88,7 +98,7 @@ class PreferredParkingLotsController extends \BaseController {
 
 		$preferredparkinglot->update($data);
 
-		return Redirect::route('preferredparkinglots.index');
+		return Redirect::route('preferred_parking_lots.index');
 	}
 
 	/**
@@ -101,7 +111,7 @@ class PreferredParkingLotsController extends \BaseController {
 	{
 		Preferredparkinglot::destroy($id);
 
-		return Redirect::route('preferredparkinglots.index');
+		return Redirect::route('preferred_parking_lots.index');
 	}
 
 }
