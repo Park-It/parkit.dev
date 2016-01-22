@@ -95,7 +95,6 @@
                     <h4 class="modal-title">Register</h4>
                 </div>
                 {{ Form::open(['action' => 'UsersController@store', 'id' => 'register-form']) }}
-                {{-- <form id="register-form" method="POST"> --}}
                     <div class="modal-body">
                         <div class="form-group">
                             {{ $errors->first('username', '<span class="help-block alert alert-danger">:message</span>') }}
@@ -131,7 +130,6 @@
                         <button type="submit" class="btn btn-primary">Register</button>
                     </div>
                 {{ Form::close() }}
-                {{-- </form> --}}
             </div>
         </div>
     </div>
