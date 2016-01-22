@@ -12,8 +12,10 @@ class RatingsController extends \BaseController {
 		if(Auth::check())
 		{
 			$first_name = Auth::user()->first_name;
-			$parking_lots = DB::table('ratings')
+			$userId = Auth::user()->id;
+			$parking_lots = DB::table('ratings')->where('user_id', $userId)
     		->join('parking_lots', 'parking_lots.id', '=', 'parking_lot_id')
+    		->select('ratings.*', 'parking_lots.name')
     		->paginate(10);
 		} 
 		
@@ -106,7 +108,7 @@ class RatingsController extends \BaseController {
 	public function destroy($id)
 	{
 		Rating::destroy($id);
-
+		Log::info("rating id: {$id} deleted");
 		return Redirect::route('ratings.index');
 	}
 
