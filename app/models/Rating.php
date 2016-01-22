@@ -9,6 +9,13 @@ class Rating extends \Eloquent {
 		'recommended' => 'max:255'
 	];
 
+	public static $new_rules = [
+		'new_stars' => 'required|max:10',
+		'new_comment' => 'max:255',
+		'new_recommended' => 'max:255'
+	];
+
+
 	// Don't forget to fill this array
 	protected $fillable = [];
 

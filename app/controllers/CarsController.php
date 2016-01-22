@@ -97,7 +97,18 @@ class CarsController extends \BaseController {
 	{
 		$car = Car::findOrFail($id);
 
-		$validator = Validator::make($data = Input::all(), Car::$new_rules);
+		$messages = array(
+			'new_make.required' => 'Make field cannot be left empty.',
+			'new_make.max' => 'You must enter a value with a maximum of 255 characters.',
+			'new_model.required' => 'Model field cannot be left empty.',
+			'new_model.max' => 'You must enter a value with a maximum of 255 characters.',
+			'new_license_plate_number.required' => 'License Plate Number field cannot be left empty.',
+			'new_license_plate_number.max' => 'You must enter a value with a maximum of 255 characters.',
+			'new_color.required' => 'Color field cannot be left empty.',
+			'new_color.max' => 'You must enter a value with a maximum of 255 characters.',
+		);
+
+		$validator = Validator::make($data = Input::all(), Car::$new_rules, $messages);
 
 		if ($validator->fails())
 		{

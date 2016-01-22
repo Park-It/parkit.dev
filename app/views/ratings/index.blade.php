@@ -12,7 +12,7 @@
 @section('content')
 <div class="container">
 	<div class="rows">
-		<h2>{{{ $first_name . '\'s Ratings' }}}</h2>
+		<h2>{{{ ucfirst($first_name) . '\'s Ratings' }}}</h2>
 		<table class="table table-striped">
 			<thead>
 				<tr>
@@ -55,18 +55,21 @@
 	                </div>
 	                <div class="modal-body">
 	                	<h4 class="parking_lot">{{ 'Parking Lot: ' . $parking_lot->name }}</h4>
-	                    {{ Form::model($parking_lot, array('action' => array('ParkingLotsController@update', $parking_lot->id), 'method' => 'PUT')) }}
+	                    {{ Form::model($parking_lot, array('action' => array('RatingsController@update', $parking_lot->id), 'method' => 'PUT')) }}
                         <div class="form-group">
+                        	{{ $errors->first('new_stars', '<span class="help-block alert alert-danger">:message</span>') }}
                             {{ Form::label('new_stars', 'Stars') }}
-                            {{ Form::text('new_stars', $parking_lot->stars, ['class' => 'form-control', 'placeholder' => 'Please enter your make', 'id' => 'new_stars'] )}}
+                            {{ Form::text('new_stars', $parking_lot->stars, ['class' => 'form-control', 'placeholder' => 'Please enter new value for stars', 'id' => 'new_stars'] )}}
                         </div>
                         <div class="form-group">
+                        	{{ $errors->first('new_comment', '<span class="help-block alert alert-danger">:message</span>') }}
                             {{ Form::label('new_comment', 'Comment') }}
-                            {{ Form::text('new_comment', $parking_lot->comment, ['class' => 'form-control', 'placeholder' => 'Please enter your model', 'id' => 'new_model'] )}}
+                            {{ Form::text('new_comment', $parking_lot->comment, ['class' => 'form-control', 'placeholder' => 'Please enter new value for the comment', 'id' => 'new_model'] )}}
                         </div>
                         <div class="form-group">
+                        	{{ $errors->first('new_recommended', '<span class="help-block alert alert-danger">:message</span>') }}
                             {{ Form::label('new_recommended', 'Recommended') }}
-                            {{ Form::text('new_recommended', $parking_lot->recommended, ['class' => 'form-control', 'placeholder' => 'Please enter your license number', 'id' => 'new_recommended'] )}}
+                            {{ Form::text('new_recommended', $parking_lot->recommended, ['class' => 'form-control', 'placeholder' => 'Please enter new value for recommended', 'id' => 'new_recommended'] )}}
                         </div>
 	                </div>
 	                <div class="modal-footer">

@@ -7,7 +7,7 @@
 @section('content')
 	<div class="container">
 		<div class="rows">
-			<h2>{{{ $first_name . '\'s Preferred Parking Lots'}}}</h2>
+			<h2>{{{ ucfirst($first_name) . '\'s Preferred Parking Lots'}}}</h2>
 			<table class="table table-striped">
 				<thead>
 					<tr>

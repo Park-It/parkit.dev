@@ -9,7 +9,7 @@
 		<div class="rows">
 			<a href="{{{ action('CarsController@create') }}}"><i class="fa fa-plus"></i>&nbsp;Add a Car</a>
 		</div>
-		<h2>{{{ $first_name . '\'s Vehicles' }}}</h2>
+		<h2>{{{ ucfirst($first_name) . '\'s Vehicles' }}}</h2>
 		<table class="table table-striped">
 			<thead>
 				<tr>
@@ -54,18 +54,22 @@
                     <div class="modal-body">
                         {{ Form::model($car, array('action' => array('CarsController@update', $car->id), 'method' => 'PUT')) }}
                             <div class="form-group">
+                                {{ $errors->first('new_make', '<span class="help-block alert alert-danger">:message</span>') }}
                                 {{ Form::label('new_make', 'Make') }}
                                 {{ Form::text('new_make', $car->make, ['class' => 'form-control', 'placeholder' => 'Please enter your make', 'id' => 'new_make'] )}}
                             </div>
                             <div class="form-group">
+                                {{ $errors->first('new_model', '<span class="help-block alert alert-danger">:message</span>') }}
                                 {{ Form::label('new_model', 'Model') }}
                                 {{ Form::text('new_model', $car->model, ['class' => 'form-control', 'placeholder' => 'Please enter your model', 'id' => 'new_model'] )}}
                             </div>
                             <div class="form-group">
+                                {{ $errors->first('new_license_plate_number', '<span class="help-block alert alert-danger">:message</span>') }}
                                 {{ Form::label('new_license_plate_number', 'License Plate Number') }}
                                 {{ Form::text('new_license_plate_number', $car->license_plate_number, ['class' => 'form-control', 'placeholder' => 'Please enter your license plate number', 'id' => 'new_license_plate_number'] )}}
                             </div>
                             <div class="form-group">
+                                {{ $errors->first('new_color', '<span class="help-block alert alert-danger">:message</span>') }}
                                 {{ Form::label('new_color', 'Color') }}
                                 {{ Form::text('new_color', $car->color, ['class' => 'form-control', 'placeholder' => 'Please enter your color', 'id' => 'new_color'] )}}
                             </div>

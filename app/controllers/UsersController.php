@@ -107,9 +107,25 @@ class UsersController extends \BaseController {
 	public function update($id)
 	{
 		$user = User::findOrFail($id);
+
+		$messages = array(
+			'new_first_name.required' => 'First Name field cannot be left empty.',
+			'new_first_name.max' => 'You must enter a value with a maximum of 255 characters.',
+			'new_last_name.required' => 'Last Name field cannot be left empty.',
+			'new_last_name.max' => 'You must enter a value with a maximum of 255 characters.',
+			'new_username.required' => 'Username field cannot be left empty.',
+			'new_username.max' => 'You must enter a value with a maximum of 255 characters.',
+			'new_email.required' => 'Email field cannot be left empty.',
+			'new_email.max' => 'You must enter a value with a maximum of 255 characters.',
+			'new_email.email' => 'You must enter a valid email address.',
+			'new_email.unique' => 'Sorry email already taken by another user, please try again.',
+			'new_password.required' => 'First Name field cannot be left empty.',
+			'new_password.max' => 'You must enter a value with a maximum of 255 characters.',
+			'new_password.confirmed' => 'New password should be identical to the confirmed password.'
+		);
 		
 		if(Input::has('new_first_name')) {
-			$validator = Validator::make($data = Input::all(), User::$first_name_rule);	
+			$validator = Validator::make($data = Input::all(), User::$first_name_rule, $messages);	
 			if ($validator->fails())
 			{
 				return Redirect::back()->withErrors($validator)->withInput();
@@ -118,7 +134,7 @@ class UsersController extends \BaseController {
 		}
 
 		if(Input::has('new_last_name')) {
-			$validator = Validator::make($data = Input::all(), User::$last_name_rule);
+			$validator = Validator::make($data = Input::all(), User::$last_name_rule, $messages);
 			if ($validator->fails())
 			{
 				return Redirect::back()->withErrors($validator)->withInput();
@@ -127,7 +143,7 @@ class UsersController extends \BaseController {
 		}
 
 		if(Input::has('new_username')) {
-			$validator = Validator::make($data = Input::all(), User::$username_rule);
+			$validator = Validator::make($data = Input::all(), User::$username_rule, $messages);
 			if ($validator->fails())
 			{
 				return Redirect::back()->withErrors($validator)->withInput();
@@ -136,7 +152,7 @@ class UsersController extends \BaseController {
 		}
 
 		if(Input::has('new_email')) {
-			$validator = Validator::make($data = Input::all(), User::$email_rule);	
+			$validator = Validator::make($data = Input::all(), User::$email_rule, $messages);	
 			if ($validator->fails())
 			{
 				return Redirect::back()->withErrors($validator)->withInput();
@@ -145,7 +161,7 @@ class UsersController extends \BaseController {
 		}
 
 		if(Input::has('new_password')) {
-			$validator = Validator::make($data = Input::all(), User::$password_rule);
+			$validator = Validator::make($data = Input::all(), User::$password_rule, $messages);
 			if ($validator->fails())
 			{
 				return Redirect::back()->withErrors($validator)->withInput();
