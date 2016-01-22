@@ -30,9 +30,9 @@
 					<td>{{ $car->license_number }}</td>
 					<td>{{ $car->color }}</td>
 					<td><a href="{{{ action('CarsController@show', $car->id) }}}" class="btn btn-primary">View This Car</a></td>
-					<td><button class="btn btn secondary" data-toggle="modal" data-target="#editModal{{{ $car->id }}}">Edit</button></td>
+					<td><button class="btn btn-success" data-toggle="modal" data-target="#editModal{{{ $car->id }}}"><i class="fa fa-pencil-square-o"></i>&nbsp;Edit</button></td>
 					<td>{{ Form::open(['action' => ['CarsController@destroy', $car->id], 'method' => 'DELETE']) }}
-                	<button type="delete" class="btn btn-danger">Delete</button>
+                	<button type="delete" class="btn btn-danger"><i class="fa fa-times"></i>&nbsp;Delete</button>
                 {{ Form::close() }}</td>
 				</tr>
 				@endforeach
@@ -56,20 +56,20 @@
                 <div class="modal-body">
                     {{ Form::model($car, array('action' => array('CarsController@update', $car->id), 'method' => 'PUT')) }}
                         <div class="form-group">
-                            {{ Form::label('make', 'Make') }}
-                            {{ Form::text('make', $car->make, ['class' => 'form-control', 'placeholder' => 'Please enter your make', 'id' => 'make', 'name' => 'new_make'] )}}
+                            {{ Form::label('new_make', 'Make') }}
+                            {{ Form::text('new_make', $car->make, ['class' => 'form-control', 'placeholder' => 'Please enter your make', 'id' => 'new_make'] )}}
                         </div>
                         <div class="form-group">
-                            {{ Form::label('model', 'Model') }}
-                            {{ Form::text('model', $car->model, ['class' => 'form-control', 'placeholder' => 'Please enter your model', 'id' => 'model', 'name' => 'new_model'] )}}
+                            {{ Form::label('new_model', 'Model') }}
+                            {{ Form::text('new_model', $car->model, ['class' => 'form-control', 'placeholder' => 'Please enter your model', 'id' => 'new_model'] )}}
                         </div>
                         <div class="form-group">
-                            {{ Form::label('license_number', 'License Number') }}
-                            {{ Form::text('license_number', $car->license_number, ['class' => 'form-control', 'placeholder' => 'Please enter your license number', 'id' => 'license_number', 'name' => 'new_license_number'] )}}
+                            {{ Form::label('new_license_number', 'License Number') }}
+                            {{ Form::text('new_license_number', $car->license_number, ['class' => 'form-control', 'placeholder' => 'Please enter your license number', 'id' => 'new_license_number'] )}}
                         </div>
                         <div class="form-group">
-                            {{ Form::label('color', 'Color') }}
-                            {{ Form::text('color', $car->color, ['class' => 'form-control', 'placeholder' => 'Please enter your color', 'id' => 'color', 'name' => 'new_color'] )}}
+                            {{ Form::label('new_color', 'Color') }}
+                            {{ Form::text('new_color', $car->color, ['class' => 'form-control', 'placeholder' => 'Please enter your color', 'id' => 'new_color'] )}}
                         </div>
                 </div>
                 <div class="modal-footer">
