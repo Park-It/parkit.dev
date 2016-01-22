@@ -55,7 +55,7 @@
 	                </div>
 	                <div class="modal-body">
 	                	<h4 class="parking_lot">{{ 'Parking Lot: ' . $parking_lot->name }}</h4>
-	                    {{ Form::model($parking_lot, array('action' => array('ParkingLotsController@update', $parking_lot->id), 'method' => 'PUT')) }}
+	                    {{ Form::model($parking_lot, array('action' => array('RatingsController@update', $parking_lot->id), 'method' => 'PUT')) }}
                         <div class="form-group">
                             {{ Form::label('new_stars', 'Stars') }}
                             {{ Form::text('new_stars', $parking_lot->stars, ['class' => 'form-control', 'placeholder' => 'Please enter your make', 'id' => 'new_stars'] )}}
