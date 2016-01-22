@@ -12,7 +12,6 @@ class CarsController extends \BaseController {
 		if(Auth::check())
 		{
 			$cars = Auth::user()->cars()->paginate(10);
-			// $cars = Car::where('user_id', '=', $id);
 			$first_name = Auth::user()->first_name;
 		} 
 

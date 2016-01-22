@@ -4,6 +4,10 @@
 	<title>{{{ $first_name . '\'s Ratings'}}}</title>
 @stop
 
+@section('top-script')
+	<link rel="stylesheet" type="text/css" href="/css/parking_lot_index.css">
+@stop
+
 
 @section('content')
 <div class="container">
@@ -47,9 +51,10 @@
 	            <div class="modal-content">
 	                <div class="modal-header">
 	                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-	                    <h4 class="modal-title">Edit</h4>
+	                    <h4 class="modal-title">Edit Rating</h4>
 	                </div>
 	                <div class="modal-body">
+	                	<h4 class="parking_lot">{{ 'Parking Lot: ' . $parking_lot->name }}</h4>
 	                    {{ Form::model($parking_lot, array('action' => array('ParkingLotsController@update', $parking_lot->id), 'method' => 'PUT')) }}
                         <div class="form-group">
                             {{ Form::label('new_stars', 'Stars') }}
