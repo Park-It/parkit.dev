@@ -85,7 +85,14 @@ class RatingsController extends \BaseController {
 	{
 		$rating = Rating::findOrFail($id);
 
-		$validator = Validator::make($data = Input::all(), Rating::$new_rules);
+		$messages = array(
+			'new_stars.required' => 'We need to know how many stars you wish to give!',
+			'new_stars.max' => 'You must enter a value with a maximum of 10 characters.',
+			'new_comment.max' => 'You must enter a value with a maximum of 255 characters.',
+			'new_recommended.max' => 'You must enter a value with a maximum of 255 characters.',
+		);
+		
+		$validator = Validator::make($data = Input::all(), Rating::$new_rules, $messages);
 
 		if ($validator->fails())
 		{

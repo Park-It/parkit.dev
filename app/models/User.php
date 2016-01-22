@@ -27,7 +27,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	    'first_name'      => 'required|max:255',
 	    'last_name'       => 'required|max:255',
 	    'username'        => 'required|max:255',
-	    'email'           => 'required|max:255',
+	    'email'           => 'required|max:255|email|unique:users,email',
 	    'password'        => 'required|max:255'
 	);
 
@@ -44,11 +44,11 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	);
 
 	public static $email_rule = array(
-	    'new_email'      => 'required|max:255'
+	    'new_email'      => 'required|max:255|email|unique:users,email'
 	);
 
 	public static $password_rule = array(
-	    'new_password'      => 'required|max:255'
+	    'new_password'      => 'required|max:255|confirmed',
 	);
 
 	public function setPasswordAttribute($value)
