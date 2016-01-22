@@ -29,8 +29,14 @@ header form {
     border-radius: 0;
     font-size: 1.5em;
     background: 0 0;
+    /*background-color: white;*/
     outline-color: black;
-    color: white;
+    color: white !important;
+    text-shadow: 3px 3px 0 #000, 
+    -1px -1px 0 #000,  
+    1px -1px 0 #000,
+   -1px  1px 0 #000,
+    1px  1px 0 #000;
     box-shadow: none!important;
     resize: none;
 }
@@ -135,3 +141,9 @@ text-shadow:
 .submit {
     margin-bottom: 500px;
 }
+
+div {
+    cursor:text;
+    color: black;
+}
+
