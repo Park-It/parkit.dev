@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('title')
-    <title>{{{ 'Edit ' . $user->first_name . '\'s Profile'}}}</title>
+    <title>{{{ 'Edit ' . ucfirst($user->first_name) . '\'s Profile'}}}</title>
 @stop
 
 @section('content')
