@@ -29,7 +29,6 @@ header form {
     border-radius: 0;
     font-size: 1.5em;
     background: 0 0;
-    /*background-color: white;*/
     outline-color: black;
     color: white !important;
     text-shadow: 3px 3px 0 #000, 
@@ -69,7 +68,8 @@ header form {
 }
 
 .floating-label-form-group-with-focus label {
-    color: #65C4CA;
+    color: black;
+    font-size: 15px;
 }
 
 form .row:first-child .floating-label-form-group {
