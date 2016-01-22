@@ -40,4 +40,36 @@
 		</center>
 	</div>
 </div>
+	<!-- Edit Modal -->
+	 @foreach($parking_lots as $parking_lot)
+	    <div class="modal fade" id="editModal{{{ $parking_lot->id }}}" role="dialog">
+	        <div class="modal-dialog modal-sm">
+	            <div class="modal-content">
+	                <div class="modal-header">
+	                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+	                    <h4 class="modal-title">Edit</h4>
+	                </div>
+	                <div class="modal-body">
+	                    {{ Form::model($parking_lot, array('action' => array('ParkingLotsController@update', $parking_lot->id), 'method' => 'PUT')) }}
+                        <div class="form-group">
+                            {{ Form::label('new_stars', 'Stars') }}
+                            {{ Form::text('new_stars', $parking_lot->stars, ['class' => 'form-control', 'placeholder' => 'Please enter your make', 'id' => 'new_stars'] )}}
+                        </div>
+                        <div class="form-group">
+                            {{ Form::label('new_comment', 'Comment') }}
+                            {{ Form::text('new_comment', $parking_lot->comment, ['class' => 'form-control', 'placeholder' => 'Please enter your model', 'id' => 'new_model'] )}}
+                        </div>
+                        <div class="form-group">
+                            {{ Form::label('new_recommended', 'Recommended') }}
+                            {{ Form::text('new_recommended', $parking_lot->recommended, ['class' => 'form-control', 'placeholder' => 'Please enter your license number', 'id' => 'new_recommended'] )}}
+                        </div>
+	                </div>
+	                <div class="modal-footer">
+	                    <button type="submit" class="btn btn-primary">Submit</button>
+	                    {{ Form::close() }}
+	                </div>
+	            </div>
+	        </div>
+	    </div>
+	@endforeach
 @stop

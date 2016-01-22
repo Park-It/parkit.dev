@@ -15,7 +15,10 @@ class CreatePreferredParkingLotsTable extends Migration {
 		Schema::create('preferred_parking_lots', function(Blueprint $table)
 		{
 			$table->increments('id');
-			$table->boolean('preferred_parking_lot');
+			$table->string('name', 255);
+			$table->string('address', 255);
+			$table->decimal('price', 8, 2);
+			$table->integer('max_spots');
 			$table->timestamps();
 		});
 	}

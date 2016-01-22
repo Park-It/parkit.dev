@@ -37,46 +37,45 @@
 				</tr>
 				@endforeach
 			</tbody>
-		</table>
-		<center>
-			<span>{{ $cars->links() }}</span>
-		</center>
-	</div>
-@stop
-
- <!-- Login Modal -->
- @foreach($cars as $car)
-    <div class="modal fade" id="editModal{{{ $car->id }}}" role="dialog">
-        <div class="modal-dialog modal-sm">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Edit</h4>
-                </div>
-                <div class="modal-body">
-                    {{ Form::model($car, array('action' => array('CarsController@update', $car->id), 'method' => 'PUT')) }}
-                        <div class="form-group">
-                            {{ Form::label('new_make', 'Make') }}
-                            {{ Form::text('new_make', $car->make, ['class' => 'form-control', 'placeholder' => 'Please enter your make', 'id' => 'new_make'] )}}
-                        </div>
-                        <div class="form-group">
-                            {{ Form::label('new_model', 'Model') }}
-                            {{ Form::text('new_model', $car->model, ['class' => 'form-control', 'placeholder' => 'Please enter your model', 'id' => 'new_model'] )}}
-                        </div>
-                        <div class="form-group">
-                            {{ Form::label('new_license_number', 'License Number') }}
-                            {{ Form::text('new_license_number', $car->license_number, ['class' => 'form-control', 'placeholder' => 'Please enter your license number', 'id' => 'new_license_number'] )}}
-                        </div>
-                        <div class="form-group">
-                            {{ Form::label('new_color', 'Color') }}
-                            {{ Form::text('new_color', $car->color, ['class' => 'form-control', 'placeholder' => 'Please enter your color', 'id' => 'new_color'] )}}
-                        </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary">Submit</button>
-                    {{ Form::close() }}
+        </table>
+        <center>
+            <span>{{ $cars->links() }}</span>
+        </center>
+    </div>
+     <!-- Edit Modal -->
+     @foreach($cars as $car)
+        <div class="modal fade" id="editModal{{{ $car->id }}}" role="dialog">
+            <div class="modal-dialog modal-sm">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Edit</h4>
+                    </div>
+                    <div class="modal-body">
+                        {{ Form::model($car, array('action' => array('CarsController@update', $car->id), 'method' => 'PUT')) }}
+                            <div class="form-group">
+                                {{ Form::label('new_make', 'Make') }}
+                                {{ Form::text('new_make', $car->make, ['class' => 'form-control', 'placeholder' => 'Please enter your make', 'id' => 'new_make'] )}}
+                            </div>
+                            <div class="form-group">
+                                {{ Form::label('new_model', 'Model') }}
+                                {{ Form::text('new_model', $car->model, ['class' => 'form-control', 'placeholder' => 'Please enter your model', 'id' => 'new_model'] )}}
+                            </div>
+                            <div class="form-group">
+                                {{ Form::label('new_license_number', 'License Number') }}
+                                {{ Form::text('new_license_number', $car->license_number, ['class' => 'form-control', 'placeholder' => 'Please enter your license number', 'id' => 'new_license_number'] )}}
+                            </div>
+                            <div class="form-group">
+                                {{ Form::label('new_color', 'Color') }}
+                                {{ Form::text('new_color', $car->color, ['class' => 'form-control', 'placeholder' => 'Please enter your color', 'id' => 'new_color'] )}}
+                            </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                        {{ Form::close() }}
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-@endforeach
+    @endforeach
+@stop
