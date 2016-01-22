@@ -1,13 +1,13 @@
 @extends('layouts.master')
 
 @section('title')
-	<title>{{{ $first_name . '\'s Cars'}}}</title>
+	<title>{{{ $first_name . '\'s Vehicles'}}}</title>
 @stop
 
 @section('content')
 	<div class="container">
 		<div class="rows">
-			<a href="{{{ action('CarsController@create') }}}"><i class="fa fa-plus"></i>&nbsp;Add a Car</a>
+			<a href="{{{ action('CarsController@create') }}}"><i class="fa fa-plus"></i>&nbsp;Add a Vehicle</a>
 		</div>
 		<h2>{{{ ucfirst($first_name) . '\'s Vehicles' }}}</h2>
 		<table class="table table-striped">
@@ -49,7 +49,7 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title">Edit</h4>
+                        <h4 class="modal-title"><i class="fa fa-pencil-square-o"></i>&nbsp;{{{'Edit ' . $first_name . '\'s Vehicle'}}}</h4>
                     </div>
                     <div class="modal-body">
                         {{ Form::model($car, array('action' => array('CarsController@update', $car->id), 'method' => 'PUT')) }}
