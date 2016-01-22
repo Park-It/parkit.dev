@@ -65,7 +65,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Login</h4>
+                    <h4 class="modal-title"><i class="fa fa-sign-in"></i>&nbsp;Login</h4>
                 </div>
                 <div class="modal-body">
                     {{ Form::open(['action' => 'HomeController@postLogin']) }}
@@ -79,7 +79,7 @@
                         </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary">Login</button>
+                    <button type="submit" class="btn btn-primary"><i class="fa fa-sign-in"></i>&nbsp;Login</button>
                     {{ Form::close() }}
                 </div>
             </div>
@@ -98,14 +98,17 @@
                 {{-- <form id="register-form" method="POST"> --}}
                     <div class="modal-body">
                         <div class="form-group">
+                            {{ $errors->first('username', '<span class="help-block alert alert-danger">:message</span>') }}
                             <label for="username">Username</label>
                             <input id="register-username" type="text" class="form-control" placeholder="Please enter a username" name="username">
                         </div>
                         <div class="form-group">
+                            {{ $errors->first('email', '<span class="help-block alert alert-danger">:message</span>') }}
                             <label for="email">Email</label>
                             <input id="register-email" type="text" class="form-control" placeholder="Please enter your email" name="email">
                         </div>
                         <div class="form-group">
+                            {{ $errors->first('password', '<span class="help-block alert alert-danger">:message</span>') }}
                             <label for="password">Password</label>
                             <input id="register-password" type="password" class="form-control" placeholder="Please enter your password" name="password">
                         </div>
@@ -114,10 +117,12 @@
                             <input id="register-cpassword" type="password" class="form-control" placeholder="Please confirm your password" name="confirm_password">
                         </div>
                         <div class="form-group">
+                            {{ $errors->first('first_name', '<span class="help-block alert alert-danger">:message</span>') }}
                             <label for="first_name">First Name</label>
                             <input id="register-fname" type="text" class="form-control" placeholder="Please enter your first name" name="first_name">
                         </div>
                         <div class="form-group">
+                            {{ $errors->first('last_name', '<span class="help-block alert alert-danger">:message</span>') }}
                             <label for="last_name">Last Name</label>
                             <input id="register-lname" type="text" class="form-control" placeholder="Please enter your last name" name="last_name">
                         </div>

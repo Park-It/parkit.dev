@@ -35,6 +35,17 @@ class CarsController extends \BaseController {
 	 */
 	public function store()
 	{
+		$messages = array(
+			'make.required' => 'Make field cannot be left empty.',
+			'make.max' => 'You must enter a value with a maximum of 255 characters.',
+			'model.required' => 'Model field cannot be left empty.',
+			'model.max' => 'You must enter a value with a maximum of 255 characters.',
+			'license_plate_number.required' => 'License Plate Number field cannot be left empty.',
+			'license_plate_number.max' => 'You must enter a value with a maximum of 255 characters.',
+			'color.required' => 'Color field cannot be left empty.',
+			'color.max' => 'You must enter a value with a maximum of 255 characters.',
+		);
+
 		$validator = Validator::make($data = Input::all(), Car::$rules);
 
 		if ($validator->fails())
