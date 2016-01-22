@@ -44,7 +44,6 @@ class UsersController extends \BaseController {
         	// validation failed, redirect to the index page with validation errors and old inputs
         	return Redirect::back()->withInput()->withErrors($validator);
     	} else {
-    		$car = Car::firstOrFail();
         	// validation succeeded, create and save the user
 			$user = new User();
 			
@@ -53,7 +52,6 @@ class UsersController extends \BaseController {
 			$user->username = Input::get('username');
 			$user->email = Input::get('email');
 			$user->password = Input::get('password');
-			$user->car_id = $car->id;
 			$result = $user->save();
 
 			if($result) {
