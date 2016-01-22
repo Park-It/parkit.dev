@@ -65,11 +65,11 @@
                     <div class="panel-body">
                         <div class="form-group">
                             <label for="new_password">New Password</label>
-                            <input type="text" name="new_password" class="form-control">
+                            <input type="password" name="new_password" class="form-control">
                         </div>
                         <div class="form-group">
                         <label for="confirm_password">Confirm Password</label>
-                            <input type="text" name="confirm_password" class="form-control">
+                            <input type="password" name="confirm_password" class="form-control">
                         </div>
                     </div>
                 </div>

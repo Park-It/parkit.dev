@@ -45,7 +45,7 @@ class CarsController extends \BaseController {
 			
 			$car->make = Input::get('make');
 			$car->model = Input::get('model');
-			$car->license_number = Input::get('license_number');
+			$car->license_plate_number = Input::get('license_plate_number');
 			$car->color = Input::get('color');
 			$result = $car->save();
 		}
@@ -97,7 +97,7 @@ class CarsController extends \BaseController {
 	{
 		$car = Car::findOrFail($id);
 
-		$validator = Validator::make($data = Input::all(), Car::$rules);
+		$validator = Validator::make($data = Input::all(), Car::$new_rules);
 
 		if ($validator->fails())
 		{
@@ -105,7 +105,7 @@ class CarsController extends \BaseController {
 		} else {
 			$car->make = Input::get('new_make');
 			$car->model = Input::get('new_model');
-			$car->license_number = Input::get('new_license_number');
+			$car->license_plate_number = Input::get('new_license_plate_number');
 			$car->color = Input::get('new_color');
 			$result = $car->save();
 		}

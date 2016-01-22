@@ -8,8 +8,16 @@ class Car extends \Eloquent {
 	public static $rules = [
 		'make' => 'required|max:255',
 		'model' => 'required|max:255',
-		'license_number' => 'required|max:255',
+		'license_plate_number' => 'required|max:255',
 		'color' => 'required|max:255'
+
+	];
+
+	public static $new_rules = [
+		'new_make' => 'required|max:255',
+		'new_model' => 'required|max:255',
+		'new_license_plate_number' => 'required|max:255',
+		'new_color' => 'required|max:255'
 
 	];
 

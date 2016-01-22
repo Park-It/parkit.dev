@@ -10,19 +10,19 @@
 			{{ Form::open(['action' => 'CarsController@store']) }}
 				<div class="form-group">
 					<label for="make">Make</label>
-					<input type="text" class="form-control" placeholder="Please enter your car's make">
+					<input type="text" class="form-control" placeholder="Please enter your car's make" name="make">
 				</div>
 				<div class="form-group">
 					<label for="model">Model</label>
-					<input type="text" class="form-control" placeholder="Please enter your car's model">
+					<input type="text" class="form-control" placeholder="Please enter your car's model" name="model">
 				</div>
 				<div class="form-group">
-					<label for="license_number">License Number</label>
-					<input type="text" class="form-control" placeholder="Please enter your car's license number">
+					<label for="license_plate_number">License Number</label>
+					<input type="text" class="form-control" placeholder="Please enter your car's license plate number" name="license_plate_number">
 				</div>
 				<div class="form-group">
 					<label for="color">Color</label>
-					<input type="text" class="form-control" placeholder="Please enter your car's color">
+					<input type="text" class="form-control" placeholder="Please enter your car's color" name="color">
 				</div>
 				<button class="btn btn-primary">Submit</button>
 			{{ Form::close() }}

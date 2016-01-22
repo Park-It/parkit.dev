@@ -109,24 +109,59 @@ class UsersController extends \BaseController {
 	public function update($id)
 	{
 		$user = User::findOrFail($id);
-
-		$validator = Validator::make($data = Input::all(), User::$rules);
-
-		if ($validator->fails())
-		{
-			return Redirect::back()->withErrors($validator)->withInput();
-		} else {
+		
+		if(Input::has('new_first_name')) {
+			$validator = Validator::make($data = Input::all(), User::$first_name_rule);	
+			if ($validator->fails())
+			{
+				return Redirect::back()->withErrors($validator)->withInput();
+			} 
 			$user->first_name = Input::get('new_first_name');
-			$user->last_name = Input::get('new_last_name');
-			$user->username = Input::get('new_username');
-			$user->email = Input::get('new_email');
-			$user->password = Input::get('new_password');
-			$result = $user->save();
 		}
+
+		if(Input::has('new_last_name')) {
+			$validator = Validator::make($data = Input::all(), User::$last_name_rule);
+			if ($validator->fails())
+			{
+				return Redirect::back()->withErrors($validator)->withInput();
+			} 	
+			$user->last_name = Input::get('new_last_name');
+		}
+
+		if(Input::has('new_username')) {
+			$validator = Validator::make($data = Input::all(), User::$username_rule);
+			if ($validator->fails())
+			{
+				return Redirect::back()->withErrors($validator)->withInput();
+			} 	
+			$user->username = Input::get('new_username');
+		}
+
+		if(Input::has('new_email')) {
+			$validator = Validator::make($data = Input::all(), User::$email_rule);	
+			if ($validator->fails())
+			{
+				return Redirect::back()->withErrors($validator)->withInput();
+			} 
+			$user->email = Input::get('new_email');
+		}
+
+		if(Input::has('new_password')) {
+			$validator = Validator::make($data = Input::all(), User::$password_rule);
+			if ($validator->fails())
+			{
+				return Redirect::back()->withErrors($validator)->withInput();
+			} 	
+			$user->password = Input::get('new_password');
+		}
+
+	
+		$result = $user->save();
+		
 
 		if($result) {
 			Session::flash('successMessage', $user->first_name . ' Thank you for signing up at Park It');
-			return Redirect::action('HomeController@showIndex');
+			return Redirect::action('UsersController@edit', $user->id);
 
 		} else {
 			Session::flash('errorMessage', 'Please properly input all the required fields');
