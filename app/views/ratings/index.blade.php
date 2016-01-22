@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('title')
-	<title>{{{ $first_name . '\'s Ratings'}}}</title>
+	<title>{{{ ucfirst($first_name) . '\'s Ratings'}}}</title>
 @stop
 
 @section('top-script')

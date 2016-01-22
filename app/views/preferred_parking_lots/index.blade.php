@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('title')
-	<title>{{{ $first_name . '\'s Preferred Parking Lots'}}}</title>
+	<title>{{{ ucfirst($first_name) . '\'s Preferred Parking Lots'}}}</title>
 @stop
 
 @section('content')
