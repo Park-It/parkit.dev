@@ -17,7 +17,6 @@ class DatabaseSeeder extends Seeder {
 		DB::table('parking_lots')->delete();
 		DB::table('preferred_parking_lot_users')->delete();
 		DB::table('users')->delete();
-		DB::table('preferred_parking_lots')->delete();
 		
 
 		$this->call('ParkingLotsTableSeeder');
@@ -25,7 +24,6 @@ class DatabaseSeeder extends Seeder {
 		$this->call('CarsTableSeeder');
 		$this->call('CarParkingLotsTableSeeder');
 		$this->call('RatingsTableSeeder');
-		$this->call('PreferredParkingLotsTableSeeder');
 		$this->call('PreferredParkingLotUsersTableSeeder');
 	}
 
