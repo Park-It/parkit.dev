@@ -15,7 +15,7 @@
 				<tr>
 					<th>Make</th>
 					<th>Model</th>
-					<th>License Number</th>
+					<th>License Plate Number</th>
 					<th>Color</th>
 					<th></th>
                     <th></th>
@@ -27,7 +27,7 @@
 				<tr>
 					<td>{{ $car->make }}</td>
 					<td>{{ $car->model }}</td>
-					<td>{{ $car->license_number }}</td>
+					<td>{{ $car->license_plate_number }}</td>
 					<td>{{ $car->color }}</td>
 					<td><a href="{{{ action('CarsController@show', $car->id) }}}" class="btn btn-primary">View This Car</a></td>
 					<td><button class="btn btn-success" data-toggle="modal" data-target="#editModal{{{ $car->id }}}"><i class="fa fa-pencil-square-o"></i>&nbsp;Edit</button></td>
@@ -62,8 +62,8 @@
                                 {{ Form::text('new_model', $car->model, ['class' => 'form-control', 'placeholder' => 'Please enter your model', 'id' => 'new_model'] )}}
                             </div>
                             <div class="form-group">
-                                {{ Form::label('new_license_number', 'License Number') }}
-                                {{ Form::text('new_license_number', $car->license_number, ['class' => 'form-control', 'placeholder' => 'Please enter your license number', 'id' => 'new_license_number'] )}}
+                                {{ Form::label('new_license_plate_number', 'License Plate Number') }}
+                                {{ Form::text('new_license_plate_number', $car->license_plate_number, ['class' => 'form-control', 'placeholder' => 'Please enter your license plate number', 'id' => 'new_license_plate_number'] )}}
                             </div>
                             <div class="form-group">
                                 {{ Form::label('new_color', 'Color') }}
