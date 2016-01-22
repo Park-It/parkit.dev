@@ -1,13 +1,11 @@
 <?php
 
-// Composer: "fzaninotto/faker": "v1.3.0"
-use Faker\Factory as Faker;
 
 class PreferredParkingLotUsersTableSeeder extends Seeder {
 
 	public function run()
 	{
-		$preferred_parking_lot = PreferredParkingLot::firstOrFail();
+		$preferred_parking_lot = PreferredParkingLot::all()->random();
 
 		$user = User::firstOrFail();
 
