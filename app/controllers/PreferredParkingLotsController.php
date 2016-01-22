@@ -11,9 +11,9 @@ class PreferredParkingLotsController extends \BaseController {
 	{
 		if(Auth::check())
 		{
-			$preferred_parking_lots = DB::table('preferred_parking_lots')
-    		->join('preferred_parking_lot_users', 'preferred_parking_lot_users.preferred_parking_lot_id', '=', 'id')
-    		->join('users', 'users.id', '=', 'preferred_parking_lot_users.user_id')
+			$userId = Auth::user()->id;
+			$preferred_parking_lots = DB::table('preferred_parking_lot_users')->where('user_id', $userId)
+    		->join('parking_lots', 'preferred_parking_lot_users.preferred_parking_lot_id', '=', 'id')
     		->paginate(10);
 			$first_name = Auth::user()->first_name;
 		} 
@@ -77,28 +77,6 @@ class PreferredParkingLotsController extends \BaseController {
 	}
 
 	/**
-	 * Update the specified preferredparkinglot in storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function update($id)
-	{
-		$preferredparkinglot = Preferredparkinglot::findOrFail($id);
-
-		$validator = Validator::make($data = Input::all(), Preferredparkinglot::$rules);
-
-		if ($validator->fails())
-		{
-			return Redirect::back()->withErrors($validator)->withInput();
-		}
-
-		$preferredparkinglot->update($data);
-
-		return Redirect::route('preferred_parking_lots.index');
-	}
-
-	/**
 	 * Remove the specified preferredparkinglot from storage.
 	 *
 	 * @param  int  $id
@@ -106,8 +84,10 @@ class PreferredParkingLotsController extends \BaseController {
 	 */
 	public function destroy($id)
 	{
-		Preferredparkinglot::destroy($id);
-
+		$userId = Auth::user()->id;
+		Log::info("userid: {$userId}, preferred parking lot id: {$id} Deleted.");
+		$preferredParking = DB::table('preferred_parking_lot_users')->where('user_id', $userId)->where("preferred_parking_lot_id", $id);
+		$preferredParking->delete();
 		return Redirect::route('preferred_parking_lots.index');
 	}
 

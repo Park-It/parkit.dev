@@ -5,7 +5,7 @@ class PreferredParkingLotUsersTableSeeder extends Seeder {
 
 	public function run()
 	{
-		$preferred_parking_lot = PreferredParkingLot::all()->random();
+		$preferred_parking_lot = ParkingLot::all()->random();
 
 		$user = User::firstOrFail();
 
