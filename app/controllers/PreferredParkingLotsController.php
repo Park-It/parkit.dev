@@ -58,22 +58,9 @@ class PreferredParkingLotsController extends \BaseController {
 	 */
 	public function show($id)
 	{
-		$preferredparkinglot = Preferredparkinglot::findOrFail($id);
+		$preferredparkinglot = Parkinglot::findOrFail($id);
 
 		return View::make('preferred_parking_lots.show', compact('preferredparkinglot'));
-	}
-
-	/**
-	 * Show the form for editing the specified preferredparkinglot.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function edit($id)
-	{
-		$preferredparkinglot = Preferredparkinglot::find($id);
-
-		return View::make('preferred_parking_lots.edit', compact('preferredparkinglot'));
 	}
 
 	/**
