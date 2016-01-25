@@ -139,11 +139,26 @@ text-shadow:
 }
 
 .submit {
-    margin-bottom: 500px;
+    margin-bottom: 350px;
 }
 
 div {
     cursor:text;
     color: black;
+}
+
+.circle {
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    border: 2px solid #ffffff;
+    border-radius: 100%;
+    text-align: center;
+    font-size: 20px;
+    line-height: 45px;
+    padding-top: 5px;
+    color: #FFF;
+    vertical-align: top;
+    margin-bottom: 10px;
 }
 

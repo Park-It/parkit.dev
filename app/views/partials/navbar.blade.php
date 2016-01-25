@@ -23,7 +23,7 @@
                     <a id="drop" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{{ Auth::user()->first_name . '\'s Profile' }}}<span class="caret"></span></a>
                     <ul id="menu" class="dropdown-menu" aria-labelledby="drop"> 
                         <li><a href="{{{ action('CarsController@index')}}}"><i class="fa fa-car"></i>&nbsp;My Vehicles</a></li> 
-                        <li><a href="{{{ action('PreferredParkingLotsController@index')}}}"><i class="fa fa-product-hunt"></i>&nbsp;My Preferred Parking Lots</a></li> 
+                        <li><a href="{{{ action('ParkingLotsController@index')}}}"><i class="fa fa-product-hunt"></i>&nbsp;My Preferred Parking Lots</a></li> 
                         <li><a href="{{{ action('RatingsController@index') }}}"><i class="fa fa-star"></i>&nbsp;My Ratings</a></li> 
                         <li role="separator" class="divider"></li> 
                         <li><a href="{{{ action('UsersController@edit', Auth::user()->id) }}}"><i class="fa fa-pencil-square-o"></i>&nbsp;Edit Profile</a></li>
@@ -95,7 +95,6 @@
                     <h4 class="modal-title">Register</h4>
                 </div>
                 {{ Form::open(['action' => 'UsersController@store', 'id' => 'register-form']) }}
-                {{-- <form id="register-form" method="POST"> --}}
                     <div class="modal-body">
                         <div class="form-group">
                             {{ $errors->first('username', '<span class="help-block alert alert-danger">:message</span>') }}
@@ -131,7 +130,6 @@
                         <button type="submit" class="btn btn-primary">Register</button>
                     </div>
                 {{ Form::close() }}
-                {{-- </form> --}}
             </div>
         </div>
     </div>

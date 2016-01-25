@@ -7,7 +7,7 @@
 @section('content')
 	<div class="container">
 		<div class="rows">
-			<a href="{{{ action('CarsController@create') }}}"><i class="fa fa-plus"></i>&nbsp;Add a Vehicle</a>
+            <button class="btn btn-success" data-toggle="modal" data-target="#addModal"><i class="fa fa-plus"></i>&nbsp;Add a Vehicle</button>
 		</div>
 		<h2>{{{ ucfirst($first_name) . '\'s Vehicles' }}}</h2>
 		<table class="table table-striped">
@@ -82,4 +82,45 @@
             </div>
         </div>
     @endforeach
+     <!-- Add Modal -->
+     
+        <div class="modal fade" id="addModal" role="dialog">
+            <div class="modal-dialog modal-sm">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title"><i class="fa fa-plus"></i>&nbsp;{{{'Add ' . $first_name . '\'s Vehicle'}}}</h4>
+                    </div>
+                {{ Form::open(['action' => 'CarsController@store']) }}
+                    <div class="modal-body">
+                        <div class="form-group">
+                            {{ $errors->first('make', '<span class="help-block alert alert-danger">:message</span>') }}
+                            <label for="make">Make</label>
+                            <input type="text" class="form-control" placeholder="Please enter your car's make" name="make">
+                        </div>
+                        <div class="form-group">
+                            {{ $errors->first('model', '<span class="help-block alert alert-danger">:message</span>') }}
+                            <label for="model">Model</label>
+                            <input type="text" class="form-control" placeholder="Please enter your car's model" name="model">
+                        </div>
+                        <div class="form-group">
+                            {{ $errors->first('license_plate_number', '<span class="help-block alert alert-danger">:message</span>') }}
+                            <label for="license_plate_number">License Number</label>
+                            <input type="text" class="form-control" placeholder="Please enter your car's license plate number" name="license_plate_number">
+                        </div>
+                        <div class="form-group">
+                            {{ $errors->first('color', '<span class="help-block alert alert-danger">:message</span>') }}
+                            <label for="color">Color</label>
+                            <input type="text" class="form-control" placeholder="Please enter your car's color" name="color">
+                        </div>
+            
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                {{ Form::close() }}
+                </div>
+            </div>
+        </div>
+    
 @stop
