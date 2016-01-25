@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('title')
-	<title>{{{ $first_name . '\'s Ratings'}}}</title>
+	<title>{{{ ucfirst($first_name) . '\'s Ratings'}}}</title>
 @stop
 
 @section('top-script')
@@ -51,7 +51,7 @@
 	            <div class="modal-content">
 	                <div class="modal-header">
 	                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-	                    <h4 class="modal-title">Edit Rating</h4>
+	                    <h4 class="modal-title">{{{'Edit ' . $first_name . '\'s Rating'}}}</h4>
 	                </div>
 	                <div class="modal-body">
 	                	<h4 class="parking_lot">{{ 'Parking Lot: ' . $parking_lot->name }}</h4>

@@ -35,6 +35,17 @@ class CarsController extends \BaseController {
 	 */
 	public function store()
 	{
+		$messages = array(
+			'make.required' => 'Make field cannot be left empty.',
+			'make.max' => 'You must enter a value with a maximum of 255 characters.',
+			'model.required' => 'Model field cannot be left empty.',
+			'model.max' => 'You must enter a value with a maximum of 255 characters.',
+			'license_plate_number.required' => 'License Plate Number field cannot be left empty.',
+			'license_plate_number.max' => 'You must enter a value with a maximum of 255 characters.',
+			'color.required' => 'Color field cannot be left empty.',
+			'color.max' => 'You must enter a value with a maximum of 255 characters.',
+		);
+
 		$validator = Validator::make($data = Input::all(), Car::$rules);
 
 		if ($validator->fails())
@@ -47,12 +58,13 @@ class CarsController extends \BaseController {
 			$car->model = Input::get('model');
 			$car->license_plate_number = Input::get('license_plate_number');
 			$car->color = Input::get('color');
+			$car->user_id = Auth::user()->id;
 			$result = $car->save();
 		}
 
 		if($result) {
 				Session::flash('successMessage', 'Thank you for saving your car');
-				return Redirect::action('car.index');
+				return Redirect::action('cars.index');
 
 			} else {
 				Session::flash('errorMessage', 'Please properly input all the required fields');
