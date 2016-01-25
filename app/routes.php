@@ -13,6 +13,7 @@
 
 Route::get('/', 'HomeController@showIndex');
 Route::get('/lots/json', 'HomeController@showIndexJson');
+Route::get('/test/rating/{id}', 'RatingsController@averageRating');
 
 Route::get('login', 'HomeController@getLogin');
 Route::post('login', 'HomeController@postLogin');
