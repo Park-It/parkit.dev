@@ -1,6 +1,6 @@
 <?php
 
-class RatingsController extends \BaseController {
+class RatingsController extends BaseController {
 
 	/**
 	 * Display a listing of ratings
@@ -176,26 +176,33 @@ class RatingsController extends \BaseController {
 		}
 		else 
 		{
-			return "no reviews for this parking lot found";
+			return false;
 		}
 	}
 	public function ratingOrder($data) //reorganizes data to be top stared first - returns array of objects 
 	{
-		var_dump($data);
-		echo "--------------------------------------------------------------------------";
-		foreach ($data as $key => $value)
+		if (isset($data))
 		{
-			$rating = $this->averageRating($value->id);
-			$value->average_rating = $rating;
-			$averaged[strval($rating)."-$key"] = $value;
+			foreach ($data as $key => $value)
+			{
+				if($rating = $this->averageRating($value->id))
+				{
+				$value->average_rating = $rating;
+				$averaged[strval($rating)."-$key"] = $value;
+				}
+				else
+				{
+					$value->average_rating = null;
+					$averaged["5-$key"] = $value;
+				}
+			}
+			krsort($averaged);
+			$sorted = array_values($averaged);
+			return $sorted;
 		}
-		krsort($averaged);
-		var_dump($averaged);
-		return $averaged;
 	}
 	public function test($var = null)
 	{
-		$data = DB::table('parking_lots')->where('id', 41)->orwhere('id', 43)->orwhere('id', 44)->get();
-		$this->ratingOrder($data);	
+		
 	}
 }
