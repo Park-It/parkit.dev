@@ -153,5 +153,49 @@ class RatingsController extends \BaseController {
 			return "Access Denied: this is not your rating.";
 		}
 	}
-
+	//returns the average stars given to lot $id from the last 1000 ratings
+	public function averageRating($id)
+	{
+		//selects last 1000 ratings
+		$stars = DB::table('ratings')->select('stars')->where('parking_lot_id', $id)->orderBy('id', 'desc')->take(1000)->get();
+		if(isset($stars[0]->stars))
+		{
+			$i = 0;
+			$t = 0;
+			//get the divisor and the total number of stars
+			foreach ($stars as $key => $value)
+			{
+				$i++;
+				$t = $t+$value->stars;
+			}
+			//find the average rating and round to the nearest 100th place
+			$a = $t/$i;
+			$average = round($a, 2);
+			Log::info("Average rating for lot Id: {$id} is : {$average}");
+			return $average;
+		}
+		else 
+		{
+			return "no reviews for this parking lot found";
+		}
+	}
+	public function ratingOrder($data) //reorganizes data to be top stared first - returns array of objects 
+	{
+		var_dump($data);
+		echo "--------------------------------------------------------------------------";
+		foreach ($data as $key => $value)
+		{
+			$rating = $this->averageRating($value->id);
+			$value->average_rating = $rating;
+			$averaged[strval($rating)."-$key"] = $value;
+		}
+		krsort($averaged);
+		var_dump($averaged);
+		return $averaged;
+	}
+	public function test($var = null)
+	{
+		$data = DB::table('parking_lots')->where('id', 41)->orwhere('id', 43)->orwhere('id', 44)->get();
+		$this->ratingOrder($data);	
+	}
 }
