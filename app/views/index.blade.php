@@ -45,5 +45,7 @@
 	<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDb0ttOlTfxWFBvkLFiAh37EVNdwBA0xyM&callback=initMap"></script>
 	<script src="/js/form-effect.js"></script>
 	<script src="/js/parking_lots.js"></script>
+	<script src="/js/find_me.js"></script>
+	<script src="/js/parking_lot_form.js"></script>
 @stop
 
