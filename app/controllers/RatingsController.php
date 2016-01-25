@@ -72,9 +72,17 @@ class RatingsController extends \BaseController {
 	 */
 	public function edit($id)
 	{
-		$rating = Rating::find($id);
+		$userId = Auth::user()->id;
+		if ($userId ===$id)
+		{
+			$rating = Rating::find($id);
 
-		return View::make('ratings.edit', compact('rating'));
+			return View::make('ratings.edit', compact('rating'));
+		}
+		else
+		{
+			return "Access Denied: this is not your rating.";
+		}
 	}
 
 	/**
@@ -85,35 +93,43 @@ class RatingsController extends \BaseController {
 	 */
 	public function update($id)
 	{
-		$rating = Rating::findOrFail($id);
-
-		$messages = array(
-			'new_stars.required' => 'We need to know how many stars you wish to give!',
-			'new_stars.max' => 'You must enter a value with a maximum of 10 characters.',
-			'new_comment.max' => 'You must enter a value with a maximum of 255 characters.',
-			'new_recommended.max' => 'You must enter a value with a maximum of 255 characters.',
-		);
-		
-		$validator = Validator::make($data = Input::all(), Rating::$new_rules, $messages);
-
-		if ($validator->fails())
+		$userId = Auth::user()->id;
+		if ($userId ===$id)
 		{
-			return Redirect::back()->withErrors($validator)->withInput();
-		} else {
-			$rating->stars = Input::get('new_stars');
-			$rating->comment = Input::get('new_comment');
-			$rating->recommended = Input::get('new_recommended');
-			$result = $rating->save();
+			$rating = Rating::findOrFail($id);
+
+			$messages = array(
+				'new_stars.required' => 'We need to know how many stars you wish to give!',
+				'new_stars.max' => 'You must enter a value with a maximum of 10 characters.',
+				'new_comment.max' => 'You must enter a value with a maximum of 255 characters.',
+				'new_recommended.max' => 'You must enter a value with a maximum of 255 characters.',
+			);
+			
+			$validator = Validator::make($data = Input::all(), Rating::$new_rules, $messages);
+
+			if ($validator->fails())
+			{
+				return Redirect::back()->withErrors($validator)->withInput();
+			} else {
+				$rating->stars = Input::get('new_stars');
+				$rating->comment = Input::get('new_comment');
+				$rating->recommended = Input::get('new_recommended');
+				$result = $rating->save();
+			}
+
+			if($result) {
+				Session::flash('successMessage', 'Your rating was successfully updated');
+				return Redirect::route('ratings.index');
+
+			} else {
+				Session::flash('errorMessage', 'Please properly input all the required fields');
+				Log::warning('Rating failed to save: ', Input::all());
+				return Redirect::back()->withInput();
+			}
 		}
-
-		if($result) {
-			Session::flash('successMessage', 'Your rating was successfully updated');
-			return Redirect::route('ratings.index');
-
-		} else {
-			Session::flash('errorMessage', 'Please properly input all the required fields');
-			Log::warning('Rating failed to save: ', Input::all());
-			return Redirect::back()->withInput();
+		else
+		{
+			return "Access Denied: this is not your rating.";
 		}
 	}
 
@@ -125,9 +141,17 @@ class RatingsController extends \BaseController {
 	 */
 	public function destroy($id)
 	{
-		Rating::destroy($id);
-		Log::info("rating id: {$id} deleted");
-		return Redirect::route('ratings.index');
+		$userId = Auth::user()->id;
+		if ($userId ===$id)
+		{
+			Rating::destroy($id);
+			Log::info("rating id: {$id} deleted");
+			return Redirect::route('ratings.index');
+		}
+		else
+		{
+			return "Access Denied: this is not your rating.";
+		}
 	}
 
 }
