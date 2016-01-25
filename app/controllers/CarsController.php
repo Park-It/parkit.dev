@@ -82,9 +82,18 @@ class CarsController extends \BaseController {
 	 */
 	public function show($id)
 	{
-		$car = Car::findOrFail($id);
+		$userId = Auth::user()->id;
+		$carData = Car::find($id);
+		if ($userId ===$carData["user_id"])
+		{
+			$car = Car::findOrFail($id);
 
-		return View::make('cars.show', compact('car'));
+			return View::make('cars.show', compact('car'));
+		}
+		else
+		{
+			return "Access Denied: This is not your car.";
+		}
 	}
 
 	/**
