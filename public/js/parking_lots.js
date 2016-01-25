@@ -25,7 +25,7 @@ $(document).ready(function() {
 			markers[index].content += '<p> Price: $' + parking_lot.price + '</p>' 
 			markers[index].content += '<p>Maximum spots: ' + parking_lot.max_spots + '</p>';
 			if (parking_lot.average_rating == null) {
-				markers[index].content += '<p>Average rating: Unrated</p>';
+				markers[index].content += '<p>Average rating: No ratings available</p>';
 			}
 			else{
 			markers[index].content += '<p>Average rating: ' + parking_lot.average_rating + '/10</p>';
