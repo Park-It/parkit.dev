@@ -17,7 +17,17 @@ class HomeController extends BaseController {
 
 	public function showIndex()
 	{
+		$parking_lots = ParkingLot::all();
 		return View::make('index');
+	}
+
+	public function showIndexJson()
+	{
+		// $parking_lots = ParkingLot::all();
+		$lots_array = [];
+		$parking_lots = DB::table('parking_lots')->select('name', 'lat', 'lng', 'address', 'price', 'max_spots')->get();
+		
+		return Response::json($parking_lots);
 	}
 
 	public function getLogin()
