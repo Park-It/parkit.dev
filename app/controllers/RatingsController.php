@@ -172,11 +172,30 @@ class RatingsController extends \BaseController {
 			$a = $t/$i;
 			$average = round($a, 2);
 			Log::info("Average rating for lot Id: {$id} is : {$average}");
-			return $average."/10 stars.";
+			return $average;
 		}
 		else 
 		{
 			return "no reviews for this parking lot found";
 		}
+	}
+	public function ratingOrder($data) //reorganizes data to be top stared first - returns array of objects 
+	{
+		var_dump($data);
+		echo "--------------------------------------------------------------------------";
+		foreach ($data as $key => $value)
+		{
+			$rating = $this->averageRating($value->id);
+			$value->average_rating = $rating;
+			$averaged[strval($rating)."-$key"] = $value;
+		}
+		krsort($averaged);
+		var_dump($averaged);
+		return $averaged;
+	}
+	public function test($var = null)
+	{
+		$data = DB::table('parking_lots')->where('id', 41)->orwhere('id', 43)->orwhere('id', 44)->get();
+		$this->ratingOrder($data);	
 	}
 }
