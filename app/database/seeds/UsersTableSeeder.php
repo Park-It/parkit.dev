@@ -11,6 +11,7 @@ class UsersTableSeeder extends Seeder {
 
 
 		$user = new User();
+		// Make sure you have these defined in you .env.local.php
 		$user->first_name = $_ENV['USER_FIRST'];
 		$user->last_name = $_ENV['USER_LAST'];
 		$user->username = $_ENV['USER_USERNAME'];
