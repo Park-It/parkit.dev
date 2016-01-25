@@ -175,6 +175,9 @@ class CarsController extends \BaseController {
 		$carData = Car::find($id);
 		if ($userId ===$carData["user_id"])
 		{
+			Log::info("userid: {$userId}, car: $id Deleted.");
+			$carParking = DB::table('car_parking_lots')->where('car_id', $id);
+			$carParking->delete();
 			Car::destroy($id);
 
 			return Redirect::route('cars.index');
