@@ -139,7 +139,7 @@ text-shadow:
 }
 
 .submit {
-    margin-bottom: 354px;
+    margin-bottom: 350px;
 }
 
 div {
@@ -159,5 +159,6 @@ div {
     padding-top: 5px;
     color: #FFF;
     vertical-align: top;
+    margin-bottom: 10px;
 }
 
