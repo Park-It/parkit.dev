@@ -63,14 +63,15 @@ class CarsController extends \BaseController {
 		}
 
 		if($result) {
-				Session::flash('successMessage', 'Thank you for saving your car');
-				return Redirect::action('cars.index');
+			Session::flash('successMessage', 'Thank you for saving your car');
+			return Redirect::action('cars.index');
 
-			} else {
-				Session::flash('errorMessage', 'Please properly input all the required fields');
-				Log::warning('Car failed to save: ', Input::all());
-				return Redirect::back()->withInput();
-			}
+		} else {
+			Session::flash('errorMessage', 'Please properly input all the required fields');
+			Log::warning('Car failed to save: ', Input::all());
+			return Redirect::back()->withInput();
+		}
+		
 	}
 
 	/**
@@ -81,9 +82,18 @@ class CarsController extends \BaseController {
 	 */
 	public function show($id)
 	{
-		$car = Car::findOrFail($id);
+		$userId = Auth::user()->id;
+		$carData = Car::find($id);
+		if ($userId ===$carData["user_id"])
+		{
+			$car = Car::findOrFail($id);
 
-		return View::make('cars.show', compact('car'));
+			return View::make('cars.show', compact('car'));
+		}
+		else
+		{
+			return "Access Denied: This is not your car.";
+		}
 	}
 
 	/**
@@ -107,40 +117,49 @@ class CarsController extends \BaseController {
 	 */
 	public function update($id)
 	{
-		$car = Car::findOrFail($id);
-
-		$messages = array(
-			'new_make.required' => 'Make field cannot be left empty.',
-			'new_make.max' => 'You must enter a value with a maximum of 255 characters.',
-			'new_model.required' => 'Model field cannot be left empty.',
-			'new_model.max' => 'You must enter a value with a maximum of 255 characters.',
-			'new_license_plate_number.required' => 'License Plate Number field cannot be left empty.',
-			'new_license_plate_number.max' => 'You must enter a value with a maximum of 255 characters.',
-			'new_color.required' => 'Color field cannot be left empty.',
-			'new_color.max' => 'You must enter a value with a maximum of 255 characters.',
-		);
-
-		$validator = Validator::make($data = Input::all(), Car::$new_rules, $messages);
-
-		if ($validator->fails())
+		$userId = Auth::user()->id;
+		$carData = Car::find($id);
+		if ($userId ===$carData["user_id"])
 		{
-			return Redirect::back()->withErrors($validator)->withInput();
-		} else {
-			$car->make = Input::get('new_make');
-			$car->model = Input::get('new_model');
-			$car->license_plate_number = Input::get('new_license_plate_number');
-			$car->color = Input::get('new_color');
-			$result = $car->save();
+			$car = Car::findOrFail($id);
+
+			$messages = array(
+				'new_make.required' => 'Make field cannot be left empty.',
+				'new_make.max' => 'You must enter a value with a maximum of 255 characters.',
+				'new_model.required' => 'Model field cannot be left empty.',
+				'new_model.max' => 'You must enter a value with a maximum of 255 characters.',
+				'new_license_plate_number.required' => 'License Plate Number field cannot be left empty.',
+				'new_license_plate_number.max' => 'You must enter a value with a maximum of 255 characters.',
+				'new_color.required' => 'Color field cannot be left empty.',
+				'new_color.max' => 'You must enter a value with a maximum of 255 characters.',
+			);
+
+			$validator = Validator::make($data = Input::all(), Car::$new_rules, $messages);
+
+			if ($validator->fails())
+			{
+				return Redirect::back()->withErrors($validator)->withInput();
+			} else {
+				$car->make = Input::get('new_make');
+				$car->model = Input::get('new_model');
+				$car->license_plate_number = Input::get('new_license_plate_number');
+				$car->color = Input::get('new_color');
+				$result = $car->save();
+			}
+
+			if($result) {
+				Session::flash('successMessage', 'Your vehicle was successfully updated');
+				return Redirect::route('cars.index');
+
+			} else {
+				Session::flash('errorMessage', 'Please properly input all the required fields');
+				Log::warning('Vehicle failed to save: ', Input::all());
+				return Redirect::back()->withInput();
+			}
 		}
-
-		if($result) {
-			Session::flash('successMessage', 'Your vehicle was successfully updated');
-			return Redirect::route('cars.index');
-
-		} else {
-			Session::flash('errorMessage', 'Please properly input all the required fields');
-			Log::warning('Vehicle failed to save: ', Input::all());
-			return Redirect::back()->withInput();
+		else
+		{
+			return "Access Denied: this is not your car.";
 		}
 	}
 
@@ -152,9 +171,18 @@ class CarsController extends \BaseController {
 	 */
 	public function destroy($id)
 	{
-		Car::destroy($id);
+		$userId = Auth::user()->id;
+		$carData = Car::find($id);
+		if ($userId ===$carData["user_id"])
+		{
+			Car::destroy($id);
 
-		return Redirect::route('cars.index');
+			return Redirect::route('cars.index');
+		}
+		else
+		{
+			return "Access Denied: this is not your car.";
+		}
 	}
 
 }
