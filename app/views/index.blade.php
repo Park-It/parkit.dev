@@ -14,7 +14,7 @@
         <div class="container">
             <div class="col-lg-12">
             	<form>
-            		<button class="btn btn-success find_me">Find Me</button>
+            		<button class="btn btn-success find_me"><i class="fa fa-map-marker"></i>&nbsp;Find Me</button>
             		<div class="row control-group">
 	            		<div class="form-group col-xs-12 floating-label-form-group controls">
 	            			<label for="address">Address</label>
@@ -27,7 +27,7 @@
 	            			<input type="text" placeholder="Enter your destination" class="form-control" id="destination">
 	            		</div>
 	            	</div>
-	            	<button type="submit" class="btn btn-primary submit" id="submit">Submit</button>
+	            	<button type="submit" class="btn btn-primary submit" id="submit"><i class="fa fa-check"></i>&nbsp;Submit</button>
             	</form>
             	<center>
 	            	<a href="" class="circle"><i class="fa fa-2x fa-arrow-down"></i></a>

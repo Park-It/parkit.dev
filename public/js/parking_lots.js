@@ -24,6 +24,7 @@ $(document).ready(function() {
 			markers[index].content += '<p>' + parking_lot.address + '</p>' 
 			markers[index].content += '<p> Price: $' + parking_lot.price + '</p>' 
 			markers[index].content += '<p>Maximum spots: ' + parking_lot.max_spots + '</p>';
+			markers[index].content += '<button class="btn btn-primary"><i class="fa fa-credit-card"></i>&nbsp;Pay now</button>';
 			markers[index].marker = null;
 
 			var myLatLng = {lat: parseFloat(markers[index].position.lat), lng: parseFloat(markers[index].position.lng)};
