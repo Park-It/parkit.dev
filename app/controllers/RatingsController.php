@@ -191,12 +191,12 @@ class RatingsController extends BaseController {
 				if($rating = $this->averageRating($value->id))
 				{
 				$value->average_rating = $rating;
-				$averaged[strval($rating)."-$key"] = $value;
+				$averaged[strval($rating)."-{$key}"] = $value;
 				}
 				else
 				{
 					$value->average_rating = null;
-					$averaged["5-$key"] = $value;
+					$averaged["5-{$key}"] = $value;
 				}
 			}
 			krsort($averaged);
