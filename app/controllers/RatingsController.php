@@ -142,7 +142,8 @@ class RatingsController extends BaseController {
 	public function destroy($id)
 	{
 		$userId = Auth::user()->id;
-		if ($userId ===$id)
+		$ratingData = Rating::find($id);
+		if ($userId === $ratingData["user_id"])
 		{
 			Rating::destroy($id);
 			Log::info("rating id: {$id} deleted");
@@ -203,6 +204,6 @@ class RatingsController extends BaseController {
 	}
 	public function test($var = null)
 	{
-		
+
 	}
 }
