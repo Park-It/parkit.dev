@@ -142,7 +142,8 @@ class RatingsController extends BaseController {
 	public function destroy($id)
 	{
 		$userId = Auth::user()->id;
-		if ($userId ===$id)
+		Log::info($userId);
+		if ($userId === $id)
 		{
 			Rating::destroy($id);
 			Log::info("rating id: {$id} deleted");
