@@ -73,7 +73,8 @@ class RatingsController extends BaseController {
 	public function edit($id)
 	{
 		$userId = Auth::user()->id;
-		if ($userId ===$id)
+		$ratingData = Rating::find($id);
+		if ($userId === $ratingData["user_id"])
 		{
 			$rating = Rating::find($id);
 
@@ -94,7 +95,8 @@ class RatingsController extends BaseController {
 	public function update($id)
 	{
 		$userId = Auth::user()->id;
-		if ($userId ===$id)
+		$ratingData = Rating::find($id);
+		if ($userId === $ratingData["user_id"])
 		{
 			$rating = Rating::findOrFail($id);
 

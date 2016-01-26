@@ -109,17 +109,10 @@ class ParkingLotsController extends \BaseController {
 	{
 		// the destroy does not work on these as they do not have an id column, also we need to have conformations that the owner is ther one submiting the request or anyone can edit other peoples data.
 		$userId = Auth::user()->id;
-		if ($userId ===$id)
-		{
-			Log::info("userid: {$userId}, preferred parking lot id: {$id} Deleted.");
-			$preferredParking = DB::table('parking_lot_users')->where('user_id', $userId)->where("parking_lot_id", $id);
-			$preferredParking->delete();
-			return Redirect::route('parking_lots.index');
-		}
-		else
-		{
-			return "Access Denied: this is not your account.";
-		}
+		Log::info("userid: {$userId}, preferred parking lot id: {$id} Deleted.");
+		$preferredParking = DB::table('parking_lot_users')->where('user_id', $userId)->where("parking_lot_id", $id);
+		$preferredParking->delete();
+		return Redirect::route('parking_lots.index');
 	}
 
 }
