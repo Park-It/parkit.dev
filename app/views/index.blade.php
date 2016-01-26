@@ -6,6 +6,7 @@
 
 @section('top-script')
 	<link rel="stylesheet" type="text/css" href="/css/index.css">
+    <link rel="stylesheet" type="text/css" href="/public/css/bootstrap.min.css">
 @stop
 
 @section('content')
@@ -47,16 +48,31 @@
             <li data-target="#carousel-example-generic" data-slide-to="2" class="active"></li> 
         </ol> 
         <div class="carousel-inner" role="listbox"> 
-            <div class="item"><img data-src="holder.js/900x500/auto/#777:#555/text:First slide" alt="First slide [900x500]" src="/img/background2.jpg" data-holder-rendered="true"></div> 
-            <div class="item"><img data-src="holder.js/900x500/auto/#666:#444/text:Second slide" alt="Second slide [900x500]" src="/img/parking2.jpg" data-holder-rendered="true"> </div> <div class="item active"> <img data-src="holder.js/900x500/auto/#555:#333/text:Third slide" alt="Third slide [900x500]" src="/img/parking3.jpg" data-holder-rendered="true"> </div> </div> <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev"> <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span> <span class="sr-only">Previous</span> </a> <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next"> <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> <span class="sr-only">Next</span> </a> </div>
+            <div class="item">
+                <img data-src="holder.js/900x500/auto/#777:#555/text:First slide" alt="First slide [900x500]" src="/img/background2.jpg" data-holder-rendered="true">
+            </div> 
+            <div class="item">
+                <img data-src="holder.js/900x500/auto/#666:#444/text:Second slide" alt="Second slide [900x500]" src="/img/parking2.jpg" data-holder-rendered="true">
+            </div> 
+            <div class="item active"> 
+                <img data-src="holder.js/900x500/auto/#555:#333/text:Third slide" alt="Third slide [900x500]" src="/img/parking3.jpg" data-holder-rendered="true"> 
+            </div> 
+        </div> 
+        <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev"> 
+            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span> 
+            <span class="sr-only">Previous</span> 
+        </a> 
+        <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next"> 
+            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> 
+            <span class="sr-only">Next</span> </a> 
+    </div>
 @stop
 
 @section('bottom-script')
+	<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDb0ttOlTfxWFBvkLFiAh37EVNdwBA0xyM&callback=initMap"></script>
 	<script src="/js/map.js"></script>
 	<script src="/js/parking_lot_form.js"></script>
-	<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDb0ttOlTfxWFBvkLFiAh37EVNdwBA0xyM&callback=initMap"></script>
 	<script src="/js/form-effect.js"></script>
 	<script src="/js/parking_lots.js"></script>
 	<script src="/js/find_me.js"></script>
 @stop
-
