@@ -127,6 +127,13 @@ class RatingsController extends BaseController {
 	public function destroy($id)
 	{
 		$userId = Auth::user()->id;
+
+		$ratingData = Rating::find($id);
+		if ($userId === $ratingData["user_id"])
+
+		Log::info($userId);
+		if ($userId === $id)
+
 		$ratingData = Rating::find($id);
 		if ($userId === $ratingData["user_id"])
 		{
