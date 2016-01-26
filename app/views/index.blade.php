@@ -66,6 +66,18 @@
             <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> 
             <span class="sr-only">Next</span> </a> 
     </div>
+    <div class="hidden">
+	    <form id="stripe" action="" method="POST">
+		  <script
+		    src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+		    data-key="pk_test_mWjCI2kTeACsWi4lY42JaFM7"
+		    data-amount="2000"
+		    data-name="Demo Site"
+		    data-description="2 widgets ($20.00)"
+		    data-locale="auto">
+		  </script>
+		</form>
+	</div>
 @stop
 
 @section('bottom-script')
