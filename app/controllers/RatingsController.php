@@ -73,7 +73,8 @@ class RatingsController extends BaseController {
 	public function edit($id)
 	{
 		$userId = Auth::user()->id;
-		if ($userId ===$id)
+		$ratingData = Rating::find($id);
+		if ($userId === $ratingData["user_id"])
 		{
 			$rating = Rating::find($id);
 
@@ -94,7 +95,8 @@ class RatingsController extends BaseController {
 	public function update($id)
 	{
 		$userId = Auth::user()->id;
-		if ($userId ===$id)
+		$ratingData = Rating::find($id);
+		if ($userId === $ratingData["user_id"])
 		{
 			$rating = Rating::findOrFail($id);
 
@@ -142,8 +144,13 @@ class RatingsController extends BaseController {
 	public function destroy($id)
 	{
 		$userId = Auth::user()->id;
+
 		Log::info($userId);
 		if ($userId === $id)
+
+		$ratingData = Rating::find($id);
+		if ($userId === $ratingData["user_id"])
+
 		{
 			Rating::destroy($id);
 			Log::info("rating id: {$id} deleted");
@@ -189,12 +196,12 @@ class RatingsController extends BaseController {
 				if($rating = $this->averageRating($value->id))
 				{
 				$value->average_rating = $rating;
-				$averaged[strval($rating)."-$key"] = $value;
+				$averaged[strval($rating)."-{$key}"] = $value;
 				}
 				else
 				{
 					$value->average_rating = null;
-					$averaged["5-$key"] = $value;
+					$averaged["5-{$key}"] = $value;
 				}
 			}
 			krsort($averaged);
@@ -204,6 +211,6 @@ class RatingsController extends BaseController {
 	}
 	public function test($var = null)
 	{
-		
+
 	}
 }
