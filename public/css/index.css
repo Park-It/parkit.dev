@@ -12,6 +12,11 @@ header form {
 	padding-top: 80px;
 }
 
+.item img {
+  width: 100%;
+  height: auto;
+}
+
 .floating-label-form-group {
     position: relative;
     margin-bottom: 0;
