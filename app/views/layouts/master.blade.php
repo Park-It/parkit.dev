@@ -25,6 +25,8 @@
     	<script src="/js/jquery.js"></script>
     	<script src="/js/bootstrap.min.js"></script>
         <script src="/js/register.js"></script>
+        <script src="/js/jquery.easing.js"></script>
+        <script src="/js/scrolling.js"></script>
 
 		@yield('bottom-script')
 	</body>
