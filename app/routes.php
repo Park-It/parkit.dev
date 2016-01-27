@@ -28,3 +28,9 @@ Route::resource('ratings', 'RatingsController');
 Route::resource('preferred_parking_lots', 'PreferredParkingLotsController');
 
 Route::resource('parking_lots', 'ParkingLotsController');
+
+Route::get('user/cars', 'HomeController@getUserCars');
+
+Route::get('parkinglot/{id?}', 'ParkingLotsController@getParkingLot');
+
+Route::resource('orders', 'OrdersController');

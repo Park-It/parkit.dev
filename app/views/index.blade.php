@@ -81,6 +81,71 @@
 		  </script>
 		</form>
 	</div>
+
+	
+	    @if(!Auth::check() || count(Auth::user()->cars()) === 0)
+	    <!-- Add Car Modal -->
+	    <div class="modal fade" id="addCar" role="dialog">
+	        <div class="modal-dialog modal-sm">
+	            <div class="modal-content">
+	                <div class="modal-header">
+	                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+	                    <h4 class="modal-title"><i class="fa fa-plus"></i>&nbsp;{{{ 'Add A Car' }}}</h4>
+	                </div>
+
+	                {{ Form::open(['action' => 'CarsController@store']) }}
+	                <div class="modal-body">
+	                    <div class="form-group">
+	                        {{ $errors->first('make', '<span class="help-block alert alert-danger">:message</span>') }}
+	                        <label for="make">Make</label>
+	                        <input type="text" class="form-control" placeholder="Please enter your car's make" name="make">
+	                    </div>
+	                    <div class="form-group">
+	                        {{ $errors->first('model', '<span class="help-block alert alert-danger">:message</span>') }}
+	                        <label for="model">Model</label>
+	                        <input type="text" class="form-control" placeholder="Please enter your car's model" name="model">
+	                    </div>
+	                    <div class="form-group">
+	                        {{ $errors->first('license_plate_number', '<span class="help-block alert alert-danger">:message</span>') }}
+	                        <label for="license_plate_number">License Number</label>
+	                        <input type="text" class="form-control" placeholder="Please enter your car's license plate number" name="license_plate_number">
+	                    </div>
+	                    <div class="form-group">
+	                        {{ $errors->first('color', '<span class="help-block alert alert-danger">:message</span>') }}
+	                        <label for="color">Color</label>
+	                        <input type="text" class="form-control" placeholder="Please enter your car's color" name="color">
+	                    </div>
+	                    <div class="modal-footer">
+	                        <button type="submit" class="btn btn-primary">Submit</button>
+	                    </div>
+	                </div>
+	            </div>
+	        </div>
+	    </div> 
+	    @else
+		<!-- Select Car Modal -->
+	    <div class="modal fade" id="addCar" role="dialog">
+	        <div class="modal-dialog modal-sm">
+	            <div class="modal-content">
+	                <div class="modal-header">
+	                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+	                    <h4 class="modal-title"><i class="fa fa-mouse-pointer"></i>&nbsp;Select a Car</h4>
+	                </div>
+	                <div class="modal-body">
+	                    {{ Form::open(['action' => 'CarsController@store']) }}
+			            <div class="modal-body">
+		                	
+			            </div>
+	                </div>
+	                <div class="modal-footer">
+	                    <button type="submit" class="btn btn-primary"><i class="fa fa-credit-card"></i>&nbsp;Pay Now</button>
+	                    {{ Form::close() }}
+	                </div>
+	            </div>
+	        </div>
+	    </div>
+	    @endif
+	
 @stop
 
 @section('bottom-script')

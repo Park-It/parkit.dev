@@ -147,53 +147,29 @@ class RatingsController extends BaseController {
 		}
 	}
 	//returns the average stars given to lot $id from the last 1000 ratings
-	public function averageRating($id)
-	{
-		//selects last 1000 ratings
-		$stars = DB::table('ratings')->select('stars')->where('parking_lot_id', $id)->orderBy('id', 'desc')->take(1000)->get();
-		if(isset($stars[0]->stars))
-		{
-			$i = 0;
-			$t = 0;
-			//get the divisor and the total number of stars
-			foreach ($stars as $key => $value)
-			{
-				$i++;
-				$t = $t+$value->stars;
-			}
-			//find the average rating and round to the nearest 100th place
-			$a = $t/$i;
-			$average = round($a, 2);
-			Log::info("Average rating for lot Id: {$id} is : {$average}");
-			return $average;
-		}
-		else 
-		{
-			return false;
-		}
-	}
-	public function ratingOrder($data) //reorganizes data to be top stared first - returns array of objects 
-	{
-		if (isset($data))
-		{
-			foreach ($data as $key => $value)
-			{
-				if($rating = $this->averageRating($value->id))
-				{
-				$value->average_rating = $rating;
-				$averaged[strval($rating)."-{$key}"] = $value;
-				}
-				else
-				{
-					$value->average_rating = null;
-					$averaged["5-{$key}"] = $value;
-				}
-			}
-			krsort($averaged);
-			$sorted = array_values($averaged);
-			return $sorted;
-		}
-	}
+	
+	// public function ratingOrder($data) //reorganizes data to be top stared first - returns array of objects 
+	// {
+		// if (isset($data))
+		// {
+		// 	foreach ($data as $key => $value)
+		// 	{
+		// 		if($rating = $this->averageRating($value->id))
+		// 		{
+		// 		$value->average_rating = $rating;
+		// 		$averaged[strval($rating)."-{$key}"] = $value;
+		// 		}
+		// 		else
+		// 		{
+		// 			$value->average_rating = null;
+		// 			$averaged["5-{$key}"] = $value;
+		// 		}
+		// 	}
+		// 	krsort($averaged);
+		// 	$sorted = array_values($averaged);
+		// 	return $sorted;
+		// }
+	// }
 	public function test($var = null)
 	{
 	}
