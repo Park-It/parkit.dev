@@ -27,8 +27,8 @@ class HomeController extends BaseController {
 		$lots_array = [];
 		$parking_lots = DB::table('parking_lots')->select('id', 'name', 'lat', 'lng', 'address', 'price', 'max_spots')->get();
 		Log::info($parking_lots);
-		$ratings = new RatingsController();
-		$parking_lots = $ratings->ratingOrder($parking_lots);
+		// $ratings = new RatingsController();
+		$parking_lots = Rating::ratingOrder($parking_lots);
 		Log::info($parking_lots);
 		
 		return Response::json($parking_lots);
@@ -57,6 +57,12 @@ class HomeController extends BaseController {
 	{
 		Auth::logout();
 		return Redirect::action('HomeController@showIndex');
+	}
+
+	public function getUserCars()
+	{
+		$cars = Auth::user()->cars()->select(['id', 'make', 'model'])->get();
+		return Response::json($cars);
 	}
 
 }

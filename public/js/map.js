@@ -1,3 +1,5 @@
+// var carsPulldown;
+
 function initMap() {
 	var customMapType = new google.maps.StyledMapType(
     [
@@ -192,6 +194,19 @@ function initMap() {
 
 		var markers = [];
 
+		// var cars = $.get('/user/cars').done(function(data) {
+		// 	carsPulldown = '<select>';
+		// 	console.log(data);
+
+		// 	data.forEach(function (element, index, array){
+		// 		// build html
+		// 		carsPulldown += '<option value="' + element.id + '">' + element.make + '</option>';
+		// 	});
+
+		// 	carsPulldown += '</select>';
+		// });
+		
+
 		// loops through data
 		data.forEach(function (parking_lot, index, array){
 			//creates empty object and pushes it in markers
@@ -207,15 +222,19 @@ function initMap() {
 			//creates a key of content with the parking lots name, address, price, max_spots as the value
 			markers[index].content = '<h3>' + parking_lot.name + '</h3>' 
 			markers[index].content += '<p>' + parking_lot.address + '</p>' 
-			markers[index].content += '<p> Price: $' + parking_lot.price + '</p>' 
+			markers[index].content += '<p>Price: $' + parking_lot.price + '</p>' 
 			markers[index].content += '<p>Maximum spots: ' + parking_lot.max_spots + '</p>';
 
 			if (parking_lot.average_rating == null) {
-				markers[index].content += '<p class="average">Average rating: No ratings available</p>';
+				markers[index].content += '<p>Average rating: No ratings available</p>';
 			} else {
-				markers[index].content += '<p class="average">Average rating: ' + parking_lot.average_rating + '/10</p>';
+				markers[index].content += '<p>Average rating: ' + parking_lot.average_rating + '/10</p>';
 			}
-			markers[index].content += '<button data-key="pk_test_mWjCI2kTeACsWi4lY42JaFM7" data-amount="' + parking_lot.price + '" data-name="' + parking_lot.name + '" data-description="' + parking_lot.address + '" data-locale="auto" class="submitStripe btn btn-primary"><i class="fa fa-credit-card"></i>&nbsp;Pay Now</button>';
+			// markers[index].content += carsPulldown;
+
+			// markers[index].content += '<button data-toggle="modal" data-target="#selectCar" class="btn btn-primary"><i class="fa fa-mouse-pointer"></i>&nbsp;Select a Car</button>'
+			markers[index].content += '<button data-rating="' + parking_lot.average_rating + '" data-parkinglot-id="' + parking_lot.id + '" class="btn btn-success addCar"><i class="fa fa-plus"></i>&nbsp;Add a Car</button>'
+			// markers[index].content += '<button data-key="pk_test_mWjCI2kTeACsWi4lY42JaFM7" data-amount="' + parking_lot.price + '" data-name="' + parking_lot.name + '" data-description="' + parking_lot.address + '" data-locale="auto" class="submitStripe btn btn-primary"><i class="fa fa-credit-card"></i>&nbsp;Pay Now</button>';
     		markers[index].marker = null;
 
 			var myLatLng = {lat: parseFloat(markers[index].position.lat), lng: parseFloat(markers[index].position.lng)};
@@ -297,4 +316,39 @@ function initMap() {
 	    handler.close();
   	});
 };
+
+$(document).ready(function() {
+	$("#map-canvas").on('click', '.addCar', function() {
+		// do an ajax request to get parking lot information
+		var id = $(this).data('parkinglot-id');
+		var parking_info = '<h4>Parking Lot Information</h4>';
+		var parking_lot = $.get('/parkinglot/' + id , function(data) {
+			// console.log(data);
+			parking_info += '<p>Name: ' + data[0].name + '</p>';
+			parking_info += '<p>Address: ' + data[0].address + '</p>';
+			parking_info += '<p>Price: ' + data[0].price + '</p>';
+			parking_info += '<p>Maximum spots: ' + data[0].max_spots + '</p>';
+			if (data[0].average_rating == null) {
+				parking_info += '<p>Average rating: No ratings available</p>';
+			} else {
+				parking_info += '<p>Average rating: ' + data[0].average_rating + '/10</p>';
+			}
+			console.log(data);
+			$('.modal-body').html(parking_info);
+		});
+
+		var cars = $.get('/user/cars', function(data) {
+			carsPulldown = '<select>';
+			// console.log(data);
+			data.forEach(function (element, index, array) {
+				carsPulldown += '<option value="' + element.id + '">' + element.model + ' ' + element.make + '</option>';
+			});
+			carsPulldown += '</select>';
+			$('.modal-body').append(carsPulldown);
+		});
+		
+		console.log($(this).data('parkinglot-id'));
+		$("#addCar").modal();
+	});
+});
 

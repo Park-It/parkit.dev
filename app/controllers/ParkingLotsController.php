@@ -115,4 +115,14 @@ class ParkingLotsController extends \BaseController {
 		return Redirect::route('parking_lots.index');
 	}
 
+	public function getParkingLot($id)
+	{
+		$parkinglot = DB::table('parking_lots')->select('id', 'name', 'lat', 'lng', 'address', 'price', 'max_spots')->where('id', $id)->get();
+		Log::info($parkinglot);
+		$parkinglot = Rating::ratingOrder($parkinglot);
+		Log::info($parkinglot);
+
+		return Response::json($parkinglot);
+	}
+
 }
