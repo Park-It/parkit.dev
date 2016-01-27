@@ -7,6 +7,9 @@
 @section('top-script')
 	<link rel="stylesheet" type="text/css" href="/css/index.css">
     <link rel="stylesheet" type="text/css" href="/public/css/bootstrap.min.css">
+    <!-- Map Icons -->
+	<link rel="stylesheet" type="text/css" href="/css/map-icons.css">
+	<script type="text/javascript" src="/js/map-icons.js"></script>
 @stop
 
 @section('content')
@@ -15,7 +18,7 @@
         <div class="container">
             <div class="col-lg-12 login-form">
                 <form>
-                    <button class="btn btn-success find_me"><i class="fa fa-map-marker"></i>&nbsp;Find Me</button>
+                    <a href="#map-canvas" class="btn btn-success find_me scrollToDiv"><i class="fa fa-map-marker"></i>&nbsp;Find Me</a>
                     <div class="row control-group">
                         <div class="form-group col-xs-12 floating-label-form-group controls">
                             <label for="address">Address</label>
@@ -29,10 +32,10 @@
                         </div>
                     </div>
                 <center>
-                    <button type="submit" class="btn btn-primary submit" id="submit"><i class="fa fa-check"></i>&nbsp;Submit</button>
+                    <a href="#map-canvas" type="submit" class="btn btn-primary submit scrollToDiv" id="submit"><i class="fa fa-check"></i>&nbsp;Submit</a>
                 </center>
                 <center>
-                    <a href="" class="circle"><i class="fa fa-2x fa-arrow-down"></i></a>
+                    <a href="#map-canvas" class="circle scrollToDiv"><i class="fa fa-2x fa-arrow-down"></i></a>
                 </center>
                 </form>
             </div>
@@ -62,11 +65,22 @@
             <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> 
             <span class="sr-only">Next</span> </a> 
     </div>
-        
     </header>
     <center>
    		<div id="map-canvas"></div>
    	</center>
+    <div class="hidden">
+	    <form id="stripe" action="" method="POST">
+		  <script
+		    src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+		    data-key="pk_test_mWjCI2kTeACsWi4lY42JaFM7"
+		    data-amount="2000"
+		    data-name="Demo Site"
+		    data-description="2 widgets ($20.00)"
+		    data-locale="auto">
+		  </script>
+		</form>
+	</div>
 @stop
 
 @section('bottom-script')

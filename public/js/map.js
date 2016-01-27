@@ -1,4 +1,147 @@
 function initMap() {
+	var customMapType = new google.maps.StyledMapType(
+    [
+	    {
+	        "featureType": "landscape.man_made",
+	        "elementType": "geometry",
+	        "stylers": [
+	            {
+	                "color": "#f7f1df"
+	            }
+	        ]
+	    },
+	    {
+	        "featureType": "landscape.natural",
+	        "elementType": "geometry",
+	        "stylers": [
+	            {
+	                "color": "#d0e3b4"
+	            }
+	        ]
+	    },
+	    {
+	        "featureType": "landscape.natural.terrain",
+	        "elementType": "geometry",
+	        "stylers": [
+	            {
+	                "visibility": "off"
+	            }
+	        ]
+	    },
+	    {
+	        "featureType": "poi",
+	        "elementType": "labels",
+	        "stylers": [
+	            {
+	                "visibility": "off"
+	            }
+	        ]
+	    },
+	    {
+	        "featureType": "poi.business",
+	        "elementType": "all",
+	        "stylers": [
+	            {
+	                "visibility": "off"
+	            }
+	        ]
+	    },
+	    {
+	        "featureType": "poi.medical",
+	        "elementType": "geometry",
+	        "stylers": [
+	            {
+	                "color": "#fbd3da"
+	            }
+	        ]
+	    },
+	    {
+	        "featureType": "poi.park",
+	        "elementType": "geometry",
+	        "stylers": [
+	            {
+	                "color": "#bde6ab"
+	            }
+	        ]
+	    },
+	    {
+	        "featureType": "road",
+	        "elementType": "geometry.stroke",
+	        "stylers": [
+	            {
+	                "visibility": "off"
+	            }
+	        ]
+	    },
+	    {
+	        "featureType": "road",
+	        "elementType": "labels",
+	        "stylers": [
+	            {
+	                "visibility": "off"
+	            }
+	        ]
+	    },
+	    {
+	        "featureType": "road.highway",
+	        "elementType": "geometry.fill",
+	        "stylers": [
+	            {
+	                "color": "#ffe15f"
+	            }
+	        ]
+	    },
+	    {
+	        "featureType": "road.highway",
+	        "elementType": "geometry.stroke",
+	        "stylers": [
+	            {
+	                "color": "#efd151"
+	            }
+	        ]
+	    },
+	    {
+	        "featureType": "road.arterial",
+	        "elementType": "geometry.fill",
+	        "stylers": [
+	            {
+	                "color": "#ffffff"
+	            }
+	        ]
+	    },
+	    {
+	        "featureType": "road.local",
+	        "elementType": "geometry.fill",
+	        "stylers": [
+	            {
+	                "color": "black"
+	            }
+	        ]
+	    },
+	    {
+	        "featureType": "transit.station.airport",
+	        "elementType": "geometry.fill",
+	        "stylers": [
+	            {
+	                "color": "#cfb2db"
+	            }
+	        ]
+	    },
+	    {
+	        "featureType": "water",
+	        "elementType": "geometry",
+	        "stylers": [
+	            {
+	                "color": "#a2daf2"
+	            }
+	        ]
+	    }
+	], {
+        name: 'Apple'
+    });
+
+	var customMapTypeId = 'custom_style';
+
 	map = new google.maps.Map(document.getElementById('map-canvas'), {
 		zoom: 17,
 	    center: {
@@ -6,9 +149,12 @@ function initMap() {
 	        lng: -98.492433
 	    },  
 	    mapTypeControlOptions: {
-	        mapTypeIds: [google.maps.MapTypeId.ROADMAP, google.maps.MapTypeId.SATELLITE, google.maps.MapTypeId.HYBRID, google.maps.MapTypeId.TERRAIN]
-	    }
+	        mapTypeIds: [google.maps.MapTypeId.ROADMAP, google.maps.MapTypeId.SATELLITE, google.maps.MapTypeId.HYBRID, google.maps.MapTypeId.TERRAIN, customMapTypeId]
+	    },
+	    scrollwheel: false
 	});
+
+	map.mapTypes.set(customMapTypeId, customMapType);
 
 	$(".find_me").click(function(e) {
 		e.preventDefault();
@@ -65,23 +211,11 @@ function initMap() {
 			markers[index].content += '<p>Maximum spots: ' + parking_lot.max_spots + '</p>';
 
 			if (parking_lot.average_rating == null) {
-				markers[index].content += '<p>Average rating: No ratings available</p>';
+				markers[index].content += '<p class="average">Average rating: No ratings available</p>';
 			} else {
-			markers[index].content += '<p>Average rating: ' + parking_lot.average_rating + '/10</p>';
+				markers[index].content += '<p class="average">Average rating: ' + parking_lot.average_rating + '/10</p>';
 			}
-			markers[index].content += '<button class="btn btn-primary"><i class="fa fa-credit-card"></i>&nbsp;Pay now';
-			markers[index].content += '<form action="" method="POST">';
-			markers[index].content += '<script';
-			markers[index].content += 'src="https://checkout.stripe.com/checkout.js" class="stripe-button"';
-			markers[index].content += 'data-key="pk_test_mWjCI2kTeACsWi4lY42JaFM7"';
-  			markers[index].content += 'data-amount="2000"';
-   			markers[index].content += 'data-name="Demo Site"';
-   			markers[index].content += 'data-description="2 widgets ($20.00)"';
-   			markers[index].content += 'data-image="/128x128.png"';
-   			markers[index].content += 'data-locale="auto">';
-   			markers[index].content += '</script>';
-   			markers[index].content += '</form>';
-   			markers[index].content += '</button>';
+			markers[index].content += '<button data-key="pk_test_mWjCI2kTeACsWi4lY42JaFM7" data-amount="' + parking_lot.price + '" data-name="' + parking_lot.name + '" data-description="' + parking_lot.address + '" data-locale="auto" class="submitStripe btn btn-primary"><i class="fa fa-credit-card"></i>&nbsp;Pay Now</button>';
     		markers[index].marker = null;
 
 			var myLatLng = {lat: parseFloat(markers[index].position.lat), lng: parseFloat(markers[index].position.lng)};
@@ -130,4 +264,37 @@ function initMap() {
 	    	}
   		});
 	}
+
+	var handler = StripeCheckout.configure({
+	    key: 'pk_test_mWjCI2kTeACsWi4lY42JaFM7',
+	    locale: 'auto',
+	    token: function(token) {
+	      // Use the token to create the charge with a server-side script.
+	      // You can access the token ID with `token.id`
+	    }
+	});
+
+    // Bind the click event on your button here
+	$(document).on('click', '.submitStripe', function() {
+		var btn_amount = $(this).data('amount');// button data
+		var btn_name = $(this).data('name');
+		var btn_description = $(this).data('description');
+		var btn_locale = $(this).data('locale');
+
+		console.log(btn_amount, btn_name, btn_description, btn_locale);
+
+		handler.open({
+	    	name: btn_name,
+	      	description: btn_description,
+	      	amount: btn_amount * 100,
+	      	locale: btn_locale
+	    });
+
+	});
+
+	// Close Checkout on page navigation
+  	$(window).on('popstate', function() {
+	    handler.close();
+  	});
 };
+

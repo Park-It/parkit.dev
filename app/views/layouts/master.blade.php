@@ -25,6 +25,10 @@
     	<script src="/js/jquery.js"></script>
     	<script src="/js/bootstrap.min.js"></script>
         <script src="/js/register.js"></script>
+        <script src="/js/jquery.easing.js"></script>
+        <script src="/js/scrolling.js"></script>
+        <script src="/js/jquery.bootstrap-autohidingnavbar.js"></script>
+        <script src="/js/navbar_hiding.js"></script>
 
 		@yield('bottom-script')
 	</body>
