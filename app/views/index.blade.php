@@ -7,6 +7,9 @@
 @section('top-script')
 	<link rel="stylesheet" type="text/css" href="/css/index.css">
     <link rel="stylesheet" type="text/css" href="/public/css/bootstrap.min.css">
+    <!-- Map Icons -->
+	<link rel="stylesheet" type="text/css" href="/css/map-icons.css">
+	<script type="text/javascript" src="/js/map-icons.js"></script>
 @stop
 
 @section('content')
@@ -15,7 +18,7 @@
         <div class="container">
             <div class="col-lg-12">
             	<form>
-            		<button class="btn btn-success find_me"><i class="fa fa-map-marker"></i>&nbsp;Find Me</button>
+            		<a href="#map-canvas" class="btn btn-success find_me scrollToDiv"><i class="fa fa-map-marker"></i>&nbsp;Find Me</a>
             		<div class="row control-group">
 	            		<div class="form-group col-xs-12 floating-label-form-group controls">
 	            			<label for="address">Address</label>
@@ -30,17 +33,17 @@
 	            	</div>
             	</form>
             	<center>
-	            	<button type="submit" class="btn btn-primary submit" id="submit"><i class="fa fa-check"></i>&nbsp;Submit</button>
+	            	<a href="#map-canvas" type="submit" class="btn btn-primary submit scrollToDiv" id="submit"><i class="fa fa-check"></i>&nbsp;Submit</a>
 	            </center>
             	<center>
-	            	<a href="" class="circle"><i class="fa fa-2x fa-arrow-down"></i></a>
+	            	<a href="#map-canvas" class="circle scrollToDiv"><i class="fa fa-2x fa-arrow-down"></i></a>
             	</center>
             </div>
         </div>
     </header>
-    <center>
-   		<div id="map-canvas"></div>
-   	</center>
+    
+   	<div id="map-canvas"></div>
+ 
     <div id="carousel-example-generic" class="carousel slide" data-ride="carousel"> 
         <ol class="carousel-indicators"> 
             <li data-target="#carousel-example-generic" data-slide-to="0" class=""></li> 

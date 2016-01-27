@@ -9,7 +9,11 @@
                 <span class="icon-bar middle-bar"></span>
                 <span class="icon-bar bottom-bar"></span>
             </button>
+        @if(Request::url() === 'http://parkit.dev' || Request::url() === 'http://parkit.dev/')
+            <a class="navbar-brand scrollToDiv" href="#page-top" id="page-top">Park It</a>
+        @else
             <a class="navbar-brand" href="{{{ action('HomeController@showIndex') }}}">Park It</a>
+        @endif
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -32,7 +36,7 @@
                         {{ Form::close() }} 
                     </ul>
                 </li>
-                <li class="active">
+                <li>
                     <a id="drop" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-cog"></i><span class="caret"></span></a>
                     <ul id="menu" class="dropdown-menu" aria-labelledby="drop"> 
                         <li><a href="#">Layout</a></li> 
