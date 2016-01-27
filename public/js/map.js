@@ -233,17 +233,9 @@ function initMap() {
 			google.maps.event.addListener(marker, 'click', function() {
 				marker.info.close();
 				marker.info.open(map, marker);
-				//if ($(marker.info.content).last().is('.average')) {
-				//	$(marker.info.content).append($('.stripe-button-el').parent());
-				//}
 			});
 			
-			// google.maps.event.addListener(marker.info, 'domready', function() {
-
-				
-			// });
 		});
-
 
 	});
 
@@ -280,7 +272,7 @@ function initMap() {
 	      // Use the token to create the charge with a server-side script.
 	      // You can access the token ID with `token.id`
 	    }
-	  });
+	});
 
     // Bind the click event on your button here
 	$(document).on('click', '.submitStripe', function() {
@@ -292,22 +284,14 @@ function initMap() {
 		console.log(btn_amount, btn_name, btn_description, btn_locale);
 
 		handler.open({
-	      name: btn_name,
-	      description: btn_description,
-	      amount: btn_amount * 100,
-	      locale: btn_locale
+	    	name: btn_name,
+	      	description: btn_description,
+	      	amount: btn_amount * 100,
+	      	locale: btn_locale
 	    });
 
-		// $('#stripe script').data('amount', btn_amount);
-		// console.log($('#stripe script').data('amount')); // script data
-		// $('#stripe script').data('name', btn_name);
-		// console.log($('#stripe script').data('name'));
-		// $('#stripe script').data('description', btn_description);
-		// console.log($('#stripe script').data('description'));
-		// $('#stripe script').data('locale', btn_locale);
-		// console.log($('#stripe script').data('locale'));
-		// $('#stripe .stripe-button-el').trigger('click');
 	});
+
 	// Close Checkout on page navigation
   	$(window).on('popstate', function() {
 	    handler.close();

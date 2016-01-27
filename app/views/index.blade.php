@@ -7,6 +7,9 @@
 @section('top-script')
 	<link rel="stylesheet" type="text/css" href="/css/index.css">
     <link rel="stylesheet" type="text/css" href="/public/css/bootstrap.min.css">
+    <!-- Map Icons -->
+	<link rel="stylesheet" type="text/css" href="/css/map-icons.css">
+	<script type="text/javascript" src="/js/map-icons.js"></script>
 @stop
 
 @section('content')
