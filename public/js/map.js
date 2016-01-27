@@ -150,7 +150,8 @@ function initMap() {
 	    },  
 	    mapTypeControlOptions: {
 	        mapTypeIds: [google.maps.MapTypeId.ROADMAP, google.maps.MapTypeId.SATELLITE, google.maps.MapTypeId.HYBRID, google.maps.MapTypeId.TERRAIN, customMapTypeId]
-	    }
+	    },
+	    scrollwheel: false
 	});
 
 	map.mapTypes.set(customMapTypeId, customMapType);
