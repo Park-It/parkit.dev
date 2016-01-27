@@ -36,7 +36,7 @@
                         {{ Form::close() }} 
                     </ul>
                 </li>
-                <li class="active">
+                <li>
                     <a id="drop" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-cog"></i><span class="caret"></span></a>
                     <ul id="menu" class="dropdown-menu" aria-labelledby="drop"> 
                         <li><a href="#">Layout</a></li> 
