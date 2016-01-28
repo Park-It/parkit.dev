@@ -58,14 +58,18 @@ class CarsController extends \BaseController {
 			$car->model = Input::get('model');
 			$car->license_plate_number = Input::get('license_plate_number');
 			$car->color = Input::get('color');
-			$car->user_id = Auth::user()->id;
+			if(Auth::check()) {
+				$car->user_id = Auth::user()->id;
+			}
 			$result = $car->save();
 		}
 
-		if($result) {
+		if($result && Auth::check()) {
 			Session::flash('successMessage', 'Thank you for saving your car');
 			return Redirect::action('cars.index');
-
+		} else if($result && !Auth::check()) {
+			$carId = $car->id;
+			return Response::json($carId);
 		} else {
 			Session::flash('errorMessage', 'Please properly input all the required fields');
 			Log::warning('Car failed to save: ', Input::all());
@@ -84,7 +88,7 @@ class CarsController extends \BaseController {
 	{
 		$userId = Auth::user()->id;
 		$carData = Car::find($id);
-		if ($userId ===$carData["user_id"])
+		if ($userId === $carData["user_id"])
 		{
 			$car = Car::findOrFail($id);
 
