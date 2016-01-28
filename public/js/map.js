@@ -141,8 +141,148 @@ function initMap() {
 	], {
         name: 'Apple'
     });
+	var midnightMapType = new google.maps.StyledMapType([
+    {
+        "featureType": "all",
+        "elementType": "labels.text.fill",
+        "stylers": [
+            {
+                "color": "#ffffff"
+            }
+        ]
+    },
+    {
+        "featureType": "all",
+        "elementType": "labels.text.stroke",
+        "stylers": [
+            {
+                "color": "#000000"
+            },
+            {
+                "lightness": 13
+            }
+        ]
+    },
+    {
+        "featureType": "administrative",
+        "elementType": "geometry.fill",
+        "stylers": [
+            {
+                "color": "#000000"
+            }
+        ]
+    },
+    {
+        "featureType": "administrative",
+        "elementType": "geometry.stroke",
+        "stylers": [
+            {
+                "color": "#144b53"
+            },
+            {
+                "lightness": 14
+            },
+            {
+                "weight": 1.4
+            }
+        ]
+    },
+    {
+        "featureType": "landscape",
+        "elementType": "all",
+        "stylers": [
+            {
+                "color": "#08304b"
+            }
+        ]
+    },
+    {
+        "featureType": "poi",
+        "elementType": "geometry",
+        "stylers": [
+            {
+                "color": "#0c4152"
+            },
+            {
+                "lightness": 5
+            }
+        ]
+    },
+    {
+        "featureType": "road.highway",
+        "elementType": "geometry.fill",
+        "stylers": [
+            {
+                "color": "#000000"
+            }
+        ]
+    },
+    {
+        "featureType": "road.highway",
+        "elementType": "geometry.stroke",
+        "stylers": [
+            {
+                "color": "#0b434f"
+            },
+            {
+                "lightness": 25
+            }
+        ]
+    },
+    {
+        "featureType": "road.arterial",
+        "elementType": "geometry.fill",
+        "stylers": [
+            {
+                "color": "#000000"
+            }
+        ]
+    },
+    {
+        "featureType": "road.arterial",
+        "elementType": "geometry.stroke",
+        "stylers": [
+            {
+                "color": "#0b3d51"
+            },
+            {
+                "lightness": 16
+            }
+        ]
+    },
+    {
+        "featureType": "road.local",
+        "elementType": "geometry",
+        "stylers": [
+            {
+                "color": "#000000"
+            }
+        ]
+    },
+    {
+        "featureType": "transit",
+        "elementType": "all",
+        "stylers": [
+            {
+                "color": "#146474"
+            }
+        ]
+    },
+    {
+        "featureType": "water",
+        "elementType": "all",
+        "stylers": [
+            {
+                "color": "#021019"
+            }
+        ]
+    }
+	] , {
+        name: 'Midnight'
+    });
 
 	var customMapTypeId = 'custom_style';
+	var customMapTypeId2 = 'custom_style2';
 
 	map = new google.maps.Map(document.getElementById('map-canvas'), {
 		zoom: 17,
@@ -151,12 +291,13 @@ function initMap() {
 	        lng: -98.492433
 	    },  
 	    mapTypeControlOptions: {
-	        mapTypeIds: [google.maps.MapTypeId.ROADMAP, google.maps.MapTypeId.SATELLITE, google.maps.MapTypeId.HYBRID, google.maps.MapTypeId.TERRAIN, customMapTypeId]
+	        mapTypeIds: [google.maps.MapTypeId.ROADMAP, google.maps.MapTypeId.SATELLITE, google.maps.MapTypeId.HYBRID, google.maps.MapTypeId.TERRAIN, customMapTypeId, customMapTypeId2]
 	    },
 	    scrollwheel: false
 	});
 
 	map.mapTypes.set(customMapTypeId, customMapType);
+	map.mapTypes.set(customMapTypeId2, midnightMapType);
 
 	$(".find_me").click(function(e) {
 		e.preventDefault();
@@ -299,10 +440,25 @@ function initMap() {
 		var btn_name = $(this).data('name');
 		var btn_description = $(this).data('description');
 		var btn_locale = $(this).data('locale');
+		var parking_lot_id = $(this).data('parking-lot-id');
+		var car_id = $(this).data('car-id');
+		// console.log(parking_lot_id, car_id);
 		// console.log($(this).data('parking_lot_id'));
+		$('#hiddenParkingLot').attr('value', parking_lot_id);
+		var hiddenParkingLot = $('#hiddenParkingLot').val();
+		// console.log(hiddenParkingLot);
+		$("#addCarForm").submit();
+
+		$.get('/cars', function(data){
+			console.log(data);
+		});
+		// Find the token value from the page using jQuery
+    	var token = $("meta[name=csrf-token]").attr("content");
 		//create object
-		// var submittedData = {parking_lot_id: 'parking_lot_id', car_id: 'car_id'};
-		// $.post()
+		var submittedData = {parking_lot_id: '' + parking_lot_id + '', car_id: '' + car_id + '', _token: token};
+		// console.log(submittedData);
+		$.post('/orders', submittedData);
+
 		// console.log(btn_amount, btn_name, btn_description, btn_locale);
 		$('#addCar').modal('hide');
 		handler.open({
@@ -336,21 +492,28 @@ $(document).ready(function() {
 			} else {
 				parking_info += '<p>Average rating: ' + data[0].average_rating + '/10</p>';
 			}
-			console.log(data);
-			var submitButton = '<button type="submit" data-key="pk_test_mWjCI2kTeACsWi4lY42JaFM7" data-amount="' + data[0].price + '" data-name="' + data[0].name + '" data-description="' + data[0].address + '" data-parking-lot-id="' + data[0].id + '" data-locale="auto" class="submitStripe btn btn-primary"><i class="fa fa-credit-card"></i>&nbsp;Pay Now</button>';
+			// console.log(data);
+			var submitButton = '<button id="payButton" type="submit" data-key="pk_test_mWjCI2kTeACsWi4lY42JaFM7" data-amount="' + data[0].price + '" data-name="' + data[0].name + '" data-description="' + data[0].address + '" data-parking-lot-id="' + data[0].id + '" data-locale="auto" class="submitStripe btn btn-primary"><i class="fa fa-credit-card"></i>&nbsp;Pay Now</button>';
 			// console.log(data);
 			$('.add-Car').html(parking_info);
 			$('.addFooter').html(submitButton);
 		});
 
 		var cars = $.get('/user/cars', function(data) {
-			carsPulldown = '<select class="form-control">';
+			carsPulldown = '<select id="selectCar" class="form-control">';
+			carsPulldown += '<option selected disable>Select a car</option>';
 			// console.log(data);
 			data.forEach(function (element, index, array) {
 				carsPulldown += '<option value="' + element.id + '">' + element.model + ' ' + element.make + '</option>';
 			});
 			carsPulldown += '</select>';
 			$('.add-Car').append(carsPulldown);
+			$('#selectCar').on('change', function() {
+				var carId = $(this).find('option:selected').val();
+				// console.log(carId);
+  				$('#payButton').attr('data-car-id', carId);
+
+			});
 		});
 		
 		// console.log($(this).data('parkinglot-id'));
