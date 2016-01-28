@@ -36,3 +36,5 @@ Route::get('parkinglot/{id?}', 'ParkingLotsController@getParkingLot');
 Route::resource('orders', 'OrdersController');
 
 Route::get('user/car/{id?}', 'HomeController@getCar');
+
+Route::post('user/car', 'HomeController@storeCar');
