@@ -16,35 +16,31 @@
 	<!-- Header -->
     <header>
         <div class="container">
-            <div class="col-lg-12">
-            	<form>
-            		<a href="#map-canvas" class="btn btn-success find_me scrollToDiv"><i class="fa fa-map-marker"></i>&nbsp;Find Me</a>
-            		<div class="row control-group">
-	            		<div class="form-group col-xs-12 floating-label-form-group controls">
-	            			<label for="address">Address</label>
-	            			<input type="text" placeholder="Enter your address" class="form-control" id="address">
-	            		</div>
-	            	</div>
-	            	<div class="row control-group">
-	            		<div class="form-group col-xs-12 floating-label-form-group controls">
-	            			<label for="destination">Destination</label>
-	            			<input type="text" placeholder="Enter your destination" class="form-control" id="destination">
-	            		</div>
-	            	</div>
-            	</form>
-            	<center>
-	            	<a href="#map-canvas" type="submit" class="btn btn-primary submit scrollToDiv" id="submit"><i class="fa fa-check"></i>&nbsp;Submit</a>
-	            </center>
-            	<center>
-	            	<a href="#map-canvas" class="circle scrollToDiv"><i class="fa fa-2x fa-arrow-down"></i></a>
-            	</center>
+            <div class="col-lg-12 login-form">
+                <form>
+                    <a href="#map-canvas" class="btn btn-success find_me scrollToDiv"><i class="fa fa-map-marker"></i>&nbsp;Find Me</a>
+                    <div class="row control-group">
+                        <div class="form-group col-xs-12 floating-label-form-group controls">
+                            <label for="address">Address</label>
+                            <input type="text" placeholder="Enter your address" class="form-control" id="address">
+                        </div>
+                    </div>
+                    <div class="row control-group">
+                        <div class="form-group col-xs-12 floating-label-form-group controls">
+                            <label for="destination">Destination</label>
+                            <input type="text" placeholder="Enter your destination" class="form-control" id="destination">
+                        </div>
+                    </div>
+                <center>
+                    <a href="#map-canvas" type="submit" class="btn btn-primary submit scrollToDiv" id="submit"><i class="fa fa-check"></i>&nbsp;Submit</a>
+                </center>
+                <center>
+                    <a href="#map-canvas" class="circle scrollToDiv"><i class="fa fa-2x fa-arrow-down"></i></a>
+                </center>
+                </form>
             </div>
         </div>
-    </header>
-    
-   	<div id="map-canvas"></div>
- 
-    <div id="carousel-example-generic" class="carousel slide" data-ride="carousel"> 
+        <div id="carousel-example-generic" class="carousel slide" data-ride="carousel"> 
         <ol class="carousel-indicators"> 
             <li data-target="#carousel-example-generic" data-slide-to="0" class=""></li> 
             <li data-target="#carousel-example-generic" data-slide-to="1" class=""></li>
@@ -69,6 +65,10 @@
             <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> 
             <span class="sr-only">Next</span> </a> 
     </div>
+    </header>
+    <center>
+   		<div id="map-canvas"></div>
+   	</center>
     <div class="hidden">
 	    <form id="stripe" action="" method="POST">
 		  <script
@@ -134,10 +134,11 @@
 @stop
 
 @section('bottom-script')
-	<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDb0ttOlTfxWFBvkLFiAh37EVNdwBA0xyM&callback=initMap"></script>
 	<script src="/js/map.js"></script>
 	<script src="/js/parking_lot_form.js"></script>
+	<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDb0ttOlTfxWFBvkLFiAh37EVNdwBA0xyM&callback=initMap"></script>
 	<script src="/js/form-effect.js"></script>
 	<script src="/js/parking_lots.js"></script>
 	<script src="/js/find_me.js"></script>
 @stop
+
