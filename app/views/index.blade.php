@@ -5,11 +5,7 @@
 @stop
 
 @section('top-script')
-	<link rel="stylesheet" type="text/css" href="/css/index.css">
-    <link rel="stylesheet" type="text/css" href="/public/css/bootstrap.min.css">
-    <!-- Map Icons -->
-	<link rel="stylesheet" type="text/css" href="/css/map-icons.css">
-	<script type="text/javascript" src="/js/map-icons.js"></script>
+	<link rel="stylesheet" type="text/css" href="/css/index.css"> 
 @stop
 
 @section('content')
@@ -91,7 +87,7 @@
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                     <h4 class="modal-title"><i class="fa fa-plus"></i> {{{ 'Add A Car' }}}</h4>
                 </div>
-            {{ Form::open(['action' => 'CarsController@store', 'id' => 'addCarForm']) }}
+            {{ Form::open(['action' => 'HomeController@storeCar', 'id' => 'addCarForm', 'data-add-car'=> 'addedCar']) }}
             	<div class="add-Car"></div>
                 <div class="modal-body">
                     <div class="form-group">
@@ -114,7 +110,7 @@
                         <label for="color">Color</label>
                         <input type="text" class="form-control" placeholder="Please enter your car's color" name="color">
                     </div>
-                    <input type="hidden" id="hiddenParkingLot">
+                    <input type="hidden" id="hiddenParkingLot" name="hiddenParkingLot">
                 </div>
             {{ Form::close() }}    
                 <div class="modal-footer addFooter"></div>

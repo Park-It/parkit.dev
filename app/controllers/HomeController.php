@@ -65,20 +65,64 @@ class HomeController extends BaseController {
 		return Response::json($cars);
 	}
 
-	public function getCar($id)
-	{
-		$userId = Auth::user()->id;
-		$carData = Car::find($id);
-		if ($userId === $carData["user_id"])
-		{
-			$car = Car::findOrFail($id);
+	// public function getCar($id)
+	// {
+	// 	$userId = Auth::user()->id;
+	// 	$carData = Car::find($id);
+	// 	if ($userId === $carData["user_id"])
+	// 	{
+	// 		$car = Car::findOrFail($id);
 
-			return Response::json($car);
-		}
-		else
+	// 		return Response::json($car);
+	// 	}
+	// 	else
+	// 	{
+	// 		return "Access Denied: This is not your car.";
+	// 	}
+	// }
+
+	public function storeCar()
+	{
+		$messages = array(
+			'make.required' => 'Make field cannot be left empty.',
+			'make.max' => 'You must enter a value with a maximum of 255 characters.',
+			'model.required' => 'Model field cannot be left empty.',
+			'model.max' => 'You must enter a value with a maximum of 255 characters.',
+			'license_plate_number.required' => 'License Plate Number field cannot be left empty.',
+			'license_plate_number.max' => 'You must enter a value with a maximum of 255 characters.',
+			'color.required' => 'Color field cannot be left empty.',
+			'color.max' => 'You must enter a value with a maximum of 255 characters.',
+		);
+
+		$validator = Validator::make($data = Input::all(), Car::$rules);
+
+		if ($validator->fails())
 		{
-			return "Access Denied: This is not your car.";
+			return Redirect::back()->withErrors($validator)->withInput();
+		} else {
+			$car = new Car();
+			
+			$car->make = Input::get('make');
+			$car->model = Input::get('model');
+			$car->license_plate_number = Input::get('license_plate_number');
+			$car->color = Input::get('color');
+			if(Auth::check()) {
+				$car->user_id = Auth::user()->id;
+			}
+			$result = $car->save();
+			
+			$order = new Order();
+			$order->car_id = $car->id;
+			$order->parking_lot_id = Input::get('hiddenParkingLot');
+			$order->save();
 		}
+
+		if(!$result) {
+			Session::flash('errorMessage', 'Please properly input all the required fields');
+			Log::warning('Car failed to save: ', Input::all());
+			return Redirect::back()->withInput();
+		}
+		
 	}
 
 }

@@ -442,22 +442,38 @@ function initMap() {
 		var btn_locale = $(this).data('locale');
 		var parking_lot_id = $(this).data('parking-lot-id');
 		var car_id = $(this).data('car-id');
+		var add_car = $('#addCarForm').data('add-car');
 		// console.log(parking_lot_id, car_id);
 		// console.log($(this).data('parking_lot_id'));
 		$('#hiddenParkingLot').attr('value', parking_lot_id);
 		var hiddenParkingLot = $('#hiddenParkingLot').val();
+		// var carId;
 		// console.log(hiddenParkingLot);
-		$("#addCarForm").submit();
-
-		$.get('/cars', function(data){
-			console.log(data);
-		});
+		// $("#addCarForm").submit();
+		
 		// Find the token value from the page using jQuery
     	var token = $("meta[name=csrf-token]").attr("content");
-		//create object
-		var submittedData = {parking_lot_id: '' + parking_lot_id + '', car_id: '' + car_id + '', _token: token};
-		// console.log(submittedData);
-		$.post('/orders', submittedData);
+
+    	if(add_car){
+	    	console.log($("#addCarForm").serialize());
+
+			$.post('user/car', $("#addCarForm").serialize()).done( function(data){
+				console.log(data);
+			});
+    		
+    	} else {
+			//create object
+			var submittedData = {parking_lot_id: '' + parking_lot_id + '', car_id: '' + car_id + '', _token: token};
+			
+			// console.log(submittedData);
+			$.post('/orders', submittedData);
+    	}
+    	
+		
+		
+		
+    		
+    	
 
 		// console.log(btn_amount, btn_name, btn_description, btn_locale);
 		$('#addCar').modal('hide');
@@ -480,6 +496,7 @@ $(document).ready(function() {
 	$("#map-canvas").on('click', '.addCar', function() {
 		// do an ajax request to get parking lot information
 		var id = $(this).data('parkinglot-id');
+		var add_car = $('#addCarForm').data('add-car');
 		var parking_info = '<h4>Parking Lot Information</h4>';
 		var parking_lot = $.get('/parkinglot/' + id , function(data) {
 			// console.log(data);
@@ -498,23 +515,24 @@ $(document).ready(function() {
 			$('.add-Car').html(parking_info);
 			$('.addFooter').html(submitButton);
 		});
+		if(!add_car) {
+			var cars = $.get('/user/cars', function(data) {
+				carsPulldown = '<select id="selectCar" class="form-control">';
+				carsPulldown += '<option selected disable>Select a car</option>';
+				// console.log(data);
+				data.forEach(function (element, index, array) {
+					carsPulldown += '<option value="' + element.id + '">' + element.model + ' ' + element.make + '</option>';
+				});
+				carsPulldown += '</select>';
+				$('.add-Car').append(carsPulldown);
+				$('#selectCar').on('change', function() {
+					var carId = $(this).find('option:selected').val();
+					// console.log(carId);
+	  				$('#payButton').attr('data-car-id', carId);
 
-		var cars = $.get('/user/cars', function(data) {
-			carsPulldown = '<select id="selectCar" class="form-control">';
-			carsPulldown += '<option selected disable>Select a car</option>';
-			// console.log(data);
-			data.forEach(function (element, index, array) {
-				carsPulldown += '<option value="' + element.id + '">' + element.model + ' ' + element.make + '</option>';
+				});
 			});
-			carsPulldown += '</select>';
-			$('.add-Car').append(carsPulldown);
-			$('#selectCar').on('change', function() {
-				var carId = $(this).find('option:selected').val();
-				// console.log(carId);
-  				$('#payButton').attr('data-car-id', carId);
-
-			});
-		});
+		}
 		
 		// console.log($(this).data('parkinglot-id'));
 		$("#addCar").modal();
