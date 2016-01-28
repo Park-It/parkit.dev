@@ -26,7 +26,6 @@ class HomeController extends BaseController {
 		// $parking_lots = ParkingLot::all();
 		$lots_array = [];
 		$parking_lots = DB::table('parking_lots')->select('id', 'name', 'lat', 'lng', 'address', 'price', 'max_spots')->get();
-		Log::info($parking_lots);
 		// $ratings = new RatingsController();
 		$parking_lots = Rating::ratingOrder($parking_lots);
 		Log::info($parking_lots);
