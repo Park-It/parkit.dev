@@ -19,7 +19,7 @@ class CreateOrdersTable extends Migration {
 			$table->foreign('parking_lot_id')->references('id')->on('parking_lots');
 			$table->integer('car_id')->unsigned();
 			$table->foreign('car_id')->references('id')->on('cars');
-			$table->string('stripe_customer_id', 255);
+			$table->string('stripe_customer_id', 255)->nullable();
 			$table->timestamps();
 		});
 	}

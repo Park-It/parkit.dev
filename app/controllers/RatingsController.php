@@ -146,31 +146,4 @@ class RatingsController extends BaseController {
 			return "Access Denied: this is not your rating.";
 		}
 	}
-	//returns the average stars given to lot $id from the last 1000 ratings
-	
-	// public function ratingOrder($data) //reorganizes data to be top stared first - returns array of objects 
-	// {
-		// if (isset($data))
-		// {
-		// 	foreach ($data as $key => $value)
-		// 	{
-		// 		if($rating = $this->averageRating($value->id))
-		// 		{
-		// 		$value->average_rating = $rating;
-		// 		$averaged[strval($rating)."-{$key}"] = $value;
-		// 		}
-		// 		else
-		// 		{
-		// 			$value->average_rating = null;
-		// 			$averaged["5-{$key}"] = $value;
-		// 		}
-		// 	}
-		// 	krsort($averaged);
-		// 	$sorted = array_values($averaged);
-		// 	return $sorted;
-		// }
-	// }
-	public function test($var = null)
-	{
-	}
 }

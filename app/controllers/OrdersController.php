@@ -31,16 +31,16 @@ class OrdersController extends \BaseController {
 	 */
 	public function store()
 	{
-		$validator = Validator::make($data = Input::all(), Order::$rules);
+		$data = Input::all();
+		// $validator = Validator::make($data, Order::$rules);
 
-		if ($validator->fails())
-		{
-			return Redirect::back()->withErrors($validator)->withInput();
-		}
+		// if ($validator->fails())
+		// {
+		// 	return Redirect::back()->withErrors($validator)->withInput();
+		// }
 
 		Order::create($data);
-
-		return Redirect::route('orders.index');
+		return Response::json(['status' => 'OK']);
 	}
 
 	/**

@@ -19,7 +19,7 @@ class CreateCarsTable extends Migration {
 			$table->string('model', 255);
 			$table->string('license_plate_number', 10);
 			$table->string('color', 150);
-			$table->integer('user_id')->unsigned();
+			$table->integer('user_id')->unsigned()->nullable();
 			$table->foreign('user_id')->references('id')->on('users');
 			$table->timestamps();
 		});

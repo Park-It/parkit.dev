@@ -22,7 +22,7 @@ class Car extends \Eloquent {
 	];
 
 	// Don't forget to fill this array
-	protected $fillable = [];
+	protected $fillable = ['make', 'model', 'license_plate_number', 'color'];
 
 	public function parkinglots()
 	{
