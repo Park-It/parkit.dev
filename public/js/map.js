@@ -299,9 +299,12 @@ function initMap() {
 		var btn_name = $(this).data('name');
 		var btn_description = $(this).data('description');
 		var btn_locale = $(this).data('locale');
-
-		console.log(btn_amount, btn_name, btn_description, btn_locale);
-
+		// console.log($(this).data('parking_lot_id'));
+		//create object
+		// var submittedData = {parking_lot_id: 'parking_lot_id', car_id: 'car_id'};
+		// $.post()
+		// console.log(btn_amount, btn_name, btn_description, btn_locale);
+		$('#addCar').modal('hide');
 		handler.open({
 	    	name: btn_name,
 	      	description: btn_description,
@@ -334,20 +337,23 @@ $(document).ready(function() {
 				parking_info += '<p>Average rating: ' + data[0].average_rating + '/10</p>';
 			}
 			console.log(data);
-			$('.modal-body').html(parking_info);
+			var submitButton = '<button type="submit" data-key="pk_test_mWjCI2kTeACsWi4lY42JaFM7" data-amount="' + data[0].price + '" data-name="' + data[0].name + '" data-description="' + data[0].address + '" data-parking-lot-id="' + data[0].id + '" data-locale="auto" class="submitStripe btn btn-primary"><i class="fa fa-credit-card"></i>&nbsp;Pay Now</button>';
+			// console.log(data);
+			$('.add-Car').html(parking_info);
+			$('.addFooter').html(submitButton);
 		});
 
 		var cars = $.get('/user/cars', function(data) {
-			carsPulldown = '<select>';
+			carsPulldown = '<select class="form-control">';
 			// console.log(data);
 			data.forEach(function (element, index, array) {
 				carsPulldown += '<option value="' + element.id + '">' + element.model + ' ' + element.make + '</option>';
 			});
 			carsPulldown += '</select>';
-			$('.modal-body').append(carsPulldown);
+			$('.add-Car').append(carsPulldown);
 		});
 		
-		console.log($(this).data('parkinglot-id'));
+		// console.log($(this).data('parkinglot-id'));
 		$("#addCar").modal();
 	});
 });

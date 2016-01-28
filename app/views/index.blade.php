@@ -15,31 +15,30 @@
 @section('content')
 	<!-- Header -->
     <header>
-        <div class="container">
-            <div class="col-lg-12 login-form">
-                <form>
-                    <a href="#map-canvas" class="btn btn-success find_me scrollToDiv"><i class="fa fa-map-marker"></i>&nbsp;Find Me</a>
-                    <div class="row control-group">
-                        <div class="form-group col-xs-12 floating-label-form-group controls">
-                            <label for="address">Address</label>
-                            <input type="text" placeholder="Enter your address" class="form-control" id="address">
-                        </div>
+        <div class="col-lg-12 login-form">
+            <form>
+                <a href="#map-canvas" class="btn btn-success find_me scrollToDiv"><i class="fa fa-map-marker"></i>&nbsp;Find Me</a>
+                <div class="row control-group">
+                    <div class="form-group col-xs-12 floating-label-form-group controls">
+                        <label for="address">Address</label>
+                        <input type="text" placeholder="Enter your address" class="form-control" id="address">
                     </div>
-                    <div class="row control-group">
-                        <div class="form-group col-xs-12 floating-label-form-group controls">
-                            <label for="destination">Destination</label>
-                            <input type="text" placeholder="Enter your destination" class="form-control" id="destination">
-                        </div>
+                </div>
+                <div class="row control-group">
+                    <div class="form-group col-xs-12 floating-label-form-group controls">
+                        <label for="destination">Destination</label>
+                        <input type="text" placeholder="Enter your destination" class="form-control" id="destination">
                     </div>
-                <center>
-                    <a href="#map-canvas" type="submit" class="btn btn-primary submit scrollToDiv" id="submit"><i class="fa fa-check"></i>&nbsp;Submit</a>
-                </center>
-                <center>
-                    <a href="#map-canvas" class="circle scrollToDiv"><i class="fa fa-2x fa-arrow-down"></i></a>
-                </center>
-                </form>
-            </div>
+                </div>
+            <center>
+                <a href="#map-canvas" type="submit" class="btn btn-primary submit scrollToDiv" id="submit"><i class="fa fa-check"></i>&nbsp;Submit</a>
+            </center>
+            <center>
+                <a href="#map-canvas" class="circle scrollToDiv"><i class="fa fa-2x fa-arrow-down"></i></a>
+            </center>
+            </form>
         </div>
+       
         <div id="carousel-example-generic" class="carousel slide" data-ride="carousel"> 
         <ol class="carousel-indicators"> 
             <li data-target="#carousel-example-generic" data-slide-to="0" class=""></li> 
@@ -83,69 +82,54 @@
 	</div>
 
 	
-	    @if(!Auth::check() || count(Auth::user()->cars()) === 0)
-	    <!-- Add Car Modal -->
-	    <div class="modal fade" id="addCar" role="dialog">
-	        <div class="modal-dialog modal-sm">
-	            <div class="modal-content">
-	                <div class="modal-header">
-	                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-	                    <h4 class="modal-title"><i class="fa fa-plus"></i>&nbsp;{{{ 'Add A Car' }}}</h4>
-	                </div>
-
-	                {{ Form::open(['action' => 'CarsController@store']) }}
-	                <div class="modal-body">
-	                    <div class="form-group">
-	                        {{ $errors->first('make', '<span class="help-block alert alert-danger">:message</span>') }}
-	                        <label for="make">Make</label>
-	                        <input type="text" class="form-control" placeholder="Please enter your car's make" name="make">
-	                    </div>
-	                    <div class="form-group">
-	                        {{ $errors->first('model', '<span class="help-block alert alert-danger">:message</span>') }}
-	                        <label for="model">Model</label>
-	                        <input type="text" class="form-control" placeholder="Please enter your car's model" name="model">
-	                    </div>
-	                    <div class="form-group">
-	                        {{ $errors->first('license_plate_number', '<span class="help-block alert alert-danger">:message</span>') }}
-	                        <label for="license_plate_number">License Number</label>
-	                        <input type="text" class="form-control" placeholder="Please enter your car's license plate number" name="license_plate_number">
-	                    </div>
-	                    <div class="form-group">
-	                        {{ $errors->first('color', '<span class="help-block alert alert-danger">:message</span>') }}
-	                        <label for="color">Color</label>
-	                        <input type="text" class="form-control" placeholder="Please enter your car's color" name="color">
-	                    </div>
-	                    <div class="modal-footer">
-	                        <button type="submit" class="btn btn-primary">Submit</button>
-	                    </div>
-	                </div>
-	            </div>
-	        </div>
-	    </div> 
-	    @else
-		<!-- Select Car Modal -->
-	    <div class="modal fade" id="addCar" role="dialog">
-	        <div class="modal-dialog modal-sm">
-	            <div class="modal-content">
-	                <div class="modal-header">
-	                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-	                    <h4 class="modal-title"><i class="fa fa-mouse-pointer"></i>&nbsp;Select a Car</h4>
-	                </div>
-	                <div class="modal-body">
-	                    {{ Form::open(['action' => 'CarsController@store']) }}
-			            <div class="modal-body">
-		                	
-			            </div>
-	                </div>
-	                <div class="modal-footer">
-	                    <button type="submit" class="btn btn-primary"><i class="fa fa-credit-card"></i>&nbsp;Pay Now</button>
-	                    {{ Form::close() }}
-	                </div>
-	            </div>
-	        </div>
-	    </div>
-	    @endif
-	
+    <!-- Add Car Modal -->
+    <div class="modal fade" id="addCar" role="dialog">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+			@if(!Auth::check() || count(Auth::user()->cars()) === 0)
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title"><i class="fa fa-plus"></i> {{{ 'Add A Car' }}}</h4>
+                </div>
+            {{ Form::open(['action' => 'CarsController@store']) }}
+            	<div class="add-Car"></div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        {{ $errors->first('make', '<span class="help-block alert alert-danger">:message</span>') }}
+                        <label for="make">Make</label>
+                        <input type="text" class="form-control" placeholder="Please enter your car's make" name="make">
+                    </div>
+                    <div class="form-group">
+                        {{ $errors->first('model', '<span class="help-block alert alert-danger">:message</span>') }}
+                        <label for="model">Model</label>
+                        <input type="text" class="form-control" placeholder="Please enter your car's model" name="model">
+                    </div>
+                    <div class="form-group">
+                        {{ $errors->first('license_plate_number', '<span class="help-block alert alert-danger">:message</span>') }}
+                        <label for="license_plate_number">License Number</label>
+                        <input type="text" class="form-control" placeholder="Please enter your car's license plate number" name="license_plate_number">
+                    </div>
+                    <div class="form-group">
+                        {{ $errors->first('color', '<span class="help-block alert alert-danger">:message</span>') }}
+                        <label for="color">Color</label>
+                        <input type="text" class="form-control" placeholder="Please enter your car's color" name="color">
+                    </div>
+                </div>
+            {{ Form::close() }}    
+                <div class="modal-footer addFooter"></div>
+            @else
+            	<div class="modal-header">
+                	<button type="button" class="close" data-dismiss="modal">&times;</button>
+                	<h4 class="modal-title"><i class="fa fa-mouse-pointer"></i>&nbsp;Select a Car</h4>
+            	</div>
+            {{ Form::open(['action' => 'CarsController@store']) }}
+            	<div class="modal-body add-Car"></div>
+           	{{ Form::close() }}
+            	<div class="modal-footer addFooter"></div>
+            @endif
+            </div>
+        </div>
+    </div> 
 @stop
 
 @section('bottom-script')
