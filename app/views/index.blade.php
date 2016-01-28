@@ -15,31 +15,30 @@
 @section('content')
 	<!-- Header -->
     <header>
-        <div class="container">
-            <div class="col-lg-12 login-form">
-                <form>
-                    <a href="#map-canvas" class="btn btn-success find_me scrollToDiv"><i class="fa fa-map-marker"></i>&nbsp;Find Me</a>
-                    <div class="row control-group">
-                        <div class="form-group col-xs-12 floating-label-form-group controls">
-                            <label for="address">Address</label>
-                            <input type="text" placeholder="Enter your address" class="form-control" id="address">
-                        </div>
+        <div class="col-lg-12 login-form">
+            <form>
+                <a href="#map-canvas" class="btn btn-success find_me scrollToDiv"><i class="fa fa-map-marker"></i>&nbsp;Find Me</a>
+                <div class="row control-group">
+                    <div class="form-group col-xs-12 floating-label-form-group controls">
+                        <label for="address">Address</label>
+                        <input type="text" placeholder="Enter your address" class="form-control" id="address">
                     </div>
-                    <div class="row control-group">
-                        <div class="form-group col-xs-12 floating-label-form-group controls">
-                            <label for="destination">Destination</label>
-                            <input type="text" placeholder="Enter your destination" class="form-control" id="destination">
-                        </div>
+                </div>
+                <div class="row control-group">
+                    <div class="form-group col-xs-12 floating-label-form-group controls">
+                        <label for="destination">Destination</label>
+                        <input type="text" placeholder="Enter your destination" class="form-control" id="destination">
                     </div>
-                <center>
-                    <a href="#map-canvas" type="submit" class="btn btn-primary submit scrollToDiv" id="submit"><i class="fa fa-check"></i>&nbsp;Submit</a>
-                </center>
-                <center>
-                    <a href="#map-canvas" class="circle scrollToDiv"><i class="fa fa-2x fa-arrow-down"></i></a>
-                </center>
-                </form>
-            </div>
+                </div>
+            <center>
+                <a href="#map-canvas" type="submit" class="btn btn-primary submit scrollToDiv" id="submit"><i class="fa fa-check"></i>&nbsp;Submit</a>
+            </center>
+            <center>
+                <a href="#map-canvas" class="circle scrollToDiv"><i class="fa fa-2x fa-arrow-down"></i></a>
+            </center>
+            </form>
         </div>
+       
         <div id="carousel-example-generic" class="carousel slide" data-ride="carousel"> 
         <ol class="carousel-indicators"> 
             <li data-target="#carousel-example-generic" data-slide-to="0" class=""></li> 
