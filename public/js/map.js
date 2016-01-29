@@ -468,10 +468,10 @@ function initMap() {
 					console.log(data.color[0]);
 					console.log('<span class="alert alert-danger">' + data.make[0] + '</span>');
 
-					$('#make').after('<p><span class="alert alert-danger">' + data.make[0] + '</span></p>');
-					$('#model').after('<span class="alert alert-danger">' + data.model[0] + '</span>');
-					$('#license_plate_number').after('<span class="alert alert-danger">' + data.license_plate_number[0] + '</span>');
-					$('#color').after('<span class="alert alert-danger">' + data.color[0] + '</span>');
+					$('#make').before('<p class="red-text">' + data.make[0] + '</p>');
+					$('#model').before('<p class="red-text">' + data.model[0] + '</p>');
+					$('#license_plate_number').before('<p class="red-text">' + data.license_plate_number[0] + '</p>');
+					$('#color').before('<p class="red-text">' + data.color[0] + '</p>');
 
 					$('#make').parent().addClass('has-error');
 					$('#model').parent().addClass('has-error');
