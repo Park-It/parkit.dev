@@ -134,10 +134,6 @@
     text-transform: capitalize;
 }
 
-/*.alert {
-    margin-top: 75px;
-}*/
-
 .delete {
     background:none!important;
     border:none; 
@@ -155,4 +151,11 @@
     margin-left: 20px;
     text-transform: uppercase;
     letter-spacing: 0.75px;
+}
+
+footer {
+    background-color: rgba(0, 0, 0, 0.6);
+    padding-top: 20px;
+    padding-bottom: 20px; 
+    color: white;
 }

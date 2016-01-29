@@ -9,7 +9,7 @@ $('#register-form').submit(function()
 	var lname = $("#register-lname").val();
     if (username === "") { 
         // show error
-        alert("Plese enter an username.");
+        alert("Please enter an username.");
         return false; 
     }
     if (email === "") { 
