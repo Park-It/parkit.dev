@@ -89,17 +89,13 @@ class UsersController extends \BaseController {
 	 */
 	public function edit($id)
 	{
-		$userId = Auth::user()->id;
-		if(Auth::check() && $userId === $id)
+		if(Auth::check())
 		{
 			$user = User::find($id);
 			$user["name"] = Auth::user()->first_name;
-			return View::make('users.edit', compact('user'));
 		}
-		else 
-		{
-			return "Access Denied: this is not your account.";
-		}
+
+		return View::make('users.edit', compact('user'));
 	}
 
 	/**
@@ -110,90 +106,81 @@ class UsersController extends \BaseController {
 	 */
 	public function update($id)
 	{
-		$userId = Auth::user()->id;
-		if ($userId === $id)
-		{
+		$user = User::findOrFail($id);
 
-			$user = User::findOrFail($id);
-
-			$messages = array(
-				'new_first_name.required' => 'First Name field cannot be left empty.',
-				'new_first_name.max' => 'You must enter a value with a maximum of 255 characters.',
-				'new_last_name.required' => 'Last Name field cannot be left empty.',
-				'new_last_name.max' => 'You must enter a value with a maximum of 255 characters.',
-				'new_username.required' => 'Username field cannot be left empty.',
-				'new_username.max' => 'You must enter a value with a maximum of 255 characters.',
-				'new_email.required' => 'Email field cannot be left empty.',
-				'new_email.max' => 'You must enter a value with a maximum of 255 characters.',
-				'new_email.email' => 'You must enter a valid email address.',
-				'new_email.unique' => 'Sorry email already taken by another user, please try again.',
-				'new_password.required' => 'First Name field cannot be left empty.',
-				'new_password.max' => 'You must enter a value with a maximum of 255 characters.',
-				'new_password.confirmed' => 'New password should be identical to the confirmed password.'
-			);
-			
-			if(Input::has('new_first_name')) {
-				$validator = Validator::make($data = Input::all(), User::$first_name_rule, $messages);	
-				if ($validator->fails())
-				{
-					return Redirect::back()->withErrors($validator)->withInput();
-				} 
-				$user->first_name = Input::get('new_first_name');
-			}
-
-			if(Input::has('new_last_name')) {
-				$validator = Validator::make($data = Input::all(), User::$last_name_rule, $messages);
-				if ($validator->fails())
-				{
-					return Redirect::back()->withErrors($validator)->withInput();
-				} 	
-				$user->last_name = Input::get('new_last_name');
-			}
-
-			if(Input::has('new_username')) {
-				$validator = Validator::make($data = Input::all(), User::$username_rule, $messages);
-				if ($validator->fails())
-				{
-					return Redirect::back()->withErrors($validator)->withInput();
-				} 	
-				$user->username = Input::get('new_username');
-			}
-
-			if(Input::has('new_email')) {
-				$validator = Validator::make($data = Input::all(), User::$email_rule, $messages);	
-				if ($validator->fails())
-				{
-					return Redirect::back()->withErrors($validator)->withInput();
-				} 
-				$user->email = Input::get('new_email');
-			}
-
-			if(Input::has('new_password')) {
-				$validator = Validator::make($data = Input::all(), User::$password_rule, $messages);
-				if ($validator->fails())
-				{
-					return Redirect::back()->withErrors($validator)->withInput();
-				} 	
-				$user->password = Input::get('new_password');
-			}
-
+		$messages = array(
+			'new_first_name.required' => 'First Name field cannot be left empty.',
+			'new_first_name.max' => 'You must enter a value with a maximum of 255 characters.',
+			'new_last_name.required' => 'Last Name field cannot be left empty.',
+			'new_last_name.max' => 'You must enter a value with a maximum of 255 characters.',
+			'new_username.required' => 'Username field cannot be left empty.',
+			'new_username.max' => 'You must enter a value with a maximum of 255 characters.',
+			'new_email.required' => 'Email field cannot be left empty.',
+			'new_email.max' => 'You must enter a value with a maximum of 255 characters.',
+			'new_email.email' => 'You must enter a valid email address.',
+			'new_email.unique' => 'Sorry email already taken by another user, please try again.',
+			'new_password.required' => 'First Name field cannot be left empty.',
+			'new_password.max' => 'You must enter a value with a maximum of 255 characters.',
+			'new_password.confirmed' => 'New password should be identical to the confirmed password.'
+		);
 		
-			$result = $user->save();
-			
-
-			if($result) {
-				Session::flash('successMessage', $user->first_name . ' Thank you for signing up at Park It');
-				return Redirect::action('UsersController@edit', $user->id);
-
-			} else {
-				Session::flash('errorMessage', 'Please properly input all the required fields');
-				Log::warning('Post failed to save: ', Input::all());
-				return Redirect::back()->withInput();
-			}
+		if(Input::has('new_first_name')) {
+			$validator = Validator::make($data = Input::all(), User::$first_name_rule, $messages);	
+			if ($validator->fails())
+			{
+				return Redirect::back()->withErrors($validator)->withInput();
+			} 
+			$user->first_name = Input::get('new_first_name');
 		}
-		else
-		{
-			return "Access Denied: this is not your account.";
+
+		if(Input::has('new_last_name')) {
+			$validator = Validator::make($data = Input::all(), User::$last_name_rule, $messages);
+			if ($validator->fails())
+			{
+				return Redirect::back()->withErrors($validator)->withInput();
+			} 	
+			$user->last_name = Input::get('new_last_name');
+		}
+
+		if(Input::has('new_username')) {
+			$validator = Validator::make($data = Input::all(), User::$username_rule, $messages);
+			if ($validator->fails())
+			{
+				return Redirect::back()->withErrors($validator)->withInput();
+			} 	
+			$user->username = Input::get('new_username');
+		}
+
+		if(Input::has('new_email')) {
+			$validator = Validator::make($data = Input::all(), User::$email_rule, $messages);	
+			if ($validator->fails())
+			{
+				return Redirect::back()->withErrors($validator)->withInput();
+			} 
+			$user->email = Input::get('new_email');
+		}
+
+		if(Input::has('new_password')) {
+			$validator = Validator::make($data = Input::all(), User::$password_rule, $messages);
+			if ($validator->fails())
+			{
+				return Redirect::back()->withErrors($validator)->withInput();
+			} 	
+			$user->password = Input::get('new_password');
+		}
+
+	
+		$result = $user->save();
+		
+
+		if($result) {
+			Session::flash('successMessage', $user->first_name . ' Thank you for signing up at Park It');
+			return Redirect::action('UsersController@edit', $user->id);
+
+		} else {
+			Session::flash('errorMessage', 'Please properly input all the required fields');
+			Log::warning('Post failed to save: ', Input::all());
+			return Redirect::back()->withInput();
 		}
 	}
 
@@ -205,16 +192,9 @@ class UsersController extends \BaseController {
 	 */
 	public function destroy($id)
 	{
-		$userId = Auth::user()->id;
-		if ($userId === $id)
-		{
-			User::destroy($id);
-			return Redirect::route('users.index');
-		}
-		else
-		{
-			return "Access Denied: this is not your account.";
-		}
+		User::destroy($id);
+
+		return Redirect::route('users.index');
 	}
 
 }

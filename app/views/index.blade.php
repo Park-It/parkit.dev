@@ -129,5 +129,6 @@
 	<script src="/js/form-effect.js"></script>
 	<script src="/js/parking_lots.js"></script>
 	<script src="/js/find_me.js"></script>
+	<script src="https://js.stripe.com/v2/"></script>
 @stop
 
