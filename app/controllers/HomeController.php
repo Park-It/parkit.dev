@@ -21,6 +21,11 @@ class HomeController extends BaseController {
 		return View::make('index');
 	}
 
+	public function postIndex()
+	{
+		dd(Input::all());
+	}
+
 	public function showIndexJson()
 	{
 		// $parking_lots = ParkingLot::all();

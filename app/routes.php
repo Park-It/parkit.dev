@@ -12,6 +12,7 @@
 */
 
 Route::get('/', 'HomeController@showIndex');
+Route::post('/', 'HomeController@postIndex');
 Route::get('/lots/json', 'HomeController@showIndexJson');
 Route::get('/test/rating/{var?}', 'RatingsController@test');
 

@@ -9,9 +9,19 @@ class OrdersController extends \BaseController {
 	 */
 	public function index()
 	{
-		$orders = Order::all();
+		if(Auth::check())
+		{
+			$first_name = Auth::user()->first_name;
+			$userId = Auth::user()->id;
+			$orders = DB::table('orders') 
+			->select('orders.id AS id', 'cars.make AS make', 'cars.model AS model', 'cars.license_plate_number AS license_plate', 'parking_lots.name AS name', 'parking_lots.address AS address')
+			->join('cars', 'cars.id', '=', 'car_id')
+			->join('parking_lots', 'parking_lots.id', '=', 'parking_lot_id')
+			->where('cars.user_id', $userId)
+			->paginate(10);
+		}
 
-		return View::make('orders.index', compact('orders'));
+		return View::make('orders.index', compact('first_name', 'orders'));
 	}
 
 	/**

@@ -1,5 +1,7 @@
 @extends('layouts.master')
-
+	@if(Input::all() != null)
+		{{ dd(Input::all()); }}
+	@endif
 @section('title')
 	<title>Park It</title>
 @stop
@@ -60,20 +62,7 @@
         </form>
     </div>
     <div id="map-canvas"></div>
-    <div class="hidden">
-	    <form id="stripe" action="" method="POST">
-		  <script
-		    src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-		    data-key="pk_test_mWjCI2kTeACsWi4lY42JaFM7"
-		    data-amount="2000"
-		    data-name="Demo Site"
-		    data-description="2 widgets ($20.00)"
-		    data-locale="auto">
-		  </script>
-		</form>
-	</div>
 
-	
     <!-- Add Car Modal -->
     <div class="modal fade" id="addCar" role="dialog">
         <div class="modal-dialog modal-sm">
@@ -120,9 +109,26 @@
             </div>
         </div>
     </div> 
+
+    
+    <div class="modal fade" id="stripeSuccess" role="dialog">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Purchase completed successsfully</h4>
+                </div>
+                <div class="modal-body">
+                	
+                </div>
+            </div>
+        </div>
+    </div>
+
 @stop
 
 @section('bottom-script')
+	<script src="https://checkout.stripe.com/checkout.js"></script>
 	<script src="/js/map.js"></script>
 	<script src="/js/parking_lot_form.js"></script>
 	<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDb0ttOlTfxWFBvkLFiAh37EVNdwBA0xyM&callback=initMap"></script>
