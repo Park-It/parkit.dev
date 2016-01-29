@@ -106,26 +106,26 @@ input {
 }
 /* iPhone 6 Map Sizes */
 @media screen and (max-width: 376px) {
-    #map-canvas {
+    #map-canvas, .carousel-slide {
         height: 627px;
     }
 }
 
 @media screen and (max-width: 667px) {
-    #map-canvas {
+    #map-canvas, .carousel-slide {
         height: 375px;
     }
 }
 
 /* iPhone 6 Plus Map Sizes */
 @media screen and (max-width: 415px) {
-    #map-canvas {
+    #map-canvas, .carousel-slide {
         height: 736px;
     }
 }
 
 @media screen and (max-width: 737px) {
-    #map-canvas {
+    #map-canvas, .carousel-slide {
         height: 414px;
     }
 }
