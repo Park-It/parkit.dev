@@ -106,29 +106,64 @@ input {
     height: 710px;
     text-align: center;
 }
+
+@media (max-width: 460px) {
+  .login-form {
+        left: -10px;
+  }
+}
+
+@media (max-width: 1000px) {
+    .login-form {
+        /*top: 100px;*/
+        left: 50px;
+        /*width: 400px;*/
+    }
+  }
+
+@media (max-width: 460px) {
+    .login-form {
+        top: 300px;
+        left: -15px;
+        width: 400px;
+    }
+    #map-canvas {
+      margin-top: 300px;
+    }
+    .circle {
+      margin-left: 25px;
+      margin-top:-630px;
+      z-index: 10;
+    }
+}
+
 /* iPhone 6 Map Sizes */
 @media screen and (max-width: 376px) {
-    #map-canvas {
+    #map-canvas, .carousel-slide {
         height: 627px;
+        margin-top: 200;
     }
 }
 
 @media screen and (max-width: 667px) {
-    #map-canvas {
+    #map-canvas, .carousel-slide {
         height: 375px;
+        margin-top: 200;
     }
 }
 
 /* iPhone 6 Plus Map Sizes */
 @media screen and (max-width: 415px) {
-    #map-canvas {
+    #map-canvas, .carousel-slide {
         height: 736px;
+        margin-top: 200;
     }
 }
 
 @media screen and (max-width: 737px) {
-    #map-canvas {
+    #map-canvas, .carousel-slide {
         height: 414px;
+        margin-top: 200;
     }
 }
 

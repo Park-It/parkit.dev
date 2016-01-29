@@ -4,7 +4,7 @@
     <div class="col-md-4">
         <span class="copyright">Copyright © ParkIt 2016</span>
     </div>
-    <div class="col-md-4">
+    <div class="col-md-4" id="social-buttons">
         <ul class="list-inline social-buttons">
             <li><a href="https://github.com/Park-It/parkit.dev"><i class="fa fa-lg fa-github"></i></a>
             </li>
