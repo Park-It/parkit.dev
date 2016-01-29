@@ -459,6 +459,36 @@ function initMap() {
 
 			$.post('user/car', $("#addCarForm").serialize()).done( function(data){
 				console.log(data);
+
+				if (!data.success) {
+					// validator has failed
+					console.log(data.make[0]);
+					console.log(data.model[0]);
+					console.log(data.license_plate_number[0]);
+					console.log(data.color[0]);
+					console.log('<span class="alert alert-danger">' + data.make[0] + '</span>');
+
+					$('#make').after('<p><span class="alert alert-danger">' + data.make[0] + '</span></p>');
+					$('#model').after('<span class="alert alert-danger">' + data.model[0] + '</span>');
+					$('#license_plate_number').after('<span class="alert alert-danger">' + data.license_plate_number[0] + '</span>');
+					$('#color').after('<span class="alert alert-danger">' + data.color[0] + '</span>');
+
+					$('#make').parent().addClass('has-error');
+					$('#model').parent().addClass('has-error');
+					$('#license_plate_number').parent().addClass('has-error');
+					$('#color').parent().addClass('has-error');
+					if('.has-error') {
+						$('small').addClass('red-text');
+					}
+				} else {
+					$('#addCar').modal('hide');
+					handler.open({
+				    	name: btn_name,
+				      	description: btn_description,
+				      	amount: btn_amount * 100,
+				      	locale: btn_locale
+				    });
+				}
 			});
     		
     	} else {
@@ -469,20 +499,9 @@ function initMap() {
 			$.post('/orders', submittedData);
     	}
     	
-		
-		
-		
-    		
-    	
 
 		// console.log(btn_amount, btn_name, btn_description, btn_locale);
-		$('#addCar').modal('hide');
-		handler.open({
-	    	name: btn_name,
-	      	description: btn_description,
-	      	amount: btn_amount * 100,
-	      	locale: btn_locale
-	    });
+		
 
 	});
 
@@ -502,7 +521,7 @@ $(document).ready(function() {
 			// console.log(data);
 			parking_info += '<p>Name: ' + data[0].name + '</p>';
 			parking_info += '<p>Address: ' + data[0].address + '</p>';
-			parking_info += '<p>Price: ' + data[0].price + '</p>';
+			parking_info += '<p>Price: $' + data[0].price + '</p>';
 			parking_info += '<p>Maximum spots: ' + data[0].max_spots + '</p>';
 			if (data[0].average_rating == null) {
 				parking_info += '<p>Average rating: No ratings available</p>';

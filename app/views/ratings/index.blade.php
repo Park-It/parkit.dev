@@ -6,6 +6,7 @@
 
 @section('top-script')
 	<link rel="stylesheet" type="text/css" href="/css/parking_lot_index.css">
+	<link rel="stylesheet" type="text/css" href="/css/rating.css">
 @stop
 
 
@@ -30,7 +31,7 @@
 					<td>{{ $parking_lot->name }}</td>
 					<td>{{ $parking_lot->stars }}</td>
 					<td>{{ $parking_lot->comment }}</td>
-					<td>{{ $parking_lot->recommended }}</td>
+					<td>{{ $parking_lot->recommended ? '<i class="fa fa-check"></i>' : '<i class="fa fa-times"></i>' }}</td>
 					<td><button class="btn btn-success" data-toggle="modal" data-target="#editModal{{{ $parking_lot->id }}}"><i class="fa fa-pencil-square-o"></i>&nbsp;Edit</button></td>
 					<td>{{ Form::open(['action' => ['RatingsController@destroy', $parking_lot->id], 'method' => 'DELETE']) }}
                 	<button type="delete" class="btn btn-danger"><i class="fa fa-times"></i>&nbsp;Delete</button>
@@ -80,4 +81,7 @@
 	        </div>
 	    </div>
 	@endforeach
+@stop
+@section('bottom-script')
+	<script src="/js/ratings.js"></script>
 @stop

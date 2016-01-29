@@ -12,9 +12,12 @@
   position: absolute;
   top: 150px;
   height: 100%;
-  width: 100%;
   /*bottom: 10px;*/
   z-index: 10;
+  display: block;
+  right: 42%;
+  /*margin-left: 50%;*/
+  /*margin-right: auto;*/
 } 
   
 /*header form {
@@ -30,7 +33,6 @@
     position: relative;
     margin-bottom: 0;
     padding-bottom: .2em;
-    border-bottom: 1px solid red;
 }
 
 .floating-label-form-group input,
@@ -133,6 +135,7 @@ input {
 @viewport {
   width: 320px auto;
 }
+
 .col-lg-12 input::-webkit-input-placeholder {
 color: white !important;
 text-shadow:
@@ -182,7 +185,7 @@ text-shadow:
 }
 
 .submit {
-    margin-bottom: 350px;
+    margin-bottom: 275px;
 }
 
 div {
@@ -207,4 +210,9 @@ div {
 
 .addCar {
   margin-top: 10px;
+}
+
+.red-text {
+  color: red;
+  font-weight: bold;
 }

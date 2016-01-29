@@ -46,7 +46,7 @@ class CarsController extends \BaseController {
 			'color.max' => 'You must enter a value with a maximum of 255 characters.',
 		);
 
-		$validator = Validator::make($data = Input::all(), Car::$rules);
+		$validator = Validator::make($data = Input::all(), Car::$rules, $messages);
 
 		if ($validator->fails())
 		{

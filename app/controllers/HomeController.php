@@ -93,35 +93,29 @@ class HomeController extends BaseController {
 			'color.max' => 'You must enter a value with a maximum of 255 characters.',
 		);
 
-		$validator = Validator::make($data = Input::all(), Car::$rules);
+		$validator = Validator::make($data = Input::all(), Car::$rules, $messages);
 
-		if ($validator->fails())
-		{
-			return Redirect::back()->withErrors($validator)->withInput();
-		} else {
-			$car = new Car();
-			
-			$car->make = Input::get('make');
-			$car->model = Input::get('model');
-			$car->license_plate_number = Input::get('license_plate_number');
-			$car->color = Input::get('color');
-			if(Auth::check()) {
-				$car->user_id = Auth::user()->id;
-			}
-			$result = $car->save();
-			
-			$order = new Order();
-			$order->car_id = $car->id;
-			$order->parking_lot_id = Input::get('hiddenParkingLot');
-			$order->save();
+		if ($validator->fails()) {
+			return Response::json($validator->messages());
 		}
 
-		if(!$result) {
-			Session::flash('errorMessage', 'Please properly input all the required fields');
-			Log::warning('Car failed to save: ', Input::all());
-			return Redirect::back()->withInput();
-		}
+		$car = new Car();
 		
+		$car->make = Input::get('make');
+		$car->model = Input::get('model');
+		$car->license_plate_number = Input::get('license_plate_number');
+		$car->color = Input::get('color');
+		if(Auth::check()) {
+			$car->user_id = Auth::user()->id;
+		}
+		$result = $car->save();
+		
+		$order = new Order();
+		$order->car_id = $car->id;
+		$order->parking_lot_id = Input::get('hiddenParkingLot');
+		$order->save();
+
+		return Response::json(['success' => true]);
 	}
 
 }

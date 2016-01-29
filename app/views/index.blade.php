@@ -9,7 +9,7 @@
 @stop
 
 @section('content')
-        <div id="carousel-example-generic" class="carousel slide" data-ride="carousel"> 
+    <div id="carousel-example-generic" class="carousel slide" data-ride="carousel"> 
         <ol class="carousel-indicators"> 
             <li data-target="#carousel-example-generic" data-slide-to="0" class=""></li> 
             <li data-target="#carousel-example-generic" data-slide-to="1" class=""></li>
@@ -32,34 +32,34 @@
         </a> 
         <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next"> 
             <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> 
-            <span class="sr-only">Next</span> </a> 
+            <span class="sr-only">Next</span>
+        </a> 
     </div>
-    <div class="col-xs-12 col-md-12 login-form">
-            <form>
-                <a href="#map-canvas" class="btn btn-success find_me scrollToDiv"><i class="fa fa-map-marker"></i>&nbsp;Find Me</a>
-                <div class="row control-group">
-                    <div class="form-group col-xs-12 col-md-12 floating-label-form-group controls">
-                        <label for="address">Address</label>
-                        <input type="text" placeholder="Enter your address" class="form-control" id="address">
-                    </div>
+    
+    <div class="login-form">
+        <form autocomplete="off">
+            <a href="#map-canvas" class="btn btn-success find_me scrollToDiv"><i class="fa fa-map-marker"></i>&nbsp;Find Me</a>
+            <div class="row control-group">
+                <div class="form-group col-xs-12 col-md-12 floating-label-form-group controls">
+                    <label for="address">Address</label>
+                    <input type="text" placeholder="Enter your address" class="form-control" id="address">
                 </div>
-                <div class="row control-group">
-                    <div class="form-group col-xs-12 col-md-12 floating-label-form-group controls">
-                        <label for="destination">Destination</label>
-                        <input type="text" placeholder="Enter your destination" class="form-control" id="destination">
-                    </div>
+            </div>
+            <div class="row control-group">
+                <div class="form-group col-xs-12 col-md-12 floating-label-form-group controls">
+                    <label for="destination">Destination</label>
+                    <input type="text" placeholder="Enter your destination" class="form-control" id="destination">
                 </div>
-            <div class="text-center">
-                <a href="#map-canvas" type="submit" class="btn btn-primary submit scrollToDiv" id="submit"><i class="fa fa-check"></i>&nbsp;Submit</a>
             </div>
-            <div class="text-center">
-                <a href="#map-canvas" class="circle scrollToDiv"><i class="fa fa-2x fa-arrow-down"></i></a>
-            </div>
-            </form>
-        </div>
-    <center>
-   		<div id="map-canvas"></div>
-   	</center>
+	        <div class="text-center">
+	            <a href="#map-canvas" type="submit" class="btn btn-primary submit scrollToDiv" id="submit"><i class="fa fa-check"></i>&nbsp;Submit</a>
+	        </div>
+	        <div class="text-center">
+	            <a href="#map-canvas" class="circle scrollToDiv"><i class="fa fa-2x fa-arrow-down"></i></a>
+	        </div>
+        </form>
+    </div>
+    <div id="map-canvas"></div>
     <div class="hidden">
 	    <form id="stripe" action="" method="POST">
 		  <script
@@ -89,24 +89,25 @@
                     <div class="form-group">
                         {{ $errors->first('make', '<span class="help-block alert alert-danger">:message</span>') }}
                         <label for="make">Make</label>
-                        <input type="text" class="form-control" placeholder="Please enter your car's make" name="make">
+                        <input type="text" class="form-control" placeholder="Please enter your car's make" name="make" id="make">
                     </div>
                     <div class="form-group">
                         {{ $errors->first('model', '<span class="help-block alert alert-danger">:message</span>') }}
                         <label for="model">Model</label>
-                        <input type="text" class="form-control" placeholder="Please enter your car's model" name="model">
+                        <input type="text" class="form-control" placeholder="Please enter your car's model" name="model" id="model">
                     </div>
                     <div class="form-group">
                         {{ $errors->first('license_plate_number', '<span class="help-block alert alert-danger">:message</span>') }}
                         <label for="license_plate_number">License Number</label>
-                        <input type="text" class="form-control" placeholder="Please enter your car's license plate number" name="license_plate_number">
+                        <input type="text" class="form-control" placeholder="Please enter your car's license plate number" name="license_plate_number" id="license_plate_number">
                     </div>
                     <div class="form-group">
                         {{ $errors->first('color', '<span class="help-block alert alert-danger">:message</span>') }}
                         <label for="color">Color</label>
-                        <input type="text" class="form-control" placeholder="Please enter your car's color" name="color">
+                        <input type="text" class="form-control" placeholder="Please enter your car's color" name="color" id="color">
                     </div>
                     <input type="hidden" id="hiddenParkingLot" name="hiddenParkingLot">
+                	<small>All fields required</small>
                 </div>
             {{ Form::close() }}    
                 <div class="modal-footer addFooter"></div>
