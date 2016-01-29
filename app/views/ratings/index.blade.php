@@ -82,6 +82,3 @@
 	    </div>
 	@endforeach
 @stop
-@section('bottom-script')
-	<script src="/js/ratings.js"></script>
-@stop

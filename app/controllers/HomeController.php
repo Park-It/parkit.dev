@@ -64,22 +64,6 @@ class HomeController extends BaseController {
 		return Response::json($cars);
 	}
 
-	// public function getCar($id)
-	// {
-	// 	$userId = Auth::user()->id;
-	// 	$carData = Car::find($id);
-	// 	if ($userId === $carData["user_id"])
-	// 	{
-	// 		$car = Car::findOrFail($id);
-
-	// 		return Response::json($car);
-	// 	}
-	// 	else
-	// 	{
-	// 		return "Access Denied: This is not your car.";
-	// 	}
-	// }
-
 	public function storeCar()
 	{
 		$messages = array(
