@@ -89,17 +89,16 @@ class UsersController extends \BaseController {
 	 */
 	public function edit($id)
 	{
-		$userId = Auth::user()->id;
+		$userId = Auth::user()->id;	
+
 		if(Auth::check() && $userId === $id)
 		{
 			$user = User::find($id);
 			$user["name"] = Auth::user()->first_name;
-			return View::make('users.edit', compact('user'));
-		}
-		else 
-		{
-			return "Access Denied: this is not your account.";
-		}
+			return View::make('users.edit', compact('user'));		
+		} else {		
+			return "Access Denied: this is not your account.";		
+ 		}
 	}
 
 	/**
@@ -110,10 +109,9 @@ class UsersController extends \BaseController {
 	 */
 	public function update($id)
 	{
-		$userId = Auth::user()->id;
-		if ($userId === $id)
-		{
+		$userId = Auth::user()->id;		
 
+		if ($userId === $id) {
 			$user = User::findOrFail($id);
 
 			$messages = array(
@@ -190,11 +188,9 @@ class UsersController extends \BaseController {
 				Log::warning('Post failed to save: ', Input::all());
 				return Redirect::back()->withInput();
 			}
-		}
-		else
-		{
-			return "Access Denied: this is not your account.";
-		}
+		} else {		
+			return "Access Denied: this is not your account.";		
+ 		}
 	}
 
 	/**
@@ -205,16 +201,9 @@ class UsersController extends \BaseController {
 	 */
 	public function destroy($id)
 	{
-		$userId = Auth::user()->id;
-		if ($userId === $id)
-		{
-			User::destroy($id);
-			return Redirect::route('users.index');
-		}
-		else
-		{
-			return "Access Denied: this is not your account.";
-		}
+		User::destroy($id);
+
+		return Redirect::route('users.index');
 	}
 
 }

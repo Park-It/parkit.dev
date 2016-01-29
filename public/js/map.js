@@ -425,17 +425,48 @@ function initMap() {
   		});
 	}
 
+	// Stripe.setPublishableKey('pk_test_mWjCI2kTeACsWi4lY42JaFM7');
+
+	// var stripeResponseHandler = function(status, response) {
+ //    	var $form = $('#payment-form');
+ //      	if (response.error) {
+ //        	// Show the errors on the form
+ //        	$form.find('.payment-errors').text(response.error.message);
+ //        	$form.find('button').prop('disabled', false);
+ //        	alert('Error');
+ //      	} else {
+ //      		alert('Success');
+ //        	// token contains id, last4, and card type
+ //        	var token = response.id;
+ //        	// Insert the token into the form so it gets submitted to the server
+ //        	$form.append($('<input type="hidden" name="stripeToken" />').val(token));
+ //        	// and re-submit
+ //        	$form.get(0).submit();
+
+ //      	}
+ //    };
+
+    // jQuery(function($) {
+    //   	$('#payment-form').submit(function(e) {
+    //     	var $form = $(this);
+    //     	// Disable the submit button to prevent repeated clicks
+    //     	$form.find('button').prop('disabled', true);
+    //     	Stripe.card.createToken($form, stripeResponseHandler);
+    //     	// Prevent the form from submitting with the default action
+    //     	return false;
+    //   	});
+    // });
+
 	var handler = StripeCheckout.configure({
 	    key: 'pk_test_mWjCI2kTeACsWi4lY42JaFM7',
 	    locale: 'auto',
 	    token: function(token) {
-	      // Use the token to create the charge with a server-side script.
-	      // You can access the token ID with `token.id`
+	    	$("#stripeSuccess").modal('show');
 	    }
 	});
 
     // Bind the click event on your button here
-	$(document).on('click', '.submitStripe', function() {
+	$(document).on('click', '.submitStripe', function(e) {
 		var btn_amount = $(this).data('amount');// button data
 		var btn_name = $(this).data('name');
 		var btn_description = $(this).data('description');
@@ -460,7 +491,13 @@ function initMap() {
 			$.post('user/car', $("#addCarForm").serialize()).done( function(data){
 				console.log(data);
 
+
 				if (!data.success) {
+					$('#make').parent().removeClass('has-error');
+					$('#model').parent().removeClass('has-error');
+					$('#license_plate_number').parent().removeClass('has-error');
+					$('#color').parent().removeClass('has-error');
+		
 					// validator has failed
 					console.log(data.make[0]);
 					console.log(data.model[0]);
@@ -488,6 +525,7 @@ function initMap() {
 				      	amount: btn_amount * 100,
 				      	locale: btn_locale
 				    });
+				    e.preventDefault();
 				}
 			});
     		
@@ -497,6 +535,15 @@ function initMap() {
 			
 			// console.log(submittedData);
 			$.post('/orders', submittedData);
+
+			$('#addCar').modal('hide');
+			handler.open({
+		    	name: btn_name,
+		      	description: btn_description,
+		      	amount: btn_amount * 100,
+		      	locale: btn_locale
+		    });
+		    e.preventDefault();
     	}
     	
 
