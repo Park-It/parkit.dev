@@ -38,16 +38,6 @@
                     </ul>
                 </li>
                 <li>
-                    <a id="drop" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-cog"></i><span class="caret"></span></a>
-                    <ul id="menu" class="dropdown-menu" aria-labelledby="drop"> 
-                        <li><a href="#">Layout</a></li> 
-                        <li><a href="#">Another action</a></li> 
-                        <li><a href="#">Something else here</a></li> 
-                        <li role="separator" class="divider"></li> 
-                        <li><a href="#">Separated link</a></li> 
-                    </ul>
-                </li>
-                <li>
                     <a href="{{{ action('HomeController@getLogout') }}}">Logout</a>
                 </li>
             @else

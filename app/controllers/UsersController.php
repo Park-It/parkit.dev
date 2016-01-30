@@ -203,7 +203,7 @@ class UsersController extends \BaseController {
 	{
 		User::destroy($id);
 
-		return Redirect::route('users.index');
+		return Redirect::action('HomeController@showIndex');
 	}
 
 }

@@ -15,9 +15,9 @@ class CreateCarParkingLotsTable extends Migration {
 		Schema::create('car_parking_lots', function(Blueprint $table)
 		{
 			$table->integer('car_id')->unsigned();
-			$table->foreign('car_id')->references('id')->on('cars');
+			$table->foreign('car_id')->references('id')->on('cars')->onDelete('cascade');
 			$table->integer('parking_lot_id')->unsigned();
-			$table->foreign('parking_lot_id')->references('id')->on('parking_lots');
+			$table->foreign('parking_lot_id')->references('id')->on('parking_lots')->onDelete('cascade');
 			$table->timestamps();
 		});
 	}

@@ -9,15 +9,13 @@
 /*}*/
 
 .login-form {
-  position: absolute;
-  top: 150px;
-  height: 100%;
-  /*bottom: 10px;*/
   z-index: 10;
-  display: block;
-  right: 42%;
-  /*margin-left: 50%;*/
-  /*margin-right: auto;*/
+  text-align: center;
+  /*margin-left: auto;
+  margin-right: auto;*/
+  position: relative;
+  top: 50%;
+  transform: translateY(25%);
 } 
   
 /*header form {
@@ -244,10 +242,97 @@ div {
 }
 
 .addCar {
-  margin-top: 10px;
+    margin-top: 10px;
 }
 
 .red-text {
-  color: red;
-  font-weight: bold;
+    color: red;
+    font-weight: bold;
+}
+
+#page-welcome {
+    height: 717px;
+    width: 100%;
+}
+
+.vegas-background {
+    -ms-interpolation-mode: bicubic;
+    image-rendering: optimizeQuality;
+    max-width: none !important;
+    /* counteracts global img modification by twitter bootstrap library */
+    z-index: -2;
+}
+
+.vegas-overlay, .vegas-background {
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.slider-controls {
+    opacity: 0;
+    padding: 0;
+    margin: 0;
+    -webkit-transition: all 0.4s ease-in-out;
+    -moz-transition: all 0.4s ease-in-out;
+    -o-transition: all 0.4s ease-in-out;
+    transition: all 0.4s ease-in-out;
+}
+
+.slider-controls li {
+    list-style: none;
+}
+
+#page-welcome:hover .slider-controls {
+    opacity: 1;
+    -webkit-transition: all 0.4s ease-in-out;
+    -moz-transition: all 0.4s ease-in-out;
+    -o-transition: all 0.4s ease-in-out;
+    transition: all 0.4s ease-in-out;
+}
+
+.slider-controls li a {
+    position: absolute;
+    z-index: 10;
+    top: 40%;
+    width: 60px;
+    height: 60px;
+    cursor: pointer;
+}
+
+.next {
+    background: url(/img/next.png);
+    margin-right: 50px;
+    right: 0;
+    opacity: 0.3;
+}
+
+.prev {
+    background: url(/img/prev.png);
+    margin-left: 50px;
+    left: 0;
+    opacity: 0.3;
+}
+
+.down {
+    background: url(/img/down.png);
+    bottom: 0;
+    opacity: 0.3;
+    position: absolute;
+    z-index: 10;
+    width: 60px;
+    height: 60px;
+    cursor: pointer;
+    left: 50%;
+    margin-left: -40px;
+}
+
+.next:hover, .prev:hover, .down:hover {
+    opacity: 1;
+}
+
+.green-text {
+    color: green;
 }

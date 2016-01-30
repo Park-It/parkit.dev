@@ -490,25 +490,31 @@ function initMap() {
 
 			$.post('user/car', $("#addCarForm").serialize()).done( function(data){
 				console.log(data);
+				$('#error-make').html('');
+				$('#error-model').html('');
+				$('#error-license-number').html('');
+				$('#error-color').html('');
 
 
-				if (!data.success) {
+				if (!data.success) {		
 					$('#make').parent().removeClass('has-error');
 					$('#model').parent().removeClass('has-error');
 					$('#license_plate_number').parent().removeClass('has-error');
 					$('#color').parent().removeClass('has-error');
 		
 					// validator has failed
-					console.log(data.make[0]);
-					console.log(data.model[0]);
-					console.log(data.license_plate_number[0]);
-					console.log(data.color[0]);
-					console.log('<span class="alert alert-danger">' + data.make[0] + '</span>');
 
-					$('#make').after('<p class="red-text">' + data.make[0] + '</p>');
-					$('#model').after('<p class="red-text">' + data.model[0] + '</p>');
-					$('#license_plate_number').after('<p class="red-text">' + data.license_plate_number[0] + '</p>');
-					$('#color').after('<p class="red-text">' + data.color[0] + '</p>');
+					// console.log('<span class="alert alert-danger">' + data.make[0] + '</span>');
+
+					// $('#make').after('<p id="make-form" class="red-text">' + data.make[0] + '</p>');
+					$('#error-make').html( data.make[0] );
+					$('#error-model').html( data.model[0] );
+					$('#error-license').html( data.license_plate_number[0] );
+					$('#error-color').html( data.color[0] );
+
+					// $('#model').after('<p id="model" class="red-text">' + data.model[0] + '</p>');
+					// $('#license_plate_number').after('<p id="license_plate_number" class="red-text">' + data.license_plate_number[0] + '</p>');
+					// $('#color').after('<p id="color" class="red-text">' + data.color[0] + '</p>');
 
 					$('#make').parent().addClass('has-error');
 					$('#model').parent().addClass('has-error');
@@ -579,6 +585,7 @@ $(document).ready(function() {
 			var submitButton = '<button id="payButton" type="submit" data-key="pk_test_mWjCI2kTeACsWi4lY42JaFM7" data-amount="' + data[0].price + '" data-name="' + data[0].name + '" data-description="' + data[0].address + '" data-parking-lot-id="' + data[0].id + '" data-locale="auto" class="submitStripe btn btn-primary"><i class="fa fa-credit-card"></i>&nbsp;Pay Now</button>';
 			// console.log(data);
 			$('.add-Car').html(parking_info);
+			$('.add-Order').html(parking_info);
 			$('.addFooter').html(submitButton);
 		});
 		if(!add_car) {

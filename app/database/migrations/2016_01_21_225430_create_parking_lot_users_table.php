@@ -15,9 +15,9 @@ class CreateParkingLotUsersTable extends Migration {
 		Schema::create('parking_lot_users', function(Blueprint $table)
 		{
 			$table->integer('parking_lot_id')->unsigned();
-			$table->foreign('parking_lot_id')->references('id')->on('parking_lots');
+			$table->foreign('parking_lot_id')->references('id')->on('parking_lots')->onDelete('cascade');
 			$table->integer('user_id')->unsigned();
-			$table->foreign('user_id')->references('id')->on('users');
+			$table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
 			$table->timestamps();
 		});
 	}

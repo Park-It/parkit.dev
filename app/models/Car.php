@@ -10,7 +10,6 @@ class Car extends \Eloquent {
 		'model' => 'required|max:255',
 		'license_plate_number' => 'required|max:255',
 		'color' => 'required|max:255'
-
 	];
 
 	public static $new_rules = [
