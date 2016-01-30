@@ -8,6 +8,6 @@ class ParkingLotUser extends \Eloquent {
 	];
 
 	// Don't forget to fill this array
-	protected $fillable = [];
+	protected $fillable = ['parking_lot_id', 'user_id'];
 
 }

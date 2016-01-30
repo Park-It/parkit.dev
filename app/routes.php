@@ -12,6 +12,7 @@
 */
 
 Route::get('/', 'HomeController@showIndex');
+Route::post('/', 'HomeController@postIndex');
 Route::get('/lots/json', 'HomeController@showIndexJson');
 Route::get('/test/rating/{var?}', 'RatingsController@test');
 
@@ -38,3 +39,5 @@ Route::resource('orders', 'OrdersController');
 Route::get('user/car/{id?}', 'HomeController@getCar');
 
 Route::post('user/car', 'HomeController@storeCar');
+
+Route::resource('parking_lot_users', 'ParkingLotUsersController');

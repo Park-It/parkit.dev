@@ -26,6 +26,7 @@
                 <li>
                     <a id="drop" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{{ Auth::user()->first_name . '\'s Profile' }}}<span class="caret"></span></a>
                     <ul id="menu" class="dropdown-menu" aria-labelledby="drop"> 
+                        <li><a href="{{{ action('OrdersController@index') }}}"><i class="fa fa-shopping-cart"></i>&nbsp;My Orders</a></li>
                         <li><a href="{{{ action('CarsController@index')}}}"><i class="fa fa-car"></i>&nbsp;My Vehicles</a></li> 
                         <li><a href="{{{ action('ParkingLotsController@index')}}}"><i class="fa fa-product-hunt"></i>&nbsp;My Preferred Parking Lots</a></li> 
                         <li><a href="{{{ action('RatingsController@index') }}}"><i class="fa fa-star"></i>&nbsp;My Ratings</a></li> 
@@ -34,16 +35,6 @@
                         {{ Form::open(['action' => ['UsersController@destroy', Auth::user()->id], 'method' => 'DELETE']) }}
                         <li><button class="delete" data-id="{{ Auth::user()->id }}" data-name="{{ ucfirst(Auth::user()->title) }}"><i class="fa fa-times"></i>&nbsp;&nbsp;Delete Profile</button></li>
                         {{ Form::close() }} 
-                    </ul>
-                </li>
-                <li>
-                    <a id="drop" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-cog"></i><span class="caret"></span></a>
-                    <ul id="menu" class="dropdown-menu" aria-labelledby="drop"> 
-                        <li><a href="#">Layout</a></li> 
-                        <li><a href="#">Another action</a></li> 
-                        <li><a href="#">Something else here</a></li> 
-                        <li role="separator" class="divider"></li> 
-                        <li><a href="#">Separated link</a></li> 
                     </ul>
                 </li>
                 <li>
