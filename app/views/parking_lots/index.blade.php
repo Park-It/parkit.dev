@@ -32,6 +32,9 @@
 					@endforeach
 				</tbody>
 			</table>
+			<center>
+				<span>{{ $preferred_parking_lots->links() }}</span>
+			</center>
 		</div>
 	</div>
 @stop

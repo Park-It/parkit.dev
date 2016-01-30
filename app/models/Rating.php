@@ -4,7 +4,7 @@ class Rating extends \Eloquent {
 
 	// Add your validation rules here
 	public static $rules = [
-		'stars' => 'required|max:10',
+		'stars' => 'required|between:1,1|numeric',
 		'comment' => 'max:255',
 		'recommended' => 'max:255'
 	];
