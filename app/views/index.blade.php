@@ -1,67 +1,49 @@
 @extends('layouts.master')
-	@if(Input::all() != null)
-		{{ dd(Input::all()); }}
-	@endif
+	
 @section('title')
 	<title>Park It</title>
 @stop
 
 @section('top-script')
+	<link rel="stylesheet" type="text/css" href="/css/vegas.min.css">
 	<link rel="stylesheet" type="text/css" href="/css/index.css"> 
 @stop
 
 @section('content')
-    <div id="carousel-example-generic" class="carousel slide" data-ride="carousel"> 
-
-        <ol class="carousel-indicators"> 
-            <li data-target="#carousel-example-generic" data-slide-to="0" class=""></li> 
-            <li data-target="#carousel-example-generic" data-slide-to="1" class=""></li>
-            <li data-target="#carousel-example-generic" data-slide-to="2" class="active"></li> 
-        </ol> 
-        <div class="carousel-inner" role="listbox"> 
-            <div class="item">
-                <img data-src="holder.js/900x500/auto/#777:#555/text:First slide" alt="First slide [900x500]" src="/img/background2.jpg" data-holder-rendered="true">
-            </div> 
-            <div class="item">
-                <img data-src="holder.js/900x500/auto/#666:#444/text:Second slide" alt="Second slide [900x500]" src="/img/parking2.jpg" data-holder-rendered="true">
-            </div> 
-            <div class="item active"> 
-                <img data-src="holder.js/900x500/auto/#555:#333/text:Third slide" alt="Third slide [900x500]" src="/img/parking3.jpg" data-holder-rendered="true"> 
-            </div> 
-        </div> 
-        <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev"> 
-            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span> 
-            <span class="sr-only">Previous</span> 
-        </a> 
-        <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next"> 
-            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> 
-            <span class="sr-only">Next</span>
-        </a> 
+    <div id="page-welcome"> 
+        <div class="login-form">
+            <form autocomplete="off">
+                <a href="#map-canvas" class="btn btn-success find_me scrollToDiv"><i class="fa fa-map-marker"></i> Find Me</a>
+                <div class="row control-group">
+                    <div class="form-group col-xs-12 col-md-12 floating-label-form-group controls">
+                        <label for="address">Address</label>
+                        <input type="text" placeholder="Enter your address" class="form-control" id="address">
+                    </div>
+                </div>
+                <div class="row control-group">
+                    <div class="form-group col-xs-12 col-md-12 floating-label-form-group controls">
+                        <label for="destination">Destination</label>
+                        <input type="text" placeholder="Enter your destination" class="form-control" id="destination">
+                    </div>
+                </div>
+                <div class="text-center">
+                    <a href="#map-canvas" type="submit" class="btn btn-primary submit scrollToDiv" id="submit"><i class="fa fa-check"></i> Submit</a>
+                </div>
+                <a href="#map-canvas" class="down scrollToDiv"></a> 
+            </form>
+        </div>
+    	<div>
+            <ul class="slider-controls">
+                <li>
+                    <a id="vegas-next" class="next" href="javascript:void(0)"></a>
+                </li>
+                <li>
+                    <a id="vegas-prev" class="prev" href="javascript:void(0)"></a>
+                </li>
+            </ul>
+        </div>
     </div>
     
-    <div class="login-form">
-        <form autocomplete="off">
-            <a href="#map-canvas" class="btn btn-success find_me scrollToDiv"><i class="fa fa-map-marker"></i>&nbsp;Find Me</a>
-            <div class="row control-group">
-                <div class="form-group col-xs-12 col-md-12 floating-label-form-group controls">
-                    <label for="address">Address</label>
-                    <input type="text" placeholder="Enter your address" class="form-control" id="address">
-                </div>
-            </div>
-            <div class="row control-group">
-                <div class="form-group col-xs-12 col-md-12 floating-label-form-group controls">
-                    <label for="destination">Destination</label>
-                    <input type="text" placeholder="Enter your destination" class="form-control" id="destination">
-                </div>
-            </div>
-	        <div class="text-center">
-	            <a href="#map-canvas" type="submit" class="btn btn-primary submit scrollToDiv" id="submit"><i class="fa fa-check"></i>&nbsp;Submit</a>
-	        </div>
-	        <div class="text-center">
-	            <a href="#map-canvas" class="circle scrollToDiv"><i class="fa fa-2x fa-arrow-down"></i></a>
-	        </div>
-        </form>
-    </div>
     <div id="map-canvas"></div>
 
     <!-- Add Car Modal -->
@@ -119,13 +101,16 @@
     <div class="modal fade" id="stripeSuccess" role="dialog">
         <div class="modal-dialog modal-sm">
             <div class="modal-content">
-                <div class="modal-header">
+                <div class="modal-header text-center">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Purchase completed successsfully</h4>
+                    <h4 class="modal-title green-text"><i class="fa fa-check"></i> Purchase completed successsfully</h4>
                 </div>
-                <div class="modal-body">
-                	
+                <div class="modal-body add-Order text-center"></div>
+                @if(Auth::check())
+                <div class="modal-footer">
+                    <a href="{{{ action('OrdersController@index') }}}" class="btn btn-primary">View All Orders</a>
                 </div>
+                @endif
             </div>
         </div>
     </div>
@@ -135,11 +120,10 @@
 @section('bottom-script')
 	<script src="https://checkout.stripe.com/checkout.js"></script>
 	<script src="/js/map.js"></script>
-	<script src="/js/parking_lot_form.js"></script>
 	<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDb0ttOlTfxWFBvkLFiAh37EVNdwBA0xyM&callback=initMap"></script>
 	<script src="/js/form-effect.js"></script>
-	<script src="/js/parking_lots.js"></script>
-	<script src="/js/find_me.js"></script>
 	<script src="https://js.stripe.com/v2/"></script>
+	<script src="/js/vegas.min.js"></script>
+	<script src="/js/carousel.js"></script>
 @stop
 
