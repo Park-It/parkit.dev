@@ -40,7 +40,12 @@ class RatingsController extends BaseController {
 		{
 			return Redirect::back()->withErrors($validator)->withInput();
 		}
-		Rating::create($data);
+		$rating = new Rating();
+		$rating->stars = Input::get('stars');
+		$rating->comment = Input::get('comment');
+		// $rating->recommended = ;
+		$rating->save();
+
 		return Redirect::route('ratings.index');
 	}
 	/**

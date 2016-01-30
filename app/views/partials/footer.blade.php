@@ -6,11 +6,11 @@
     </div>
     <div class="col-md-4" id="social-buttons">
         <ul class="list-inline social-buttons">
-            <li><a href="https://github.com/Park-It/parkit.dev"><i class="fa fa-lg fa-github"></i></a>
+            <li><a class="social-icons" href="https://github.com/Park-It/parkit.dev"><i class="fa fa-lg fa-github"></i></a>
             </li>
-            <li><a href="https://twitter.com/parkit240z"><i class="fa fa-lg fa-twitter"></i></a>
+            <li><a class="social-icons" href="https://twitter.com/parkit240z"><i class="fa fa-lg fa-twitter"></i></a>
             </li>
-            <li><a href="https://www.facebook.com/profile.php?id=100011163733539"><i class="fa fa-lg fa-facebook"></i></a>
+            <li><a class="social-icons" href="https://www.facebook.com/profile.php?id=100011163733539"><i class="fa fa-lg fa-facebook"></i></a>
         </ul>
     </div>
     <div class="col-md-4">
