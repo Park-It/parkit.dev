@@ -17,7 +17,7 @@
         <ul class="list-inline quicklinks">
             <li class="page-scroll active">
                 <!-- Small privacy & Terms modal -->
-                <a href="#" data-toggle="modal" data-target="#privacyTermsModal">Private Policy / Terms of Use</a>
+                <a href="#" data-toggle="modal" data-target="#privacyTermsModal">Privacy Policy / Terms of Use</a>
             </li>
             <li class="page-scroll active">
         </ul>
