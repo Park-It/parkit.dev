@@ -72,6 +72,7 @@
                         <label for="recommended">Recommended</label>
                         <div class="hidden">
                         	<input type="text" name="recommended" id="recommended">
+                        	<input type="text" name="parking_lot_id" id="parking_lot_id" value="{{{ $order->parking_lot_id }}}">
                         </div>
                         <div>
 	                        <a href="#" id="true" value="1"><i class="fa fa-lg fa-check"></i></a>

@@ -43,7 +43,9 @@ class RatingsController extends BaseController {
 		$rating = new Rating();
 		$rating->stars = Input::get('stars');
 		$rating->comment = Input::get('comment');
-		// $rating->recommended = ;
+		$rating->recommended = Input::get('recommended');
+		$rating->parking_lot_id = Input::get('parking_lot_id');
+		$rating->user_id = Auth::user()->id;
 		$rating->save();
 
 		return Redirect::route('ratings.index');
