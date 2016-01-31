@@ -1,7 +1,5 @@
 @extends('layouts.master')
-	@if(Input::all() != null)
- 		{{ dd(Input::all()); }}
- 	@endif
+	
 @section('title')
 	<title>{{{ ucfirst($first_name) . '\'s Orders' }}}</title>
 @stop
@@ -31,6 +29,9 @@
 			</thead>
 			<tbody>
 				@foreach($orders as $order)
+				<div class="hidden">
+					{{{ $timestamp = strtotime($order->created_at) }}}
+				</div>
 				<tr>
 					<td>{{ $order->id }}</td>
 					<td>{{ $order->model }}</td>
@@ -38,7 +39,7 @@
 					<td>{{ $order->license_plate }}</td>
 					<td>{{ $order->name }}</td>
 					<td>{{ $order->address }}</td>
-					<td>{{ $order->created_at }}</td>
+					<td>{{ date('F d, Y', $timestamp) }}</td>
 					<td><a href="{{{ action('OrdersController@show', $order->id) }}}" class="btn btn-primary">View This Order</a></td>
 					<td><a href="#" data-toggle="modal" data-target="#ratingModal" class="btn btn-success"><i class="fa fa-plus"></i> Rate</a></td>
 					<td>

@@ -1,6 +1,6 @@
 <?php
 
-class Rating extends \Eloquent {
+class Rating extends BaseModel {
 
 	// Add your validation rules here
 	public static $rules = [

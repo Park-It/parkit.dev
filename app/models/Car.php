@@ -1,6 +1,6 @@
 <?php
 
-class Car extends \Eloquent {
+class Car extends BaseModel {
 
 	protected $table = "cars";
 	
