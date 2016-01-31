@@ -29,7 +29,8 @@
                 <div class="text-center">
                     <a href="#map-canvas" type="submit" class="btn btn-primary submit scrollToDiv" id="submit"><i class="fa fa-check"></i> Submit</a>
                 </div>
-                <a href="#map-canvas" class="down scrollToDiv"></a> 
+                <i class="fa fa-2x fa-pause pause"></i> 
+                <a href="#map-canvas" class="down scrollToDiv"></a>
             </form>
         </div>
     	<div>
