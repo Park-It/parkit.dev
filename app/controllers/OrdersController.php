@@ -14,9 +14,10 @@ class OrdersController extends \BaseController {
 			$first_name = Auth::user()->first_name;
 			$userId = Auth::user()->id;
 			$orders = DB::table('orders') 
-			->select('orders.id AS id', 'cars.make AS make', 'cars.model AS model', 'cars.license_plate_number AS license_plate', 'parking_lots.name AS name', 'parking_lots.address AS address', 'orders.created_at AS created_at', 'orders.parking_lot_id AS parking_lot_id')
+			->select('orders.id AS id', 'cars.make AS make', 'cars.model AS model', 'cars.license_plate_number AS license_plate', 'parking_lots.name AS name', 'parking_lots.address AS address', 'orders.created_at AS created_at', 'orders.parking_lot_id AS parking_lot_id', 'parking_lot_users.parking_lot_id AS parking_id')
 			->join('cars', 'cars.id', '=', 'car_id')
 			->join('parking_lots', 'parking_lots.id', '=', 'parking_lot_id')
+			->leftJoin('parking_lot_users', 'parking_lot_users.parking_lot_id', '=', 'orders.parking_lot_id')
 			->where('cars.user_id', $userId)
 			->orderBy('id', 'desc')
 			->paginate(10);

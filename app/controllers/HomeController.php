@@ -38,6 +38,17 @@ class HomeController extends BaseController {
 		return Response::json($parking_lots);
 	}
 
+	public function showCommentJson($id)
+	{
+		$comments = DB::table('ratings')->select('ratings.id AS id', 'ratings.stars AS stars', 'ratings.comment AS comment', 'ratings.recommended AS recommended', 'parking_lots.name AS name', 'users.username AS username')
+		->join('parking_lots', 'parking_lots.id', '=', 'parking_lot_id')
+		->join('users', 'ratings.user_id', '=', 'users.id')
+		->where('ratings.parking_lot_id', $id)
+		->get();
+		
+		return Response::json($comments);
+	}
+
 	public function getLogin()
 	{
 		return View::make('index');

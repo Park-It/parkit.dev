@@ -4,7 +4,7 @@ class ParkingLotUser extends BaseModel {
 
 	// Add your validation rules here
 	public static $rules = [
-		// 'title' => 'required'
+		'parking-lot-id' => 'required'
 	];
 
 	// Don't forget to fill this array

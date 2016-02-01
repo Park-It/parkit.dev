@@ -4,6 +4,10 @@
     <title>{{{ 'Edit ' . ucfirst($user->first_name) . '\'s Profile'}}}</title>
 @stop
 
+@section('top-script')
+    <link rel="stylesheet" type="text/css" href="/css/user_edit.css">
+@stop
+
 @section('content')
     <div class="container">
         <div class="rows">
@@ -81,8 +85,10 @@
                 </div>
             </div>
         </div>
-        <button type="submit" class="btn btn-primary"><i class="fa fa-check"></i>&nbsp;Submit</button>
-        <a href="{{{ action('HomeController@showIndex') }}}" class="btn btn-success"><i class="fa fa-undo"></i>&nbsp;Cancel</a>
+        <div class="buttons">
+            <button type="submit" class="btn btn-primary"><i class="fa fa-check"></i>&nbsp;Submit</button>
+            <a href="{{{ action('HomeController@showIndex') }}}" class="btn btn-success"><i class="fa fa-undo"></i>&nbsp;Cancel</a>
+        </div>
     {{ Form::close() }}
     </div>
 @stop

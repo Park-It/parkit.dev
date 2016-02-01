@@ -8,8 +8,8 @@ class OrdersTableSeeder extends Seeder {
 	public function run()
 	{
 		$faker = Faker::create();
-		$parking_lot = ParkingLot::firstOrFail();
-		$car = Car::firstOrFail();
+		$parking_lot = ParkingLot::all()->random();
+		$car = Car::all()->random();
 
 		$order = new Order();
 		$order->parking_lot_id = $parking_lot->id;
@@ -17,11 +17,17 @@ class OrdersTableSeeder extends Seeder {
 		$order->stripe_customer_id = $faker->swiftBicNumber;
 		$order->save();
 
+		$parking_lot = ParkingLot::all()->random();
+		$car = Car::all()->random();
+
 		$order2 = new Order();
 		$order2->parking_lot_id = $parking_lot->id;
 		$order2->car_id = $car->id;
 		$order2->stripe_customer_id = $faker->swiftBicNumber;
 		$order2->save();
+
+		$parking_lot = ParkingLot::all()->random();
+		$car = Car::all()->random();
 
 		$order3 = new Order();
 		$order3->parking_lot_id = $parking_lot->id;

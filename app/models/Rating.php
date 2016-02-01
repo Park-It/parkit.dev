@@ -4,13 +4,13 @@ class Rating extends BaseModel {
 
 	// Add your validation rules here
 	public static $rules = [
-		'stars' => 'required|between:1,1|numeric',
+		'stars' => 'required|max:5|numeric',
 		'comment' => 'max:255',
 		'recommended' => 'max:255'
 	];
 
 	public static $new_rules = [
-		'new_stars' => 'required|max:10',
+		'new_stars' => 'required|max:5|numeric',
 		'new_comment' => 'max:255',
 		'new_recommended' => 'max:255'
 	];
