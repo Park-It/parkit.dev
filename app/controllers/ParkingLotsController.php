@@ -46,9 +46,14 @@ class ParkingLotsController extends \BaseController {
 			return Redirect::back()->withErrors($validator)->withInput();
 		}
 
-		Parkinglot::create($data);
+		$userId = Auth::user()->id;
 
-		return Redirect::route('parkinglots.index');
+		$parking_lot_user = new Parkinglotuser();
+		$parking_lot_user->parking_lot_id = Input::get('parking-lot-id');
+		$parking_lot_user->user_id = $userId;
+		$parking_lot_user->save();
+
+		return Redirect::route('parking_lots.index');
 	}
 
 	/**

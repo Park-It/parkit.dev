@@ -13,7 +13,7 @@
             <li><a class="social-icons" href="https://www.facebook.com/profile.php?id=100011163733539"><i class="fa fa-lg fa-facebook"></i></a>
         </ul>
     </div>
-    <div class="col-md-4">
+    <div class="col-md-4 privacy">
         <ul class="list-inline quicklinks">
             <li class="page-scroll active">
                 <!-- Small privacy & Terms modal -->

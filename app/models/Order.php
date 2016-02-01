@@ -1,6 +1,6 @@
 <?php
 
-class Order extends \Eloquent {
+class Order extends BaseModel {
 
 	// Add your validation rules here
 	public static $rules = [

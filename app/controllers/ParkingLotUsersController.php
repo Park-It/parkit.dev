@@ -37,15 +37,15 @@ class ParkingLotUsersController extends \BaseController {
 		{
 			return Redirect::back()->withErrors($validator)->withInput();
 		}
-		
+
 		$userId = Auth::user()->id;
 
 		$parking_lot_user = new Parkinglotuser();
-		$parking_lot_user->parking_lot_id = ;
+		$parking_lot_user->parking_lot_id = Input::get('parking_lot_id');
 		$parking_lot_user->user_id = $userId;
 		$parking_lot_user->save();
 
-		return Redirect::route('parkinglotusers.index');
+		return Redirect::route('parking_lots.index');
 	}
 
 	/**

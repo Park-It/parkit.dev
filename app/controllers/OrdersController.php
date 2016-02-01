@@ -22,7 +22,7 @@ class OrdersController extends \BaseController {
 			->paginate(10);
 		}
 
-		return View::make('orders.index', compact('first_name', 'orders'));
+		return View::make('orders.index', compact('first_name', 'orders', 'timestamp'));
 	}
 
 	/**

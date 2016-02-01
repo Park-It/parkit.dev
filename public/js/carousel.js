@@ -17,8 +17,7 @@ $(document).ready(function() {
        $('#page-welcome').vegas('previous');
     });
 
-    $('.next').on('vegaspause', function (e, index, slideSettings) {
-    	console.log("Pause on Slide index " + index);
+    $('.pause').on('click', function () {	
+    	$('#page-welcome').vegas('pause');
 	});
-
 });
