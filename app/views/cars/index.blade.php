@@ -10,34 +10,36 @@
             <button class="btn btn-success" data-toggle="modal" data-target="#addModal"><i class="fa fa-plus"></i>&nbsp;Add a Vehicle</button>
 		</div>
 		<h2>{{{ ucfirst($first_name) . '\'s Vehicles' }}}</h2>
-		<table class="table table-striped">
-			<thead>
-				<tr>
-					<th>Make</th>
-					<th>Model</th>
-					<th>License Plate Number</th>
-					<th>Color</th>
-					<th></th>
-                    <th></th>
-                    <th></th>
-				</tr>
-			</thead>
-			<tbody>
-				@foreach($cars as $car)
-				<tr>
-					<td>{{ $car->make }}</td>
-					<td>{{ $car->model }}</td>
-					<td>{{ $car->license_plate_number }}</td>
-					<td>{{ $car->color }}</td>
-					<td><a href="{{{ action('CarsController@show', $car->id) }}}" class="btn btn-primary">View This Car</a></td>
-					<td><button class="btn btn-success" data-toggle="modal" data-target="#editModal{{{ $car->id }}}"><i class="fa fa-pencil-square-o"></i>&nbsp;Edit</button></td>
-					<td>{{ Form::open(['action' => ['CarsController@destroy', $car->id], 'method' => 'DELETE']) }}
-                	<button type="delete" class="btn btn-danger"><i class="fa fa-times"></i>&nbsp;Delete</button>
-                {{ Form::close() }}</td>
-				</tr>
-				@endforeach
-			</tbody>
-        </table>
+        <div class="table-responsive">
+    		<table class="table table-striped">
+    			<thead>
+    				<tr>
+    					<th>Make</th>
+    					<th>Model</th>
+    					<th>License Plate Number</th>
+    					<th>Color</th>
+    					<th></th>
+                        <th></th>
+                        <th></th>
+    				</tr>
+    			</thead>
+    			<tbody>
+    				@foreach($cars as $car)
+    				<tr>
+    					<td>{{ $car->make }}</td>
+    					<td>{{ $car->model }}</td>
+    					<td>{{ $car->license_plate_number }}</td>
+    					<td>{{ $car->color }}</td>
+    					<td><a href="{{{ action('CarsController@show', $car->id) }}}" class="btn btn-primary">View This Car</a></td>
+    					<td><button class="btn btn-success" data-toggle="modal" data-target="#editModal{{{ $car->id }}}"><i class="fa fa-pencil-square-o"></i>&nbsp;Edit</button></td>
+    					<td>{{ Form::open(['action' => ['CarsController@destroy', $car->id], 'method' => 'DELETE']) }}
+                    	<button type="delete" class="btn btn-danger"><i class="fa fa-times"></i>&nbsp;Delete</button>
+                    {{ Form::close() }}</td>
+    				</tr>
+    				@endforeach
+    			</tbody>
+            </table>
+        </div>
         <center>
             <span>{{ $cars->links() }}</span>
         </center>

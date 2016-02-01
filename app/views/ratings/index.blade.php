@@ -14,32 +14,34 @@
 <div class="container">
 	<div class="rows">
 		<h2>{{{ ucfirst($first_name) . '\'s Ratings' }}}</h2>
-		<table class="table table-striped">
-			<thead>
-				<tr>
-					<th>Parking&nbsp;Lot:</th>
-					<th>Stars:</th>
-					<th>Comment:</th>
-					<th>Recommended:</th>
-					<th></th>
-					<th></th>
-				</tr>
-			</thead>
-			<tbody>
-				@foreach($parking_lots as $parking_lot)
-				<tr>
-					<td>{{ $parking_lot->name }}</td>
-					<td>{{ $parking_lot->stars }}</td>
-					<td>{{ $parking_lot->comment }}</td>
-					<td class="text-center">{{ $parking_lot->recommended ? '<i class="fa fa-lg fa-check"></i>' : '<i class="fa fa-lg fa-times"></i>' }}</td>
-					<td><button class="btn btn-success" data-toggle="modal" data-target="#editModal{{{ $parking_lot->id }}}"><i class="fa fa-pencil-square-o"></i>&nbsp;Edit</button></td>
-					<td>{{ Form::open(['action' => ['RatingsController@destroy', $parking_lot->id], 'method' => 'DELETE']) }}
-                	<button type="delete" class="btn btn-danger"><i class="fa fa-times"></i>&nbsp;Delete</button>
-                {{ Form::close() }}</td>
-				</tr>
-				@endforeach
-			</tbody>
-		</table>
+		<div class="table-responsive">
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th>Parking&nbsp;Lot:</th>
+						<th>Stars:</th>
+						<th>Comment:</th>
+						<th>Recommended:</th>
+						<th></th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					@foreach($parking_lots as $parking_lot)
+					<tr>
+						<td>{{ $parking_lot->name }}</td>
+						<td>{{ $parking_lot->stars }}</td>
+						<td>{{ $parking_lot->comment }}</td>
+						<td class="text-center">{{ $parking_lot->recommended ? '<i class="fa fa-lg fa-check true"></i>' : '<i class="fa fa-lg fa-times false"></i>' }}</td>
+						<td><button id="editRating" class="btn btn-success" data-toggle="modal" data-target="#editModal{{{ $parking_lot->id }}}"><i class="fa fa-pencil-square-o"></i>&nbsp;Edit</button></td>
+						<td>{{ Form::open(['action' => ['RatingsController@destroy', $parking_lot->id], 'method' => 'DELETE']) }}
+	                	<button type="delete" class="btn btn-danger"><i class="fa fa-times"></i>&nbsp;Delete</button>
+	                {{ Form::close() }}</td>
+					</tr>
+					@endforeach
+				</tbody>
+			</table>
+		</div>
 		<center>
 			<span>{{ $parking_lots->links() }}</span>
 		</center>
@@ -70,7 +72,7 @@
                         <div class="form-group">
                         	{{ $errors->first('new_recommended', '<span class="help-block alert alert-danger">:message</span>') }}
                             {{ Form::label('new_recommended', 'Recommended') }}
-                            {{ Form::text('new_recommended', $parking_lot->recommended, ['class' => 'form-control', 'placeholder' => 'Please enter new value for recommended', 'id' => 'new_recommended'] )}}
+                            {{ Form::text('new_recommended', $parking_lot->recommended, ['class' => 'form-control', 'placeholder' => 'Please enter new value for recommended', 'id' => 'new_recommended']) }}
                         </div>
 	                </div>
 	                <div class="modal-footer">
