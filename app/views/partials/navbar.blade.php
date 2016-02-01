@@ -9,7 +9,7 @@
                 <span class="icon-bar middle-bar"></span>
                 <span class="icon-bar bottom-bar"></span>
             </button>
-        @if(Request::url() === 'http://parkit.dev' || Request::url() === 'http://parkit.dev/')
+        @if(Request::url() === url() || Request::url() === url())
             <a class="navbar-brand scrollToDiv" href="#page-top" id="page-top">Park It</a>
         @else
             <a class="navbar-brand" href="{{{ action('HomeController@showIndex') }}}">Park It</a>
