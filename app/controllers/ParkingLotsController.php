@@ -42,7 +42,7 @@ class ParkingLotsController extends \BaseController {
 		$validator = Validator::make($data = Input::all(), Parkinglot::$rules);
 
 		if ($validator->fails())
-		{
+		{dd($validator->messages());
 			return Redirect::back()->withErrors($validator)->withInput();
 		}
 

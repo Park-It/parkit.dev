@@ -209,3 +209,11 @@ a:hover {
         margin-left: 10px;
     }
 }
+
+.fa-check.fa-lg {
+    color: green;
+}
+
+.fa-times.fa-lg {
+    color: red;
+}

@@ -7,7 +7,6 @@ class CarParkingLotsTableSeeder extends Seeder {
 
 	public function run()
 	{
-		$faker = Faker::create();
 
 		$car = Car::firstOrFail();
 

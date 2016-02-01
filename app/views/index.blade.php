@@ -116,6 +116,21 @@
         </div>
     </div>
 
+    <div class="modal fade" id="commentModal" role="dialog">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header text-center">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title"> Ratings and Comments</h4>
+                </div>
+                <div class="modal-body newComments"></div>
+            @if(Auth::check())
+                <div class="modal-footer newButton"></div>
+            @endif
+            </div>
+        </div>
+    </div>
+
 @stop
 
 @section('bottom-script')
