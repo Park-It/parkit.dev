@@ -12,50 +12,50 @@
 <div class="container">
 	<div class="rows">
 		<h2>{{{ ucfirst($first_name) . '\'s Orders' }}}</h2>
-		<table class="table table-striped">
-			<thead>
-				<tr>
-					<th>Order Number</th>
-					<th>Car Model</th>
-					<th>Car Make</th>
-					<th>Car License Plate Number</th>
-					<th>Parking Lot</th>
-					<th>Address</th>
-					<th>Date</th>
-					<th></th>
-					<th></th>
-					<th></th>
-				</tr>
-			</thead>
-			<tbody>
-				@foreach($orders as $order)
-				<div class="hidden">
-					{{{ $timestamp = strtotime($order->created_at) }}}
-				</div>
-				<tr>
-					<td>{{ $order->id }}</td>
-					<td>{{ $order->model }}</td>
-					<td>{{ $order->make }}</td>
-					<td>{{ $order->license_plate }}</td>
-					<td>{{ $order->name }}</td>
-					<td>{{ $order->address }}</td>
-					<td>{{ date('F d, Y', $timestamp) }}</td>
-					<td><a href="{{{ action('OrdersController@show', $order->id) }}}" class="btn btn-primary">View This Order</a></td>
-					<td><a href="#" data-toggle="modal" data-target="#ratingModal" class="btn btn-success"><i class="fa fa-plus"></i> Rate</a></td>
-					<td>
-					@if( !$order->parking_id )
-					{{ Form::open(['action' => 'ParkingLotUsersController@store']) }}
-						<div class="hidden">
-	                    	<input type="text" name="parking-lot-id" id="parking-lot-id" value="{{{ $order->parking_lot_id }}}">
-	                    </div>
-						<button type="submit" class="btn btn-warning">Prefer this Parking Lot</button>
-					{{ Form::close() }}
-					@endif
-					</td>
-				</tr>
-				@endforeach
-			</tbody>
-		</table>
+		<div class="table-responsive">
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th>Order Number</th>
+						<th>Car Model</th>
+						<th>Car Make</th>
+						<th>Car License Plate Number</th>
+						<th>Parking Lot</th>
+						<th>Address</th>
+						<th>Date</th>
+						<th></th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					@foreach($orders as $order)
+					<div class="hidden">
+						{{{ $timestamp = strtotime($order->created_at) }}}
+					</div>
+					<tr>
+						<td>{{ $order->id }}</td>
+						<td>{{ $order->model }}</td>
+						<td>{{ $order->make }}</td>
+						<td>{{ $order->license_plate }}</td>
+						<td>{{ $order->name }}</td>
+						<td>{{ $order->address }}</td>
+						<td>{{ date('F d, Y', $timestamp) }}</td>
+						<td><a href="#" data-toggle="modal" data-target="#ratingModal" class="btn btn-success"><i class="fa fa-plus"></i> Rate</a></td>
+						<td>
+						@if( !$order->parking_id )
+						{{ Form::open(['action' => 'ParkingLotUsersController@store']) }}
+							<div class="hidden">
+		                    	<input type="text" name="parking-lot-id" id="parking-lot-id" value="{{{ $order->parking_lot_id }}}">
+		                    </div>
+							<button type="submit" class="btn btn-warning">Prefer this Parking Lot</button>
+						{{ Form::close() }}
+						@endif
+						</td>
+					</tr>
+					@endforeach
+				</tbody>
+			</table>
+		</div>
 		<center>
 			<span>{{ $orders->links() }}</span>
 		</center>

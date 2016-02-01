@@ -208,4 +208,19 @@ a:hover {
     .privacy {
         margin-left: 10px;
     }
+<<<<<<< HEAD
+=======
+}
+
+.fa-check.fa-lg,
+.true,
+a.true {
+    color: green;
+}
+
+.fa-times.fa-lg,
+.false,
+a.false {
+    color: red;
+>>>>>>> master
 }
