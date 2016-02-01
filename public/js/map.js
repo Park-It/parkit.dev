@@ -369,10 +369,10 @@ function initMap() {
 			if (parking_lot.average_rating == null) {
 				markers[index].content += '<p>Average rating: No ratings available</p>';
 			} else {
-				markers[index].content += '<p>Average rating: ' + parking_lot.average_rating + '/10</p>';
+				markers[index].content += '<p>Average rating: ' + parking_lot.average_rating + '/5</p>';
 			}
 			// markers[index].content += carsPulldown;
-
+			markers[index].content += '<p><a href="#" data-id="' + parking_lot.id + '" data-toggle="modal" data-target="#commentModal" class="comment">View comments and ratings</a></p>'
 			// markers[index].content += '<button data-toggle="modal" data-target="#selectCar" class="btn btn-primary"><i class="fa fa-mouse-pointer"></i>&nbsp;Select a Car</button>'
 			markers[index].content += '<button data-rating="' + parking_lot.average_rating + '" data-parkinglot-id="' + parking_lot.id + '" class="btn btn-success addCar"><i class="fa fa-plus"></i>&nbsp;Add a Car</button>'
 			// markers[index].content += '<button data-key="pk_test_mWjCI2kTeACsWi4lY42JaFM7" data-amount="' + parking_lot.price + '" data-name="' + parking_lot.name + '" data-description="' + parking_lot.address + '" data-locale="auto" class="submitStripe btn btn-primary"><i class="fa fa-credit-card"></i>&nbsp;Pay Now</button>';
@@ -457,6 +457,43 @@ function initMap() {
     //   	});
     // });
 
+	$(document).on('click', '.comment', function() {
+		var id = $('.comment').data('id');
+		// console.log(id);
+		var comments = $.get('/comments/json/' + id, function(data) {
+			if(data.length == 0) {
+				$('.newComments').html('No comments and ratings');
+				$('.newComments').addClass('text-center');
+				$('.newButton').html('<a href="/orders" class="btn btn-primary">Add a comment or rating</a>');
+			} else {
+				$('.newComments').removeClass('text-center');
+				var newComments = 	'<table class="table table-striped">\
+										<thead>\
+											<tr>\
+												<th>User</th>\
+												<th>Stars</th>\
+												<th>Comment</th>\
+												<th>Recommended</th>\
+											</tr>\
+										</thead>\
+										<tbody>';
+
+				for(var i=0; i<data.length; i++){
+					newComments += 			'<tr>\
+												<td>' + data[i].username + '</td>\
+												<td>' + data[i].stars + '</td>\
+												<td>' + data[i].comment + '</td>\
+												<td>' + (data[i].recommended ? '<i class="fa fa-lg fa-check"></i>' : '<i class="fa fa-lg fa-times"></i>') + '</td>\
+											</tr>';
+
+				}
+						newComments += '</tbody>\
+									</table>';
+				$('.newComments').html(newComments);
+			}
+		});
+	});
+
 	var handler = StripeCheckout.configure({
 	    key: 'pk_test_mWjCI2kTeACsWi4lY42JaFM7',
 	    locale: 'auto',
@@ -507,10 +544,10 @@ function initMap() {
 					// console.log('<span class="alert alert-danger">' + data.make[0] + '</span>');
 
 					// $('#make').after('<p id="make-form" class="red-text">' + data.make[0] + '</p>');
-					$('#error-make').html( data.make[0] );
-					$('#error-model').html( data.model[0] );
-					$('#error-license').html( data.license_plate_number[0] );
-					$('#error-color').html( data.color[0] );
+					$('#error-make').html( '<p class="red-text">' + data.make[0] + '</p>');
+					$('#error-model').html( '<p class="red-text">' + data.model[0] + '</p>');
+					$('#error-license').html( '<p class="red-text">' + data.license_plate_number[0] + '</p>');
+					$('#error-color').html( '<p class="red-text">' + data.color[0] + '</p>');
 
 					// $('#model').after('<p id="model" class="red-text">' + data.model[0] + '</p>');
 					// $('#license_plate_number').after('<p id="license_plate_number" class="red-text">' + data.license_plate_number[0] + '</p>');

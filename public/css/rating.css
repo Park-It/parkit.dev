@@ -1,7 +1,3 @@
-.fa-check.fa-lg {
-	color: green;
-}
-
-.fa-times.fa-lg {
-	color: red;
+.clicked {
+	color: gray !important;
 }

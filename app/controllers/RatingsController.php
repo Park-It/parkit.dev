@@ -14,6 +14,7 @@ class RatingsController extends BaseController {
 			$parking_lots = DB::table('ratings')->where('user_id', $userId)
     		->join('parking_lots', 'parking_lots.id', '=', 'parking_lot_id')
     		->select('ratings.*', 'parking_lots.name')
+    		->orderBy('id', 'desc')
     		->paginate(10);
 		} 
 		
@@ -37,9 +38,10 @@ class RatingsController extends BaseController {
 	{
 		$validator = Validator::make($data = Input::all(), Rating::$rules);
 		if ($validator->fails())
-		{
+		{dd($validator->messages());
 			return Redirect::back()->withErrors($validator)->withInput();
 		}
+
 		$rating = new Rating();
 		$rating->stars = Input::get('stars');
 		$rating->comment = Input::get('comment');
@@ -96,7 +98,7 @@ class RatingsController extends BaseController {
 			$rating = Rating::findOrFail($id);
 			$messages = array(
 				'new_stars.required' => 'We need to know how many stars you wish to give!',
-				'new_stars.max' => 'You must enter a value with a maximum of 10 characters.',
+				'new_stars.max' => 'You must enter a value with a maximum value of 5.',
 				'new_comment.max' => 'You must enter a value with a maximum of 255 characters.',
 				'new_recommended.max' => 'You must enter a value with a maximum of 255 characters.',
 			);

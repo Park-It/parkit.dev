@@ -43,12 +43,14 @@
 					<td><a href="{{{ action('OrdersController@show', $order->id) }}}" class="btn btn-primary">View This Order</a></td>
 					<td><a href="#" data-toggle="modal" data-target="#ratingModal" class="btn btn-success"><i class="fa fa-plus"></i> Rate</a></td>
 					<td>
-					{{ Form::open(['action' => 'ParkingLotsController@store']) }}
+					@if( !$order->parking_id )
+					{{ Form::open(['action' => 'ParkingLotUsersController@store']) }}
 						<div class="hidden">
 	                    	<input type="text" name="parking-lot-id" id="parking-lot-id" value="{{{ $order->parking_lot_id }}}">
 	                    </div>
 						<button type="submit" class="btn btn-warning">Prefer this Parking Lot</button>
 					{{ Form::close() }}
+					@endif
 					</td>
 				</tr>
 				@endforeach
