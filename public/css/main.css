@@ -157,7 +157,8 @@ footer {
     background-color: rgba(0, 0, 0, 0.6);
     padding-top: 20px;
     padding-bottom: 20px; 
-    color: white;
+    /*color: white;*/
+    border-color: transparent !important;
 }
 
 .col-md-4 {
@@ -165,9 +166,22 @@ footer {
     color: white;
 }
 
+a:hover { 
+        color: blue;
+        text-decoration: none;
+        font-weight: none
+        
+    }
+
 #social-buttons a {
     text-align: center;
     color: white;
+}
+
+#social-buttons a:hover { 
+    color: blue;
+    text-decoration: none;
+    font-weight: none; 
 }
 
 .page-scroll a {
@@ -194,6 +208,8 @@ footer {
     .privacy {
         margin-left: 10px;
     }
+<<<<<<< HEAD
+=======
 }
 
 .fa-check.fa-lg,
@@ -206,4 +222,5 @@ a.true {
 .false,
 a.false {
     color: red;
+>>>>>>> master
 }
