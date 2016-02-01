@@ -196,10 +196,14 @@ footer {
     }
 }
 
-.fa-check.fa-lg {
+.fa-check.fa-lg,
+.true,
+a.true {
     color: green;
 }
 
-.fa-times.fa-lg {
+.fa-times.fa-lg,
+.false,
+a.false {
     color: red;
 }
