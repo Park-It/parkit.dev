@@ -1,5 +1,5 @@
 @extends('layouts.master')
-
+	
 @section('title')
 	<title>{{{ ucfirst($first_name) . '\'s Orders' }}}</title>
 @stop
@@ -29,6 +29,9 @@
 			</thead>
 			<tbody>
 				@foreach($orders as $order)
+				<div class="hidden">
+					{{{ $timestamp = strtotime($order->created_at) }}}
+				</div>
 				<tr>
 					<td>{{ $order->id }}</td>
 					<td>{{ $order->model }}</td>
@@ -36,10 +39,17 @@
 					<td>{{ $order->license_plate }}</td>
 					<td>{{ $order->name }}</td>
 					<td>{{ $order->address }}</td>
-					<td>{{ $order->created_at }}</td>
+					<td>{{ date('F d, Y', $timestamp) }}</td>
 					<td><a href="{{{ action('OrdersController@show', $order->id) }}}" class="btn btn-primary">View This Order</a></td>
 					<td><a href="#" data-toggle="modal" data-target="#ratingModal" class="btn btn-success"><i class="fa fa-plus"></i> Rate</a></td>
-					<td><a href="{{-- {{{ action('ParkingLotUsersController@store', $order->parking_lot_id) }}} --}}" class="btn btn-warning">Prefer This Parking Lot</a></td>
+					<td>
+					{{ Form::open(['action' => 'ParkingLotsController@store']) }}
+						<div class="hidden">
+	                    	<input type="text" name="parking-lot-id" id="parking-lot-id" value="{{{ $order->parking_lot_id }}}">
+	                    </div>
+						<button type="submit" class="btn btn-warning">Prefer this Parking Lot</button>
+					{{ Form::close() }}
+					</td>
 				</tr>
 				@endforeach
 			</tbody>
@@ -60,6 +70,7 @@
                 </div>
             {{ Form::open(['action' => 'RatingsController@store']) }}
                 <div class="modal-body">
+                	<p><b>Parking Lot: </b><em>{{{ $order->name }}}</em></p>
                     <div class="form-group">
                         <label for="stars">Stars</label>
                         <input type="text" class="form-control" placeholder="Please enter your rating" name="stars" id="stars">
@@ -72,6 +83,7 @@
                         <label for="recommended">Recommended</label>
                         <div class="hidden">
                         	<input type="text" name="recommended" id="recommended">
+                        	<input type="text" name="parking_lot_id" id="parking_lot_id" value="{{{ $order->parking_lot_id }}}">
                         </div>
                         <div>
 	                        <a href="#" id="true" value="1"><i class="fa fa-lg fa-check"></i></a>

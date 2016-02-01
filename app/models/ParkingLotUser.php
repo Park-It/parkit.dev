@@ -1,6 +1,6 @@
 <?php
 
-class ParkingLotUser extends \Eloquent {
+class ParkingLotUser extends BaseModel {
 
 	// Add your validation rules here
 	public static $rules = [

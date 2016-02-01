@@ -186,3 +186,13 @@ footer {
     font-size: 20px;
     line-height: 45px;
 }
+
+@media (max-width: 990px) {
+    #social-buttons {
+        margin-bottom: 15px;
+        margin-top: 15px;
+    }
+    .privacy {
+        margin-left: 10px;
+    }
+}

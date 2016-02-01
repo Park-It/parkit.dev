@@ -96,7 +96,7 @@ form .row:first-child .floating-label-form-group {
 
 form,
 input {
-	text-align: center;
+    text-align: center;
 }
 
 #map-canvas {
@@ -105,34 +105,54 @@ input {
     text-align: center;
 }
 
+.next {
+    background: url(/img/next.png);
+    margin-right: 50px;
+    right: 0;
+    opacity: 0.3;
+}
+
+.prev {
+    background: url(/img/prev.png);
+    margin-left: 50px;
+    left: 0;
+    opacity: 0.3;
+}
+
 @media (max-width: 460px) {
   .login-form {
-        left: -10px;
+        /*left: -10px;*/
   }
 }
 
 @media (max-width: 1000px) {
     .login-form {
         /*top: 100px;*/
-        left: 50px;
+        /*left: 50px;*/
         /*width: 400px;*/
     }
   }
 
 @media (max-width: 460px) {
     .login-form {
-        top: 300px;
-        left: -15px;
         width: 400px;
+    } 
+    .pause {
+        top: 250px;
     }
-    #map-canvas {
-      margin-top: 300px;
+    .next {
+        right: 10px;
     }
-    .circle {
-      margin-left: 25px;
-      margin-top:-630px;
-      z-index: 10;
+    .prev {
+        left: 10px;
     }
+}
+
+@media (max-width: 667px) {
+    .pause {
+        top: 240px;
+    }
+   
 }
 
 /* iPhone 6 Map Sizes */
@@ -144,7 +164,7 @@ input {
 }
 
 @media screen and (max-width: 667px) {
-    #map-canvas, .carousel-slide {
+    #map-canvas, .login-form {
         height: 375px;
         margin-top: 200;
     }
@@ -226,21 +246,6 @@ div {
     color: black;
 }
 
-.circle {
-    display: inline-block;
-    width: 50px;
-    height: 50px;
-    border: 2px solid #ffffff;
-    border-radius: 100%;
-    text-align: center;
-    font-size: 20px;
-    line-height: 45px;
-    padding-top: 5px;
-    color: #FFF;
-    vertical-align: top;
-    margin-bottom: 10px;
-}
-
 .addCar {
     margin-top: 10px;
 }
@@ -302,19 +307,6 @@ div {
     cursor: pointer;
 }
 
-.next {
-    background: url(/img/next.png);
-    margin-right: 50px;
-    right: 0;
-    opacity: 0.3;
-}
-
-.prev {
-    background: url(/img/prev.png);
-    margin-left: 50px;
-    left: 0;
-    opacity: 0.3;
-}
 
 .down {
     background: url(/img/down.png);
@@ -329,7 +321,20 @@ div {
     margin-left: -40px;
 }
 
-.next:hover, .prev:hover, .down:hover {
+.pause {
+    bottom: 225px;
+    opacity: 0.3;
+    position: absolute;
+    z-index: 10;
+    width: 60px;
+    height: 25px;
+    cursor: pointer;
+    left: 50%;
+    margin-left: -30px;
+    color: white;
+}
+
+.next:hover, .prev:hover, .down:hover, .pause:hover {
     opacity: 1;
 }
 
