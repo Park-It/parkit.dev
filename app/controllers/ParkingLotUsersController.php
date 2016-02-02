@@ -9,9 +9,17 @@ class ParkingLotUsersController extends \BaseController {
 	 */
 	public function index()
 	{
-		$parkinglotusers = Parkinglotuser::all();
+		if(Auth::check())
+		{
+			$userId = Auth::user()->id;
+			$preferred_parking_lots = DB::table('parking_lot_users')->where('user_id', $userId)
+    		->join('parking_lots', 'parking_lot_users.parking_lot_id', '=', 'id')
+    		->paginate(10);
+			$first_name = Auth::user()->first_name;
+		} 
+		// $parkinglots = Parkinglot::all();
 
-		return View::make('parkinglotusers.index', compact('parkinglotusers'));
+		return View::make('parking_lots.index', compact('preferred_parking_lots', 'first_name'));
 	}
 
 	/**
