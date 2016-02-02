@@ -53,7 +53,7 @@ class ParkingLotUsersController extends \BaseController {
 		$parking_lot_user->user_id = $userId;
 		$parking_lot_user->save();
 
-		return Redirect::route('orders.index');
+		return Redirect::to('orders.index');
 	}
 
 	/**
