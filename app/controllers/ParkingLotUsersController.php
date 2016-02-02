@@ -19,7 +19,7 @@ class ParkingLotUsersController extends \BaseController {
 		} 
 		// $parkinglots = Parkinglot::all();
 
-		return View::make('parking_lots.index', compact('preferred_parking_lots', 'first_name'));
+		return View::make('parking_lot_users.index', compact('preferred_parking_lots', 'first_name'));
 	}
 
 	/**
