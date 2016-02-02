@@ -48,7 +48,7 @@ class ParkingLotUsersController extends \BaseController {
 
 		$userId = Auth::user()->id;
 
-		$parking_lot_user = new Parkinglotuser();
+		$parking_lot_user = new ParkingLotUser();
 		$parking_lot_user->parking_lot_id = Input::get('parking-lot-id');
 		$parking_lot_user->user_id = $userId;
 		$parking_lot_user->save();
@@ -64,7 +64,7 @@ class ParkingLotUsersController extends \BaseController {
 	 */
 	public function show($id)
 	{
-		$parkinglotuser = Parkinglotuser::findOrFail($id);
+		$parkinglotuser = ParkingLotUser::findOrFail($id);
 
 		return View::make('parkinglotusers.show', compact('parkinglotuser'));
 	}
@@ -77,7 +77,7 @@ class ParkingLotUsersController extends \BaseController {
 	 */
 	public function edit($id)
 	{
-		$parkinglotuser = Parkinglotuser::find($id);
+		$parkinglotuser = ParkingLotUser::find($id);
 
 		return View::make('parkinglotusers.edit', compact('parkinglotuser'));
 	}
@@ -90,7 +90,7 @@ class ParkingLotUsersController extends \BaseController {
 	 */
 	public function update($id)
 	{
-		$parkinglotuser = Parkinglotuser::findOrFail($id);
+		$parkinglotuser = ParkingLotUser::findOrFail($id);
 
 		$validator = Validator::make($data = Input::all(), Parkinglotuser::$rules);
 
