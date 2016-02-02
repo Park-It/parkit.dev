@@ -112,8 +112,10 @@ class ParkingLotUsersController extends \BaseController {
 	 */
 	public function destroy($id)
 	{
-		Parkinglotuser::destroy($id);
-
+		$userId = Auth::user()->id;
+		Log::info("userid: {$userId}, preferred parking lot id: {$id} Deleted.");
+		$preferredParking = DB::table('parking_lot_users')->where('user_id', $userId)->where("parking_lot_id", $id);
+		$preferredParking->delete();
 		return Redirect::route('parkinglotusers.index');
 	}
 
