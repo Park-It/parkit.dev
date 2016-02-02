@@ -467,28 +467,30 @@ function initMap() {
 				$('.newButton').html('<a href="/orders" class="btn btn-primary">Add a comment or rating</a>');
 			} else {
 				$('.newComments').removeClass('text-center');
-				var newComments = 	'<table class="table table-striped">\
-										<thead>\
-											<tr>\
-												<th>User</th>\
-												<th>Stars</th>\
-												<th>Comment</th>\
-												<th>Recommended</th>\
-											</tr>\
-										</thead>\
-										<tbody>';
+				var newComments = 	'<div class="table-responsive">\
+										<table class="table table-striped">\
+											<thead>\
+												<tr>\
+													<th>User</th>\
+													<th>Stars</th>\
+													<th>Comment</th>\
+													<th>Recommended</th>\
+												</tr>\
+											</thead>\
+											<tbody>';
 
 				for(var i=0; i<data.length; i++){
-					newComments += 			'<tr>\
-												<td>' + data[i].username + '</td>\
-												<td>' + data[i].stars + '</td>\
-												<td>' + data[i].comment + '</td>\
-												<td>' + (data[i].recommended ? '<i class="fa fa-lg fa-check"></i>' : '<i class="fa fa-lg fa-times"></i>') + '</td>\
-											</tr>';
+					newComments += 				'<tr>\
+													<td>' + data[i].username + '</td>\
+													<td>' + data[i].stars + '</td>\
+													<td>' + data[i].comment + '</td>\
+													<td>' + (data[i].recommended ? '<i class="fa fa-lg fa-check"></i>' : '<i class="fa fa-lg fa-times"></i>') + '</td>\
+												</tr>';
 
 				}
-						newComments += '</tbody>\
-									</table>';
+						newComments += 		'</tbody>\
+										</table>\
+									</div>';
 				$('.newComments').html(newComments);
 			}
 		});
