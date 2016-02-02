@@ -39,7 +39,7 @@ class ParkingLotUsersController extends \BaseController {
 	 */
 	public function store()
 	{
-		$validator = Validator::make($data = Input::all(), Parkinglotuser::$rules);
+		$validator = Validator::make($data = Input::all(), ParkingLotUser::$rules);
 
 		if ($validator->fails())
 		{dd($validator->messages());
