@@ -618,7 +618,7 @@ $(document).ready(function() {
 			if (data[0].average_rating == null) {
 				parking_info += '<p>Average rating: No ratings available</p>';
 			} else {
-				parking_info += '<p>Average rating: ' + data[0].average_rating + '/10</p>';
+				parking_info += '<p>Average rating: ' + data[0].average_rating + '/5</p>';
 			}
 			// console.log(data);
 			var submitButton = '<button id="payButton" type="submit" data-key="pk_test_mWjCI2kTeACsWi4lY42JaFM7" data-amount="' + data[0].price + '" data-name="' + data[0].name + '" data-description="' + data[0].address + '" data-parking-lot-id="' + data[0].id + '" data-locale="auto" class="submitStripe btn btn-primary"><i class="fa fa-credit-card"></i>&nbsp;Pay Now</button>';
