@@ -41,4 +41,4 @@ Route::get('user/car/{id?}', 'HomeController@getCar');
 
 Route::post('user/car', 'HomeController@storeCar');
 
-Route::resource('parking_lot_users', 'ParkingLotUsersController');
+Route::resource('parkinglotusers', 'ParkingLotUsersController');
