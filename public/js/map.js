@@ -334,18 +334,6 @@ function initMap() {
 	$.getJSON('/lots/json').done(function(data) {
 
 		var markers = [];
-
-		// var cars = $.get('/user/cars').done(function(data) {
-		// 	carsPulldown = '<select>';
-		// 	console.log(data);
-
-		// 	data.forEach(function (element, index, array){
-		// 		// build html
-		// 		carsPulldown += '<option value="' + element.id + '">' + element.make + '</option>';
-		// 	});
-
-		// 	carsPulldown += '</select>';
-		// });
 		
 
 		// loops through data
@@ -425,37 +413,6 @@ function initMap() {
   		});
 	}
 
-	// Stripe.setPublishableKey('pk_test_mWjCI2kTeACsWi4lY42JaFM7');
-
-	// var stripeResponseHandler = function(status, response) {
- //    	var $form = $('#payment-form');
- //      	if (response.error) {
- //        	// Show the errors on the form
- //        	$form.find('.payment-errors').text(response.error.message);
- //        	$form.find('button').prop('disabled', false);
- //        	alert('Error');
- //      	} else {
- //      		alert('Success');
- //        	// token contains id, last4, and card type
- //        	var token = response.id;
- //        	// Insert the token into the form so it gets submitted to the server
- //        	$form.append($('<input type="hidden" name="stripeToken" />').val(token));
- //        	// and re-submit
- //        	$form.get(0).submit();
-
- //      	}
- //    };
-
-    // jQuery(function($) {
-    //   	$('#payment-form').submit(function(e) {
-    //     	var $form = $(this);
-    //     	// Disable the submit button to prevent repeated clicks
-    //     	$form.find('button').prop('disabled', true);
-    //     	Stripe.card.createToken($form, stripeResponseHandler);
-    //     	// Prevent the form from submitting with the default action
-    //     	return false;
-    //   	});
-    // });
 
 	$(document).on('click', '.comment', function() {
 		var id = $('.comment').data('id');
@@ -479,7 +436,7 @@ function initMap() {
 											</thead>\
 											<tbody>';
 
-				for(var i=0; i<data.length; i++){
+				for(var i = 0; i < data.length; i++){
 					newComments += 				'<tr>\
 													<td>' + data[i].username + '</td>\
 													<td>' + data[i].stars + '</td>\
