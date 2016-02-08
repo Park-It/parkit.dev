@@ -413,7 +413,7 @@ function initMap() {
   		});
 	}
 
-
+Delete
 	$(document).on('click', '.comment', function() {
 		var id = $('.comment').data('id');
 		// console.log(id);
