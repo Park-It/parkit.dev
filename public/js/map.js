@@ -535,7 +535,7 @@ function initMap() {
 			//create object
 			var submittedData = {parking_lot_id: '' + parking_lot_id + '', car_id: '' + car_id + '', _token: token};
 			
-			// console.log(submittedData);
+			
 			$.post('/orders', submittedData);
 
 			$('#addCar').modal('hide');
