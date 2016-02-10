@@ -413,7 +413,7 @@ function initMap() {
   		});
 	}
 
-Delete
+
 	$(document).on('click', '.comment', function() {
 		var id = $('.comment').data('id');
 		// console.log(id);
@@ -588,7 +588,7 @@ $(document).ready(function() {
 			var cars = $.get('/user/cars', function(data) {
 				carsPulldown = '<select id="selectCar" class="form-control">';
 				carsPulldown += '<option selected disable>Select a car</option>';
-				// console.log(data);
+				
 				data.forEach(function (element, index, array) {
 					carsPulldown += '<option value="' + element.id + '">' + element.model + ' ' + element.make + '</option>';
 				});
@@ -596,14 +596,13 @@ $(document).ready(function() {
 				$('.add-Car').append(carsPulldown);
 				$('#selectCar').on('change', function() {
 					var carId = $(this).find('option:selected').val();
-					// console.log(carId);
+
 	  				$('#payButton').attr('data-car-id', carId);
 
 				});
 			});
 		}
 		
-		// console.log($(this).data('parkinglot-id'));
 		$("#addCar").modal();
 	});
 });
