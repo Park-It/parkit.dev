@@ -567,7 +567,7 @@ $(document).ready(function() {
 		var add_car = $('#addCarForm').data('add-car');
 		var parking_info = '<h4>Parking Lot Information</h4>';
 		var parking_lot = $.get('/parkinglot/' + id , function(data) {
-			// console.log(data);
+			
 			parking_info += '<p>Name: ' + data[0].name + '</p>';
 			parking_info += '<p>Address: ' + data[0].address + '</p>';
 			parking_info += '<p>Price: $' + data[0].price + '</p>';
