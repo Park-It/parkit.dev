@@ -549,7 +549,7 @@ function initMap() {
     	}
     	
 
-		// console.log(btn_amount, btn_name, btn_description, btn_locale);
+		
 		
 
 	});
